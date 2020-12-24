@@ -65,7 +65,7 @@ const fetchRestaurants = async(url) => {
 
 (async() => {
     /*
-        @ main function
+        @ main function"
     */
 
 
