@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <!--List of fav-->
-    <div id="fav">
-        <button class="side-menu-trigger">Fav list</button>
-        <aside class="side-menu">
-          <ul>
-            <li>
-             Restaurant 1
-            </li>
-          </ul>
-      </aside>
-    </div>
+   
     <!--Header-->
     <header>
-        Some site title and fancy header
+        <div id="siteTitle">
+            Some site title and fancy header
+        </div>
+        
+         <!--List of fav-->
+        <div id="fav">
+            <button class="side-menu-trigger">Fav list</button>
+            <aside class="side-menu">
+                <ul>
+                    <li>
+                    Restaurant 1
+                    </li>
+                </ul>
+            </aside>
+        </div>
     </header>
 
     <!--Main - search engine-->
@@ -30,17 +34,23 @@
             <input type="text" id='town_search'>
             <br>
             Checkboxes generated with API i guess?
+            <br>
+            <input type="submit" value='Szukaj'>
+
         </form>
     </main>
 
     <!-- Restaurant showup with pagination -->
     <nav>
        List of pictures with pagination
+       <!--Append divs and display the pagination when search clicked-->
     </nav>
     
     <!-- The restaurant that we show -->
     <div id="restaurant">
         
+        <!--Appending when click on restaurant, same with the buttons -->
+
         Here's restaurant :)
         <br>
         <button>Menu</button>
@@ -49,10 +59,15 @@
 
         <div id="dailyMenu">
 
-        </div>
+        </div>  
 
         <div id="reviews">
+            <div id="review">
 
+            </div>
+            <div id="addReview">
+
+            </div>
         </div>
 
     </div>

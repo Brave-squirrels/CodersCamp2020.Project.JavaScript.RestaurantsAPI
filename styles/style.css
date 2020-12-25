@@ -2,7 +2,7 @@
 body{padding: 0; margin: 0;
 }
 
-/* demo of the fav side menu */
+/* demo of the fav side menu JUST DEMO */
 #fav {
     display: flex;
     justify-content: flex-end;
@@ -15,7 +15,7 @@ body{padding: 0; margin: 0;
   
   .side-menu-trigger {
     border: 0;
-    border-radius: 5px;
+    padding: 4px;
     background: #ffffff;
     
   }
@@ -35,5 +35,28 @@ body{padding: 0; margin: 0;
   
   .side-menu-trigger:focus ~ .side-menu, .side-menu:hover {
     transform: translateX(-300px); 
+  }
+  
+  /*setting some basic block functionality to display everything block */
+  header{
+    display: grid;
+    grid-template-columns: 1fr 10%;
+    background: lightblue;
+  }
+
+  main{
+    background: lightcoral;
+  }
+
+  nav{
+    background: lightcyan;
+  }
+
+  #restaurant{
+    background: lightgreen;
+  }
+
+  footer{
+    background: lightgrey;
   }
   
