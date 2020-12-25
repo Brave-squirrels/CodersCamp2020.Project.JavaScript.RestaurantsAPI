@@ -2,7 +2,21 @@ const fetch = require('node-fetch')
 
 // looking for restaurants based o user input
 const getCityName = 'poznan';
-const userCuisines = ['European', 'American'];
+// const allCuisines = ['Polish', 'Greek', 'Grill']; /* Wypisać wszystkie */
+let restaurantsFromCity = [];
+let userCuisines = ['Greek']
+
+
+/* Getting client's cuisines preferation
+
+function getUserCuisines() {
+    userCuisines = []
+    allCuisines.forEach( n =>
+    {if (document.getElementById(`${n}`).checked) {
+        userCuisines.push(document.getElementById(`${n}`).value);
+    }})
+}
+ */
 
 
 
@@ -44,27 +58,34 @@ const fetchRestaurants = async(url) => {
             -address
             -average rating
     */
-
     let result = await fetchData(url);
-    let restaurantsFromCity = { name: [], logo: [], address: [], rating: [] };
-    for (const item of result.restaurants) {
-        let restaurantCuisines = JSON.stringify(item.restaurant.cuisines);
-        if (userCuisines.some(cuisine => restaurantCuisines.includes(cuisine))) { // <----
-            restaurantsFromCity.name.push(item.restaurant.name);
-            restaurantsFromCity.logo.push(item.restaurant.photos_url);
-            restaurantsFromCity.address.push(item.restaurant.location.address);
-            restaurantsFromCity.rating.push(item.restaurant.user_rating.aggregate_rating);
-        }
+   restaurantsFromCity = [] /*czyszczenie listy przy zmianie preferencji */
+   for (const item of result.restaurants) {
+       let restaurantCuisines = JSON.stringify(item.restaurant.cuisines);
+       if (userCuisines.some(cuisine => restaurantCuisines.includes(cuisine))) { // <----
+           restaurantsFromCity.push(
+               {
+                   id: item.restaurant.id,
+                   name: item.restaurant.name,
+                   logo: item.restaurant.photos_url,
+                   address: item.restaurant.location.address,
+                   rating: item.restaurant.user_rating.aggregate_rating
 
-    }
-    return restaurantsFromCity;
+               }
+           )
+           
+       }
+       
+   }
+   return restaurantsFromCity;
 }
-
+// Dołączyć do tego niżej, jak będziemy mieli już zarys strony
+// const getAllInfo = 
 (async() => {
     /*
         main function
     */
-
+    // await getUserCuisines() DODAĆ PÓŹNIEJ
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${getCityName}`);
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
@@ -73,3 +94,8 @@ const fetchRestaurants = async(url) => {
 
 
 })();
+
+
+// Get info about client's cousines preferation:
+
+// document.getElementById('submit').addEventListener('click', getAllInfo)
