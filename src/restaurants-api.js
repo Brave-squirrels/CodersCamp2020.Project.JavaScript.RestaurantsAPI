@@ -1,15 +1,12 @@
 const fetch = require('node-fetch')
 
-// looking for restaurants based o user input
-const getCityName = 'poznan';
-// const allCuisines = ['Polish', 'Greek', 'Grill']; /* Wypisać wszystkie */
-let restaurantsFromCity = [];
-let userCuisines = ['Greek']
+// looking for restaurants based on user input
 
 
 /* Getting client's cuisines preferation
 
-function getUserCuisines() {
+const getUserCuisines = () => {
+    const allCuisines = ['Polish', 'Greek', 'Grill']   -We have to add all cuisines here
     userCuisines = []
     allCuisines.forEach( n =>
     {if (document.getElementById(`${n}`).checked) {
@@ -52,20 +49,19 @@ const fetchRestaurants = async(url) => {
         @ returns JSON object
         - filtres restaurants in the city by:
             - cuisines type
-        - creates a JSON object with main informations about filtred restaurants:
+        - creates a JSON array with objects(for each restaurant new object) with main informations about filtred restaurants:
             -photo url
             -name
             -address
             -average rating
     */
     let result = await fetchData(url);
-   restaurantsFromCity = [] /*czyszczenie listy przy zmianie preferencji */
+   let restaurantsFromCity = [] 
    for (const item of result.restaurants) {
        let restaurantCuisines = JSON.stringify(item.restaurant.cuisines);
        if (userCuisines.some(cuisine => restaurantCuisines.includes(cuisine))) { // <----
            restaurantsFromCity.push(
                {
-                   id: item.restaurant.id,
                    name: item.restaurant.name,
                    logo: item.restaurant.photos_url,
                    address: item.restaurant.location.address,
@@ -79,13 +75,12 @@ const fetchRestaurants = async(url) => {
    }
    return restaurantsFromCity;
 }
-// Dołączyć do tego niżej, jak będziemy mieli już zarys strony
-// const getAllInfo = 
+
 (async() => {
     /*
         main function
     */
-    // await getUserCuisines() DODAĆ PÓŹNIEJ
+    // await getUserCuisines() add when submit ready 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${getCityName}`);
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
