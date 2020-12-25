@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-   
+   <!-- Wszystko ostylować na przykładzie jednej restauracji, pozniej sie to wywali i wstawi do JS'a z danymi z API, style z css'a zostaną-->
     <!--Header-->
     <header>
         <div id="siteTitle">
@@ -15,7 +15,8 @@
         </div>
         
          <!--List of fav-->
-        <div id="fav">
+        <div id="favList">
+            <!--Display if there's, a fav restaurant-->
             <button class="side-menu-trigger">Fav list</button>
             <aside class="side-menu">
                 <ul>
@@ -23,19 +24,25 @@
                     Restaurant 1
                     </li>
                 </ul>
+                <button id='saveFav'>Zapisz</button>
+                <br>
+                <!--Display when list of fav is empty-->
+                Nie ma fav restauracji :c
+
             </aside>
+           
         </div>
     </header>
 
     <!--Main - search engine-->
     <main>
         Search for the restaurant
-        <form action="" id='search_form'>
-            <input type="text" id='town_search'>
+        <form id='searchForm'>
+            <input type="text" id='townSearch'>
             <br>
             Checkboxes generated with API i guess?
             <br>
-            <input type="submit" value='Szukaj'>
+            <input type="submit" value='Szukaj' id='townFind'>
 
         </form>
     </main>
@@ -53,20 +60,21 @@
 
         Here's restaurant :)
         <br>
-        <button>Menu</button>
-        <button>Reviews</button>
-        <button>Add to fav</button>
+        <!--Display or hide everything-->
+        <button id='displayMenu'>Menu</button>
+        <button id='displayReviews'>Reviews</button>
+        <button idd='addFav'>Add to fav</button>
 
         <div id="dailyMenu">
-
+            <!--Pull of of API-->
         </div>  
 
         <div id="reviews">
             <div id="review">
-
+                <!--Append review + te z localStorage-->
             </div>
             <div id="addReview">
-
+                <!--Input z dodaniem review-->
             </div>
         </div>
 
