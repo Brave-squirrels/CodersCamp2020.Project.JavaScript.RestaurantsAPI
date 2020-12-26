@@ -11,9 +11,7 @@
 body{
   padding: 0;
   margin: 0;
-  display: grid;
-  min-height: 100vh;
-  grid-template-rows: 20% 70% 10%;
+  height: 100vh;
 }
 
 header, main, nav, #restaurant, footer{
@@ -21,27 +19,71 @@ header, main, nav, #restaurant, footer{
 }
 
   /*setting some basic block functionality to display everything block */
+  
+   /* Fav restaurants list styles */
+
+   #favList{
+     background: red;
+     position: fixed;
+     z-index: 1;
+     height: 100%;
+     width: 0;
+     top: 0;
+     right: 0;
+    transition: 0.5s;
+   }
+
+
+  /* header styles */
   header{
-    display: grid;
-    grid-template-columns: 1fr 10%;
     background: var(--mainBackground);
+    height: 10%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  header #siteTitle, header #favTrigger{
+    display: flex;
+    align-items: center;
   }
 
+
+  /* Main search block styles */
   main{
     background: var(--secondBackground);
+    height: 83%;
+    display: grid;
+    grid-template-rows: 40% 60%; 
+  }
+  main div{
+    padding: 0.3em 0.8em;
   }
 
+
+  /* List of restaurants styles */
   nav{
     background: lightcyan;
-
+    display: none;
+    flex-direction:row;
+  }
+  nav div{
+    width: 100%;
+    height: 100%;
   }
 
+
+  /* Display restaurant styles */
   #restaurant{
     background: lightgreen;
+    display: none;
   }
 
+
+  /* Footer styles */
   footer{
     background: var(--mainBackground);
-    text-align:center;
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   

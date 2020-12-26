@@ -8,10 +8,20 @@
 </head>
 <body>
    <!-- Wszystko ostylować na przykładzie jednej restauracji, pozniej sie to wywali i wstawi do JS'a z danymi z API, style z css'a zostaną-->
-    <!--Header-->
+    <!--Header--> 
+    
+    <div id="favList">
+        anything
+        <span id='closeFav'>&times;</span>
+    </div>
+
     <header>
         <div id="siteTitle">
             Some site title and fancy header
+        </div>
+
+        <div id="favTrigger">
+            Open
         </div>
         
          <!--List of fav-->
@@ -20,8 +30,8 @@
 
     <!--Main - search engine-->
     <main>
-        Search for the restaurant
         <div id="mainLeft">
+            Search for the restaurant
             <form id='searchForm'>
                 <input type="text" id='townSearch'>
                 <!-- Couisine checkboxes from API (js)-->
@@ -30,14 +40,21 @@
         </div>
 
         <div id="mainRight">
-            Opis
+            Tutaj jakiś fajny opis aplikacji
         </div>
 
     </main>
 
     <!-- Restaurant showup with pagination -->
     <nav>
+        <!-- Display:flex on this in JS instead of display: block-->
        <!--Append divs and display the pagination when search clicked-->
+       <div>a</div>
+       <div>a</div>
+       <div>a</div>
+       <div class="paginationContainer">
+           pagination
+       </div>
     </nav>
     
     <!-- The restaurant that we show -->
