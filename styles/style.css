@@ -1,52 +1,39 @@
-*{box-sizing: border-box;}
-body{padding: 0; margin: 0;
+/*Setup*/
+:root{
+  --mainBackground:#CE9370;
+  --secondBackground: #85D15C;
+ }
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+body{
+  padding: 0;
+  margin: 0;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 20% 70% 10%;
 }
 
-/* demo of the fav side menu JUST DEMO */
-#favList {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px;
-    height: 20px;
-    width: 100%;
-  }
-  
-  .side-menu-trigger {
-    border: 0;
-    padding: 4px;
-    background: #ffffff;
-    
-  }
-  
-  .side-menu {
-    position: absolute;
-    height: 100%;
-    width: 300px;
-    top: 20px;
-    right: -300px;
-    padding: 0;
-    background: red;
-    transition: 0.3s transform ease-in-out;
-  }
-  
-  .side-menu-trigger:focus ~ .side-menu, .side-menu:hover {
-    transform: translateX(-300px); 
-  }
-  
+header, main, nav, #restaurant, footer{
+  padding: 0.6em 1em;
+}
+
   /*setting some basic block functionality to display everything block */
   header{
     display: grid;
     grid-template-columns: 1fr 10%;
-    background: lightblue;
+    background: var(--mainBackground);
   }
 
   main{
-    background: lightcoral;
+    background: var(--secondBackground);
   }
 
   nav{
     background: lightcyan;
+
   }
 
   #restaurant{
@@ -54,6 +41,7 @@ body{padding: 0; margin: 0;
   }
 
   footer{
-    background: lightgrey;
+    background: var(--mainBackground);
+    text-align:center;
   }
   

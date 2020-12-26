@@ -15,41 +15,28 @@
         </div>
         
          <!--List of fav-->
-        <div id="favList">
-            <!--Display if there's, a fav restaurant-->
-            <button class="side-menu-trigger">Fav list</button>
-            <aside class="side-menu">
-                <ul>
-                    <li>
-                    Restaurant 1
-                    </li>
-                </ul>
-                <button id='saveFav'>Zapisz</button>
-                <br>
-                <!--Display when list of fav is empty-->
-                Nie ma fav restauracji :c
-
-            </aside>
-           
-        </div>
+        
     </header>
 
     <!--Main - search engine-->
     <main>
         Search for the restaurant
-        <form id='searchForm'>
-            <input type="text" id='townSearch'>
-            <br>
-            Checkboxes generated with API i guess?
-            <br>
-            <input type="submit" value='Szukaj' id='townFind'>
+        <div id="mainLeft">
+            <form id='searchForm'>
+                <input type="text" id='townSearch'>
+                <!-- Couisine checkboxes from API (js)-->
+                <input type="submit" value='Szukaj' id='townFind'>
+            </form>
+        </div>
 
-        </form>
+        <div id="mainRight">
+            Opis
+        </div>
+
     </main>
 
     <!-- Restaurant showup with pagination -->
     <nav>
-       List of pictures with pagination
        <!--Append divs and display the pagination when search clicked-->
     </nav>
     
@@ -82,9 +69,8 @@
 
     <!--Copyrights footer-->
     <footer>
-        copyrights or smth
+        &#169; Copyrights by Brave Squirrels
     </footer>
-
 
     <script src="src/index.js"></script>
 </body>
