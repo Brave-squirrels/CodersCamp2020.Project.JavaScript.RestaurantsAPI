@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-   <!-- Wszystko ostylować na przykładzie jednej restauracji, pozniej sie to wywali i wstawi do JS'a z danymi z API, style z css'a zostaną-->
-    <!--Header--> 
     
+    <!--List of fav restaurants-->
     <div id="favList">
-        anything
+        <!--Display if anything in localStorage-->
         <span id='closeFav'>&times;</span>
+        List of fav restaurants
+        <!--Display when localStorage is empty-->
+        No fav restaurants :c
     </div>
 
+    <!--Header--> 
     <header>
         <div id="siteTitle">
-            Some site title and fancy header
+            Logo or smth
         </div>
 
         <div id="favTrigger">
-            Open
+            Your fav
         </div>
-        
-         <!--List of fav-->
         
     </header>
 
@@ -47,13 +48,17 @@
 
     <!-- Restaurant showup with pagination -->
     <nav>
-        <!-- Display:flex on this in JS instead of display: block-->
-       <!--Append divs and display the pagination when search clicked-->
+        <div id="filterRestaurants">
+            Tutaj filtrowanie po wyświetleniu
+        </div>
+        <!-- Display:grid on this in JS instead of display: block-->
+       <!--Append divs and display the pagination when search clicked - 5 restaurant's at one at default-->
+       <div>a</div>
        <div>a</div>
        <div>a</div>
        <div>a</div>
        <div class="paginationContainer">
-           pagination
+           Strzałki do paginacji itp.
        </div>
     </nav>
     
@@ -62,7 +67,7 @@
         
         <!--Appending when click on restaurant, same with the buttons -->
 
-        Here's restaurant :)
+        Opis restauracji, najważniejsze dane itp.
         <br>
         <!--Display or hide everything-->
         <button id='displayMenu'>Menu</button>
@@ -71,14 +76,17 @@
 
         <div id="dailyMenu">
             <!--Pull of of API-->
+            Daily menu pokazuje się
         </div>  
 
         <div id="reviews">
             <div id="review">
                 <!--Append review + te z localStorage-->
+                Opinie itp z API
             </div>
             <div id="addReview">
-                <!--Input z dodaniem review-->
+                <!--Add own review-->
+                Form z dodawaniem własnej opinii
             </div>
         </div>
 
