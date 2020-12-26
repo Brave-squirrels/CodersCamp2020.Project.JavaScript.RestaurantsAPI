@@ -81,7 +81,7 @@ const mainFunc = async(getCityName, userCuisines) => {
 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${getCityName}`);
 
-    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
+    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, userCuisines);
 
     return restaurants;
 };
