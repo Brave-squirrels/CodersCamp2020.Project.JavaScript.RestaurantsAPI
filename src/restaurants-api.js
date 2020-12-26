@@ -83,7 +83,7 @@ const mainFunc = async(getCityName, userCuisines) => {
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
 
-    console.log(JSON.stringify(restaurants))
+    return restaurants;
 };
 
 // Exports function for testing (later to frontend also)
