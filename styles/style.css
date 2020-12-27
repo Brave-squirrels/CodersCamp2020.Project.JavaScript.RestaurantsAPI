@@ -6,6 +6,9 @@
   --favList: #4D573D;
   --mainFont: 'Roboto', sans-serif;
   --logoFont: 'Montserrat', sans-serif;
+  --buttonBg: rgba(0,0,0,0.2);
+  --inputColor: #E8E8E8;
+  --titleColor: #F7F7F7;
  }
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
@@ -57,7 +60,7 @@ main div, #dailtMenu, #reviews, nav div{
     height: 15%;
     display: grid;
     grid-template-columns: 1fr 15%;
-    font-size: 1.1em;
+    font-size: 1.3em;
     font-family: var(--logoFont);
   }
   header #siteTitle, header #favTrigger{
@@ -91,9 +94,25 @@ main div, #dailtMenu, #reviews, nav div{
     grid-template-rows: 40% 60%; 
   }
   
+  #mainLeft, #mainRight{
+    position: relative;
+  }
+
+  #formTitle{
+    color: var(--titleColor);
+    font-size: 1.2em;
+  }
+
+  main form input{
+    margin-top: 0.5em;
+  }
+
   main img{ 
-    height: 3em;
+    height: 3.5em;
     width: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 
   /* List of restaurants styles */
@@ -128,6 +147,30 @@ main div, #dailtMenu, #reviews, nav div{
     align-items: center;
   }
   
+
+  /* button styles */
+  input[type='submit'], button{
+    border: 4px solid var(--buttonBg);
+    border-radius: 8px;
+    padding: 0.2em 0.8em;
+    font-size: 1em;
+    font-family: var(--mainFont);
+    font-weight: bold;
+    background: var(--mainBackground);
+    color: var(--inputColor);
+  }
+
+  /*input text style */
+  input[type='text']{
+    background: var(--mainBackground);
+    border: 2px solid var(--buttonBg);
+    border-radius: 4px;
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    outline: none;
+    color: var(--inputColor);
+    font-family: var(--mainFont);
+  }
 
   /* Media queries */
   @media only screen and (min-width: 1080px){
