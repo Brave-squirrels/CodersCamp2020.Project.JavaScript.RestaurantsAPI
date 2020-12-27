@@ -72,6 +72,27 @@ const fetchRestaurants = async(url, userCuisines) => {
     return restaurantsFromCity;
 }
 
+const replacePolishChar = (getCityName)=> {
+    /*
+        -parametr (name of city)
+        @return string
+        -replace all Polish characters on chracter without diacritic
+    */
+
+    let cityName = getCityName.replace(/ą/gi,'a')
+    .replace(/ć/gi,'c')
+    .replace(/ę/gi,'e')
+    .replace(/ł/gi,'l')
+    .replace(/ń/gi,'n')
+    .replace(/ó/gi,'o')
+    .replace(/ś/gi,'s')
+    .replace(/ż/gi,'z')
+    .replace(/ź/gi,'z')
+
+    return cityName
+}
+
+
 const mainFunc = async(getCityName, userCuisines) => {
     /*
         main function
@@ -79,7 +100,9 @@ const mainFunc = async(getCityName, userCuisines) => {
     */
     // await getUserCuisines() add when submit ready 
 
-    let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${getCityName}`);
+    let cityName = await replacePolishChar(getCityName);
+
+    let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, userCuisines);
 
