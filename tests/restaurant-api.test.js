@@ -28,3 +28,16 @@ test('should be a number in range 0-5', async() => {
     const correctRating = /([0-4]+.+[0-9])|5/
     expect(data[0].rating).toMatch(correctRating);
 });
+
+// Testing latin letters
+test('should return Burget Ltd (latin letters)', async() => {
+    const data = await mainFunc('wrocław', ['American']);
+    expect(data[0].name).toBe('Burger Ltd');
+});
+
+// Testing latin and uppercase letters
+test('should return rating (latin letters nad upper case)', async() => {
+    const data = await mainFunc('Kraków', ['Italian']);
+    const correctRating = /([0-4]+.+[0-9])|5/
+    expect(data[0].rating).toMatch(correctRating);
+});
