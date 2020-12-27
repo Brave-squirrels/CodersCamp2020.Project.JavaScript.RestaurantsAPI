@@ -1,5 +1,5 @@
 //Display Fav menu
-document.querySelector('#favTrigger').addEventListener('click',()=>{
+document.querySelector('#favIcon').addEventListener('click',()=>{
     const favList = document.querySelector('#favList');
     favList.style.width = '100%';
     favList.style.right = '0';

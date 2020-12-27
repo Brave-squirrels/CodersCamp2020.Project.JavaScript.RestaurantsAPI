@@ -1,19 +1,24 @@
 /*Setup*/
 :root{
-  --mainBackground:#CE9370;
-  --secondBackground: #85D15C;
+  --bodyBg: rgba(0,0,0,0.2);
+  --mainBackground:rgba(0,0,0,0.3);
+  --secondBackground: rgba(0,0,0,0.1);
   --favList: #4D573D;
+  --mainFont: 'Roboto', sans-serif;
+  --logoFont: 'Montserrat', sans-serif;
  }
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 *{
   box-sizing: border-box;
-  font-family: Roboto;
   letter-spacing: 0.04em;
 }
 body{
   padding: 0;
   margin: 0;
   height: 100vh;
+  background: var(--bodyBg);
+  font-family: var(--mainFont);
 }
 
 /*padding standards - demo */
@@ -31,7 +36,7 @@ main div, #dailtMenu, #reviews, nav div{
 
   /* Main styles */
   
-   /* Fav restaurants list styles */
+  /* Fav restaurants list styles */
 
    #favList{
      box-sizing: border-box;
@@ -49,25 +54,47 @@ main div, #dailtMenu, #reviews, nav div{
   /* header styles */
   header{
     background: var(--mainBackground);
-    height: 10%;
+    height: 15%;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 15%;
+    font-size: 1.1em;
+    font-family: var(--logoFont);
   }
   header #siteTitle, header #favTrigger{
     display: flex;
     align-items: center;
+  }
+  #logo{
+    height: 2.2em;
+    width: auto;
+  }
+  #logoTitle{
+    padding-left: 0.7em;
+    font-weight: bold;
+    text-align: center;
+  }
+  #favIcon{
+    height: 1.7em;
+    width: auto;
+    cursor: pointer;
+  }
+  #favTrigger{
+    justify-content: flex-end;
   }
 
 
   /* Main search block styles */
   main{
     background: var(--secondBackground);
-    height: 83%;
+    height: 78%;
     display: grid;
     grid-template-rows: 40% 60%; 
   }
   
-
+  main img{ 
+    height: 3em;
+    width: auto;
+  }
 
   /* List of restaurants styles */
   nav{
