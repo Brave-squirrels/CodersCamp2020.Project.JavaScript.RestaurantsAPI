@@ -155,10 +155,8 @@ main div, #dailtMenu, #reviews, nav div{
   */
   nav{
     background: var(--bodyBg);
-    display: none;
-    grid-template-rows: auto 1fr 1fr auto;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0.3em;
+    display: grid;
+    grid-gap: 0.5em;
   }
   nav div{
     width: 100%;
@@ -166,27 +164,42 @@ main div, #dailtMenu, #reviews, nav div{
   }
 
   #paginationContainer, #filterRestaurants{
-    grid-column: span 3;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  nav #resDiv span{
+  #resDiv span{
     display: block;
   }
-
-  nav #resDiv{
-    font-size: 0.8em;
-    display: flex;
-    flex-direction: column;
-    /* adding by appendin special id do every div and style it with js */
-    background-image: url('../assets/sample.jpg');
+  
+  #resDiv img{
+    height: 0.9em;
+    width: auto;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  nav #resDiv button{
-    border: 2px;
-    font-size: 0.8em;
+  #resDiv{
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+    background:#A6A6A6;
+    border-radius: 8px;
+    width: 100%;
+    display: grid;
+    cursor: pointer;
+    position: relative;
+    color: var(--titleColor);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  #resTitle,#restaurantName{
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  #resAdr, #restaurantAdress{
+    font-size: 0.9em;
   }
 
 
@@ -195,8 +208,25 @@ main div, #dailtMenu, #reviews, nav div{
     Display: block; with js
   */
   #restaurant{
-    background: lightgreen;
-    display: none;
+    background: var(--secondBackground);
+    display: grid;
+    position: relative;
+    color: var(--titleColor);
+    grid-gap: 0.6em;
+  }
+  
+  #restaurant img{
+    height: 5em;
+    width: auto;
+  }
+
+  #addFav{
+    position: absolute;
+    top: 0.4em;
+    right: 0.3em;
+  }
+  #restaurantAvgRating span, #restaurantAvgCost span{
+    font-weight: bold;
   }
 
 
@@ -212,7 +242,7 @@ main div, #dailtMenu, #reviews, nav div{
 
   /* button styles */
   input[type='submit'], button{
-    border: 4px solid var(--buttonBg);
+    border: 2px solid var(--buttonBg);
     border-radius: 8px;
     padding: 0.2em 0.8em;
     font-size: 1em;

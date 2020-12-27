@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant API</title>
     <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="icon" type="image/png" href="assets/logo.png" sizes="16x16" />
+    <meta name="theme-color" content="rgba(0,0,0,0.3)" />
 </head>
 <body>
     
@@ -12,6 +14,7 @@
     <div id="favList">
         <span id='closeFav'>&times;</span>
         <!--Display if anything in localStorage-->
+        <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
         List of fav restaurants
         <!--Display when localStorage is empty-->
         No fav restaurants :c
@@ -65,66 +68,43 @@
         </div>
         <!-- Display:grid on this in JS instead of display: block-->
        <!--Append divs and display the pagination when search clicked - 5 restaurant's at one at default-->
+       <!--Click on div, scroll to the next section and display data from API-->
        <div id='resDiv'>
-           <!--Background style for div as img from restaurant-->
            <span id='resTitle'>
-               Restaurant title
+               Restaurant name
            </span>
            <span id="resCs">
-               Cousine
+               Cuisine
            </span>
-           <button id="resBtn">Check it out</button>
+           <span id="resAdr">
+               Adress
+           </span>
+           <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="">
        </div>
        <div id='resDiv'>
-        <!--Background style for div as img from restaurant-->
         <span id='resTitle'>
-            Restaurant title
+            Restaurant name
         </span>
         <span id="resCs">
-            Cousine
+            Cuisine
         </span>
-        <button id="resBtn">Check it out</button>
+        <span id="resAdr">
+            Adress
+        </span>
+        <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="">
         </div>
         <div id='resDiv'>
-            <!--Background style for div as img from restaurant-->
             <span id='resTitle'>
-                Restaurant title
+                Restaurant name
             </span>
             <span id="resCs">
-                Cousine
+                Cuisine
             </span>
-            <button id="resBtn">Check it out</button>
+            <span id="resAdr">
+                Adress
+            </span>
+            <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="">
         </div>
-        <div id='resDiv'>
-         <!--Background style for div as img from restaurant-->
-         <span id='resTitle'>
-             Restaurant title
-         </span>
-         <span id="resCs">
-             Cousine
-         </span>
-         <button id="resBtn">Check it out</button>
-         </div>
-         <div id='resDiv'>
-            <!--Background style for div as img from restaurant-->
-            <span id='resTitle'>
-                Restaurant title
-            </span>
-            <span id="resCs">
-                Cousine
-            </span>
-            <button id="resBtn">Check it out</button>
-        </div>
-        <div id='resDiv'>
-         <!--Background style for div as img from restaurant-->
-         <span id='resTitle'>
-             Restaurant title
-         </span>
-         <span id="resCs">
-             Cuisine
-         </span>
-         <button id="resBtn">Check it out</button>
-         </div>
 
 
        <div id="paginationContainer">
@@ -136,30 +116,53 @@
     <div id="restaurant">
         
         <!--Appending when click on restaurant, same with the buttons -->
+        
+        <span id="restaurantName">
+            Name of the restaurant
+        </span>
 
-        Opis restauracji, najważniejsze dane itp.
-        <br>
-        <!--Display or hide everything-->
-        <button id='displayMenu'>Menu</button>
-        <button id='displayReviews'>Reviews</button>
-        <button idd='addFav'>Add to fav</button>
+        <span id="restaurantAdress">
+            Wroclaw, ul. Whatever 21/37
+        </span>
 
-        <div id="dailyMenu">
-            <!--Pull of of API-->
-            Daily menu pokazuje się
-        </div>  
+        <img src="assets/sample.jpg" alt="restauration">
 
-        <div id="reviews">
-            <div id="review">
-                <!--Append review + te z localStorage-->
-                Opinie itp z API
-            </div>
-            <div id="addReview">
-                <!--Add own review-->
-                Form z dodawaniem własnej opinii
-            </div>
+        <span id="restaurantAvgRating">
+            <span>Average rating:</span> 4/5
+        </span>
+
+        <span id="restaurantAvgCost">
+            <span>Average cost for a couple:</span> 11.11zł
+        </span>
+
+        <div id="addFav">
+            Add to fav
+            <input type="checkbox">
         </div>
 
+        <div id="restaurantSpecificInfo">
+            <button id='displayMenu'>Menu</button>
+            <button id='displayReviews'>Reviews</button>
+            <!--Demo of the checkbox-->
+        
+
+            <div id="dailyMenu">
+                <!--Pull of of API-->
+                Nazwa dania i obok cena
+            </div>  
+
+            <div id="reviews">
+                <div id="review">
+                    <!--Append review + te z localStorage-->
+                    Tekst opinii obok liczba gwiazdek
+                </div>
+                <div id="addReview">
+                    <!--Add own review-->
+                    Form z dodawaniem własnej opinii
+                    (Ocena 0-5 + tekst)
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--Copyrights footer-->
