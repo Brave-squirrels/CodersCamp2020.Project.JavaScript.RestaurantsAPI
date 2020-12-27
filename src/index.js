@@ -9,5 +9,5 @@ document.querySelector('#favIcon').addEventListener('click',()=>{
 document.querySelector('#closeFav').addEventListener('click', ()=>{
     const favList = document.querySelector('#favList');
     favList.style.width = '0';
-    favList.style.right = '-2em';
+    favList.style.right = '-4em';
 })

@@ -3,7 +3,7 @@
   --bodyBg: rgba(0,0,0,0.2);
   --mainBackground:rgba(0,0,0,0.3);
   --secondBackground: rgba(0,0,0,0.1);
-  --favList: #4D573D;
+  --favList: #7D7D7D;
   --mainFont: 'Roboto', sans-serif;
   --logoFont: 'Montserrat', sans-serif;
   --buttonBg: rgba(0,0,0,0.2);
@@ -24,9 +24,24 @@ body{
   font-family: var(--mainFont);
 }
 
+/* Scroll styles */
+body::-webkit-scrollbar {
+  width: 4px;
+}
+body::-webkit-scrollbar-track {
+  background: #ddd;
+}
+body::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+html{
+    scroll-behavior: smooth;
+}
+
 /*padding standards - demo */
 
-header, main, nav, #restaurant, footer, #favList{
+header, main, nav, #restaurant, footer{
   padding: 0.6em 1em;
 }
 main div, #dailtMenu, #reviews, nav div{
@@ -35,6 +50,10 @@ main div, #dailtMenu, #reviews, nav div{
 
 #addReview, #review{
   padding: 0.1em 0.5em;
+}
+
+#mainRight, #mainLeft{
+  padding: 2em;
 }
 
   /* Main styles */
@@ -49,8 +68,18 @@ main div, #dailtMenu, #reviews, nav div{
      height: 100%;
      width: 0;
      top: 0;
-     right: -2em;
-    transition: 0.5s;
+     right: -4em;
+     transition: 0.5s;
+     font-size: 1em;
+     padding: 1em 2em;
+   }
+
+   #closeFav{
+     position: absolute;
+     top: 0; 
+     right: 0.3em;
+     font-size: 2em;
+     cursor: pointer;
    }
 
 
@@ -60,7 +89,7 @@ main div, #dailtMenu, #reviews, nav div{
     height: 15%;
     display: grid;
     grid-template-columns: 1fr 15%;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-family: var(--logoFont);
   }
   header #siteTitle, header #favTrigger{
@@ -115,10 +144,18 @@ main div, #dailtMenu, #reviews, nav div{
     bottom: 0;
   }
 
-  /* List of restaurants styles */
+  #mainRight{
+    font-size: 1.1em;
+    color: var(--titleColor);
+  }
+
+  /* List of restaurants styles Edit when API
+    Display: none; by default
+    display: grid; with js
+  */
   nav{
     background: lightcyan;
-    display: grid;
+    display: none;
     grid-template-rows: 1fr auto;
     grid-template-columns: repeat(5, 1fr);
   }
@@ -132,9 +169,13 @@ main div, #dailtMenu, #reviews, nav div{
   }
 
 
-  /* Display restaurant styles */
+  /* Display restaurant styles Edit when API
+    Display: none; by default
+    Display: block; with js
+  */
   #restaurant{
     background: lightgreen;
+    display: none;
   }
 
 
@@ -158,6 +199,8 @@ main div, #dailtMenu, #reviews, nav div{
     font-weight: bold;
     background: var(--mainBackground);
     color: var(--inputColor);
+    cursor: pointer;
+    outline: none;
   }
 
   /*input text style */
@@ -167,14 +210,23 @@ main div, #dailtMenu, #reviews, nav div{
     border-radius: 4px;
     font-size: 0.9em;
     padding: 0.2em 0.4em;
-    outline: none;
     color: var(--inputColor);
     font-family: var(--mainFont);
+    outline: none; 
   }
 
   /* Media queries */
+  @media only screen and (min-width: 700px){
+    :root{
+      font-size: 18px;
+    }
+  }
   @media only screen and (min-width: 1080px){
     main{
       grid-template-columns: 40% 60%; 
+      grid-template-rows: 100%;
+    }
+    :root{
+      font-size: 20px;
     }
   }
