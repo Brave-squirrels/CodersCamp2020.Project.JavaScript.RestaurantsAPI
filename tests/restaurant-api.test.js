@@ -41,3 +41,9 @@ test('should return rating (latin letters nad upper case)', async() => {
     const correctRating = /([0-4]+.+[0-9])|5/
     expect(data[0].rating).toMatch(correctRating);
 });
+
+// Test for no cuisines
+test('should return return Bar-a-Boo (no cuisines at all)', async() => {
+    const data = await mainFunc('Poznań', []);
+    expect(data[0].name).toBe('Bar-a-Boo');
+});
