@@ -42,7 +42,7 @@
             Search for the restaurant
             </span>
             <form id='searchForm'>
-                <input type="text" id='townSearch'>
+                <input type="text" id='townSearch' placeholder='Type the town'>
                 <!-- cuisine option/checkbox - zalezy co bedzie lepiej wygladac w sumie from API (js)-->
                 <br>
                 <input type="submit" value='Search' id='townFind'>
@@ -146,19 +146,57 @@
         
 
             <div id="dailyMenu" class='dailyMenu'>
+                <span class="dailyMenuTitle">
+                    Actual menu
+                </span>
                 <!--Pull of of API-->
-                Nazwa dania i obok cena
+                <div class="dishCnt">
+                    <span class="dish">
+                        Shrimps with honey
+                    </span>
+                    <span class="cost">
+                        8.99zł
+                    </span>
+                    <span class="dish">
+                        Pizza
+                    </span>
+                    <span class="cost">
+                        2.99zł
+                    </span>
+                </div>
             </div>  
 
             <div id="reviews" class='reviews'>
                 <div class='review'>
                     <!--Append review + te z localStorage-->
-                    Tekst opinii obok liczba gwiazdek
-                </div>
+                    <span class="dailyMenuTitle">
+                        Reviews
+                    </span>
+                    <!--Pull of of API-->
+                    <div class="dishCnt">
+                        <span class="dish">
+                            "The best restaurant i've ever been!"
+                        </span>
+                        <span class="cost">
+                            5/5
+                        </span>
+                        <span class="dish">
+                            "It's fine."
+                        </span>
+                        <span class="cost">
+                            3/5
+                        </span>
+                    </div>
                 <div class='addReview'>
                     <!--Add own review-->
-                    Form z dodawaniem własnej opinii
-                    (Ocena 0-5 + tekst)
+                    <span class="addReviewTitle">
+                        Share your opinion with others
+                    </span>
+                    <form id="addReview">
+                        <input type="text" id='reviewCustomInput' placeholder='Type your opinion'>
+                        <input type="range" min='0' max='5'>
+                        <input type="submit" value='Add' id='reviewSubmit'>
+                    </form>
                 </div>
             </div>
         </div>

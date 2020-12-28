@@ -194,7 +194,7 @@ header, main, nav, article, footer{
     max-width: 650px;
     margin: 0 auto;
   }
-  .resTitle,.restaurantName{
+  .resTitle,.restaurantName, .dailyMenuTitle{
     font-weight: bold;
     font-size: 1.1em;
   }
@@ -202,6 +202,18 @@ header, main, nav, article, footer{
     font-size: 0.9em;
   }
 
+  
+  .dishCnt{
+    display: grid;
+    grid-template-columns: 1fr 20%;
+  }
+  .cost{
+    text-align: right;
+  }
+
+  .dishCnt span{
+    display:block;
+  }
 
   /* Display restaurant styles Edit when API
     Display: none; by default
@@ -228,6 +240,11 @@ header, main, nav, article, footer{
   .restaurantAvgRating span, .restaurantAvgCost span{
     font-weight: bold;
   }
+  .addReviewTitle{
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
 
 
   /* Footer styles */
@@ -264,6 +281,50 @@ header, main, nav, article, footer{
     color: var(--inputColor);
     font-family: var(--mainFont);
     outline: none; 
+  }
+
+  #reviewCustomInput{
+    font-size: 0.7em;
+    margin-top: 0.3em;
+  }
+  #reviewSubmit{
+    font-size: 0.8em;
+    margin-top: 0.3em;
+  }
+  input::placeholder{
+    color: rgba(0,0,0,0.4);
+  }
+
+
+  /*input range styles */
+  input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 0.4em;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: var(--favList);
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 1.4em;
+    width: 1em;
+    border-radius: 3px;
+    background: var(--titleColor);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -0.6em;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: var(--buttonBg);
   }
 
   /* Media queries */
