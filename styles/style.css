@@ -41,18 +41,18 @@ html{
 
 /*padding standards - demo */
 
-header, main, nav, #restaurant, footer{
+header, main, nav, article, footer{
   padding: 0.6em 1em;
 }
-main div, #dailtMenu, #reviews, nav div{
+.dailyMenu, .reviews, nav div{
   padding: 0.3em 0.8em;
 }
 
-#addReview, #review{
+.addReview, .review{
   padding: 0.1em 0.5em;
 }
 
-#mainRight, #mainLeft{
+.mainRight, .mainLeft{
   padding: 2em;
 }
 
@@ -60,7 +60,7 @@ main div, #dailtMenu, #reviews, nav div{
   
   /* Fav restaurants list styles */
 
-   #favList{
+    aside{
      box-sizing: border-box;
      background: var(--favList);
      position: fixed;
@@ -74,7 +74,7 @@ main div, #dailtMenu, #reviews, nav div{
      padding: 1em 2em;
    }
 
-   #closeFav{
+   .closeFav{
      position: absolute;
      top: 0; 
      right: 0.3em;
@@ -92,25 +92,25 @@ main div, #dailtMenu, #reviews, nav div{
     font-size: 1.2em;
     font-family: var(--logoFont);
   }
-  header #siteTitle, header #favTrigger{
+  .siteTitle, .favTrigger{
     display: flex;
     align-items: center;
   }
-  #logo{
+  .logo{
     height: 2.2em;
     width: auto;
   }
-  #logoTitle{
+  .logoTitle{
     padding-left: 0.7em;
     font-weight: bold;
     text-align: center;
   }
-  #favIcon{
+  .favIcon{
     height: 1.7em;
     width: auto;
     cursor: pointer;
   }
-  #favTrigger{
+  .favTrigger{
     justify-content: flex-end;
   }
 
@@ -123,11 +123,11 @@ main div, #dailtMenu, #reviews, nav div{
     grid-template-rows: 40% 60%; 
   }
   
-  #mainLeft, #mainRight{
+  .mainLeft, .mainRight{
     position: relative;
   }
 
-  #formTitle{
+  .formTitle{
     color: var(--titleColor);
     font-size: 1.2em;
   }
@@ -136,7 +136,7 @@ main div, #dailtMenu, #reviews, nav div{
     margin-top: 0.5em;
   }
 
-  main img{ 
+  .imgDec{ 
     height: 3.5em;
     width: auto;
     position: absolute;
@@ -144,7 +144,7 @@ main div, #dailtMenu, #reviews, nav div{
     bottom: 0;
   }
 
-  #mainRight{
+  .mainRight{
     font-size: 1.1em;
     color: var(--titleColor);
   }
@@ -163,17 +163,17 @@ main div, #dailtMenu, #reviews, nav div{
     height: 100%;
   }
 
-  #paginationContainer, #filterRestaurants{
+  .paginationContainer, .filterRestaurants{
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  #resDiv span{
+  .resDiv span{
     display: block;
   }
   
-  #resDiv img{
+  .resImg{
     height: 0.9em;
     width: auto;
     position: absolute;
@@ -182,7 +182,7 @@ main div, #dailtMenu, #reviews, nav div{
     transform: translateY(-50%);
   }
 
-  #resDiv{
+  .resDiv{
     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
     background:#A6A6A6;
     border-radius: 8px;
@@ -194,11 +194,11 @@ main div, #dailtMenu, #reviews, nav div{
     max-width: 650px;
     margin: 0 auto;
   }
-  #resTitle,#restaurantName{
+  .resTitle,.restaurantName{
     font-weight: bold;
     font-size: 1.1em;
   }
-  #resAdr, #restaurantAdress{
+  .resAdr, .restaurantAdress{
     font-size: 0.9em;
   }
 
@@ -207,7 +207,7 @@ main div, #dailtMenu, #reviews, nav div{
     Display: none; by default
     Display: block; with js
   */
-  #restaurant{
+  article{
     background: var(--secondBackground);
     display: grid;
     position: relative;
@@ -215,17 +215,17 @@ main div, #dailtMenu, #reviews, nav div{
     grid-gap: 0.6em;
   }
   
-  #restaurant img{
+  .restaurantImg{
     height: 5em;
     width: auto;
   }
 
-  #addFav{
+  .addFav{
     position: absolute;
     top: 0.4em;
     right: 0.3em;
   }
-  #restaurantAvgRating span, #restaurantAvgCost span{
+  .restaurantAvgRating span, .restaurantAvgCost span{
     font-weight: bold;
   }
 

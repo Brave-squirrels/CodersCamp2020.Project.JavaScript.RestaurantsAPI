@@ -11,34 +11,34 @@
 <body>
     
     <!--List of fav restaurants-->
-    <div id="favList">
-        <span id='closeFav'>&times;</span>
+    <aside>
+        <span id='closeFav' class='closeFav'>&times;</span>
         <!--Display if anything in localStorage-->
         <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
         List of fav restaurants
         <!--Display when localStorage is empty-->
         No fav restaurants :c
-    </div>
+    </aside>
 
     <!--Header--> 
     <header>
-        <div id="siteTitle">
-           <img src="assets/logo.png" alt="logo" id='logo'>
-           <span id='logoTitle'>
+        <div class="siteTitle">
+           <img src="assets/logo.png" alt="logo" class='logo'>
+           <span class='logoTitle'>
             We'll help you find the best restaurant!
            </span>
         </div>
 
-        <div id="favTrigger">
-            <img src="assets/fav.png" alt="favIcon" id='favIcon'>
+        <div class="favTrigger">
+            <img src="assets/fav.png" alt="favIcon" class='favIcon' id='favIcon'>
         </div>
         
     </header>
 
     <!--Main - search engine-->
     <main>
-        <div id="mainLeft">
-            <span id='formTitle'>
+        <div class="mainLeft">
+            <span class='formTitle'>
             Search for the restaurant
             </span>
             <form id='searchForm'>
@@ -47,123 +47,122 @@
                 <br>
                 <input type="submit" value='Search' id='townFind'>
             </form>
-            <img src="assets/imgMain.png" alt="imgMain">
+            <img src="assets/imgMain.png" alt="imgMain" class='imgDec'>
         </div>
 
-        <div id="mainRight">
+        <div class="mainRight">
             
                 This app is made for You to find the restaurants that suits You the most!
            
                 It's simple, just type in the town where You are looking for restaurants and check the cuisines that You are up to and click 'Search' button.
             </span>
-            <img src="assets/imgMain2.png" alt="imgMain2">
+            <img src="assets/imgMain2.png" alt="imgMain2" class='imgDec'>
         </div>
 
     </main>
 
     <!-- Restaurant showup with pagination -->
     <nav>
-        <div id="filterRestaurants">
+        <div id="filterRestaurants" class='filterRestaurants'>
             Tutaj filtrowanie po wyświetleniu
         </div>
         <!-- Display:grid on this in JS instead of display: block-->
        <!--Append divs and display the pagination when search clicked - 5 restaurant's at one at default-->
        <!--Click on div, scroll to the next section and display data from API-->
-       <div id='resDiv'>
-           <span id='resTitle'>
+       <div id='resDiv' class='resDiv'>
+           <span class='resTitle'>
                Restaurant name
            </span>
-           <span id="resCs">
+           <span class='resCs'>
                Cuisine
            </span>
-           <span id="resAdr">
+           <span class='resAdr'>
                Adress
            </span>
-           <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="">
+           <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
        </div>
-       <div id='resDiv'>
-        <span id='resTitle'>
+       <div id='resDiv' class='resDiv'>
+        <span class='resTitle'>
             Restaurant name
         </span>
-        <span id="resCs">
+        <span class='resCs'>
             Cuisine
         </span>
-        <span id="resAdr">
+        <span class='resAdr'>
             Adress
         </span>
-        <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="">
-        </div>
-        <div id='resDiv'>
-            <span id='resTitle'>
-                Restaurant name
-            </span>
-            <span id="resCs">
-                Cuisine
-            </span>
-            <span id="resAdr">
-                Adress
-            </span>
-            <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="">
-        </div>
+        <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+    </div>
+    <div id='resDiv' class='resDiv'>
+        <span class='resTitle'>
+            Restaurant name
+        </span>
+        <span class='resCs'>
+            Cuisine
+        </span>
+        <span class='resAdr'>
+            Adress
+        </span>
+        <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+    </div>
 
-
-       <div id="paginationContainer">
+       <div id="paginationContainer" class='paginationContainer'>
            Strzałki do paginacji itp.
        </div>
     </nav>
     
     <!-- The restaurant that we show -->
-    <div id="restaurant">
+    <article>
         
         <!--Appending when click on restaurant, same with the buttons -->
         
-        <span id="restaurantName">
+        <span class='restaurantName'>
             Name of the restaurant
         </span>
 
-        <span id="restaurantAdress">
+        <span class='restaurantAdress'>
             Wroclaw, ul. Whatever 21/37
         </span>
 
-        <img src="assets/sample.jpg" alt="restauration">
+        <img src="assets/sample.jpg" alt="restauration" class='restaurantImg'>
 
-        <span id="restaurantAvgRating">
+        <span class='restaurantAvgRating'>
             <span>Average rating:</span> 4/5
         </span>
 
-        <span id="restaurantAvgCost">
+        <span class='restaurantAvgCost'>
             <span>Average cost for a couple:</span> 11.11zł
         </span>
 
-        <div id="addFav">
+        <div id="addFav" class='addFav'>
             Add to fav
             <input type="checkbox">
         </div>
 
-        <div id="restaurantSpecificInfo">
-            <button id='displayMenu'>Menu</button>
-            <button id='displayReviews'>Reviews</button>
+        <div class='restaurantSpecificInfo'>
+            <button id='displayMenu' class='displayMenu'>Menu</button>
+            <button id='displayReviews' class='displayReviews'>Reviews</button>
             <!--Demo of the checkbox-->
         
 
-            <div id="dailyMenu">
+            <div id="dailyMenu" class='dailyMenu'>
                 <!--Pull of of API-->
                 Nazwa dania i obok cena
             </div>  
 
-            <div id="reviews">
-                <div id="review">
+            <div id="reviews" class='reviews'>
+                <div class='review'>
                     <!--Append review + te z localStorage-->
                     Tekst opinii obok liczba gwiazdek
                 </div>
-                <div id="addReview">
+                <div class='addReview'>
                     <!--Add own review-->
                     Form z dodawaniem własnej opinii
                     (Ocena 0-5 + tekst)
                 </div>
             </div>
         </div>
-    </div>
+    </article>
 
     <!--Copyrights footer-->
     <footer>
