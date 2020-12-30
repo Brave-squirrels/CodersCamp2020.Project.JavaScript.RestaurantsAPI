@@ -128,8 +128,9 @@ header, main, footer{
 
   .formTitle{
     color: var(--titleColor);
-    font-size: 1.8em;
+    font-size: 1.5em;
     text-transform: uppercase;
+    text-align: center;
   }
 
   .townSearch{
@@ -189,10 +190,6 @@ header, main, footer{
     grid-gap: 1em;
     padding: 1em 2em;
   }
-  nav div{
-    width: 100%;
-    height: 100%;
-  }
 
   .paginationContainer, .filterRestaurants{
     display: flex;
@@ -251,19 +248,21 @@ header, main, footer{
   */
   article{
     background: var(--secondBackground);
-    display: grid;
     color: var(--titleColor);
     padding: 2em;
-    grid-gap: 0.6em;
   }
   
   .restaurantContainer{
-    width: 90%;
     padding: 2.5em;
     margin: 0 auto;
     background: rgba(0,0,0,0.2);
     position: relative;
     max-width: 800px;
+    display: grid;
+  }
+
+  .restaurantContainer span{
+    display: block;
   }
 
   .restaurantImg{
@@ -343,11 +342,11 @@ header, main, footer{
   /* Media queries */
   @media only screen and (min-width: 700px){
     :root{
-      font-size: 18px;
+      font-size: 20px;
     }
   }
   @media only screen and (min-width: 1080px){
     :root{
-      font-size: 20px;
+      font-size: 22px;
     }
   }
