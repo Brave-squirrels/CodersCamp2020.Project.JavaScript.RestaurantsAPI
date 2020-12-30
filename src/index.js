@@ -2,7 +2,15 @@ import 'regenerator-runtime/runtime'
 
 const mainFunc = require('../src/restaurants-api');
 
-//Display data when click on search button (without checkbox for now)
+
+const state = {
+    //Elements on page
+    'pageSize': 3,
+    //On which page it starts
+    'pageNumber': 1
+}
+
+//Display data when click on search button
 document.querySelector('#button').addEventListener('click',()=>{
    
     const result = document.querySelector('#result');
@@ -12,9 +20,9 @@ document.querySelector('#button').addEventListener('click',()=>{
 
     //Add value of checkbox here where is empty array
     const data = mainFunc(val,[]).then(function(final){
-        
+        const tablica = [];
         final.forEach((n)=>{
-            result.innerHTML += ` <div id='resDiv' class='resDiv'>
+            tablica.push(` <div id='resDiv' class='resDiv'>
             <span class='resTitle'>
                 ${n.name}
             </span>
@@ -25,9 +33,45 @@ document.querySelector('#button').addEventListener('click',()=>{
                 ${n.address}
             </span>
             <img src="${n.logo}'>
-            </div>`;
+            </div>`);
         })
-        console.log(final);
+        const paginate = (obj, pageSize, pageNumber) => {   
+            let current = (pageNumber-1)*pageSize;
+            let endData = current + pageSize;
+            return obj.slice(current, endData);
+        }
+        
+        //Generate buttons depending on which page we are
+        const generatePage = () => {
+            const buttons = document.querySelector('#pages');
+            const maxPage = Math.ceil(tablica.length/state.pageSize);
+            buttons.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
+                                (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :
+                                `<button id='btn1'>Page ${state.pageNumber-1}</button> <br> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
+        }
+        
+        //Update DOM by appending current data
+        const appendData = (result)=>{
+            generatePage();
+            const divData = document.querySelector('#result');
+            divData.innerHTML = result;
+        }
+        
+        //Default data when reloading the site - envoke this in filter/search function as a setup
+        
+        
+        //Switch pages events
+        document.addEventListener('click', (e)=>{
+            if(e.target && e.target.id== 'btn2'){
+                state.pageNumber += 1;
+                appendData(paginate(tablica, state.pageSize, state.pageNumber));
+            }else if(e.target && e.target.id == 'btn1'){
+                state.pageNumber -= 1;
+                appendData(paginate(tablica, state.pageSize, state.pageNumber));
+            }
+        })
+        
+        appendData(paginate(tablica, state.pageSize, state.pageNumber));
     })
 })
 
