@@ -37,27 +37,20 @@
 
     <!--Main - search engine-->
     <main>
-        <div class="mainLeft">
-            <span class='formTitle'>
-            Search for the restaurant
-            </span>
+        <div class="mainCnt">
+            <h1 class='formTitle'>
+                search for the restaurant
+            </h1>
             <form id='searchForm'>
-                <input type="text" id='townSearch' placeholder='Type the town'>
+                <input type="text" id='townSearch' class='townSearch' placeholder='Type the town'>
                 <!-- cuisine option/checkbox - zalezy co bedzie lepiej wygladac w sumie from API (js)-->
                 <br>
-                <input type="submit" value='Search' id='townFind'>
+                <input type="submit" value='Search' id='townFind' class='townFind'>
             </form>
+
             <img src="assets/imgMain.png" alt="imgMain" class='imgDec'>
         </div>
-
-        <div class="mainRight">
-            
-                This app is made for You to find the restaurants that suits You the most!
-           
-                It's simple, just type in the town where You are looking for restaurants and check the cuisines that You are up to and click 'Search' button.
-            </span>
-            <img src="assets/imgMain2.png" alt="imgMain2" class='imgDec'>
-        </div>
+     
 
     </main>
 
@@ -74,7 +67,7 @@
                Restaurant name
            </span>
            <span class='resCs'>
-               Cuisine
+               Rating
            </span>
            <span class='resAdr'>
                Adress
@@ -86,7 +79,7 @@
             Restaurant name
         </span>
         <span class='resCs'>
-            Cuisine
+            Rating
         </span>
         <span class='resAdr'>
             Adress
@@ -98,7 +91,7 @@
             Restaurant name
         </span>
         <span class='resCs'>
-            Cuisine
+            Rating
         </span>
         <span class='resAdr'>
             Adress
@@ -116,90 +109,95 @@
         
         <!--Appending when click on restaurant, same with the buttons -->
         
-        <span class='restaurantName'>
-            Name of the restaurant
-        </span>
+        <div class="restaurantContainer">
 
-        <span class='restaurantAdress'>
-            Wroclaw, ul. Whatever 21/37
-        </span>
+            <span class='restaurantName'>
+                Name of the restaurant
+            </span>
 
-        <img src="assets/sample.jpg" alt="restauration" class='restaurantImg'>
+            <span class='restaurantAdress'>
+                Wroclaw, ul. Whatever 21/37
+            </span>
 
-        <span class='restaurantAvgRating'>
-            <span>Average rating:</span> 4/5
-        </span>
+            <img src="assets/sample.jpg" alt="restauration" class='restaurantImg'>
 
-        <span class='restaurantAvgCost'>
-            <span>Average cost for a couple:</span> 11.11zł
-        </span>
+            <span class='restaurantAvgRating'>
+                <span>Average rating:</span> 4/5
+            </span>
 
-        <div id="addFav" class='addFav'>
-            Add to fav
-            <input type="checkbox">
-        </div>
+            <span class='restaurantAvgCost'>
+                <span>Average cost for a couple:</span> 11.11zł
+            </span>
 
-        <div class='restaurantSpecificInfo'>
-            <button id='displayMenu' class='displayMenu'>Menu</button>
-            <button id='displayReviews' class='displayReviews'>Reviews</button>
-            <!--Demo of the checkbox-->
-        
+            <div id="addFav" class='addFav'>
+                Add to fav
+                <input type="checkbox">
+            </div>
 
-            <div id="dailyMenu" class='dailyMenu'>
-                <span class="dailyMenuTitle">
-                    Actual menu
-                </span>
-                <!--Pull of of API-->
-                <div class="dishCnt">
-                    <span class="dish">
-                        Shrimps with honey
-                    </span>
-                    <span class="cost">
-                        8.99zł
-                    </span>
-                    <span class="dish">
-                        Pizza
-                    </span>
-                    <span class="cost">
-                        2.99zł
-                    </span>
-                </div>
-            </div>  
+            <div class='restaurantSpecificInfo'>
+                <button id='displayMenu' class='displayMenu'>Menu</button>
+                <button id='displayReviews' class='displayReviews'>Reviews</button>
+                <!--Demo of the checkbox-->
+            
 
-            <div id="reviews" class='reviews'>
-                <div class='review'>
-                    <!--Append review + te z localStorage-->
+                <div id="dailyMenu" class='dailyMenu'>
                     <span class="dailyMenuTitle">
-                        Reviews
+                        Actual menu
                     </span>
                     <!--Pull of of API-->
                     <div class="dishCnt">
                         <span class="dish">
-                            "The best restaurant i've ever been!"
+                            Shrimps with honey
                         </span>
                         <span class="cost">
-                            5/5
+                            8.99zł
                         </span>
                         <span class="dish">
-                            "It's fine."
+                            Pizza
                         </span>
                         <span class="cost">
-                            3/5
+                            2.99zł
                         </span>
                     </div>
-                <div class='addReview'>
-                    <!--Add own review-->
-                    <span class="addReviewTitle">
-                        Share your opinion with others
-                    </span>
-                    <form id="addReview">
-                        <input type="text" id='reviewCustomInput' placeholder='Type your opinion'>
-                        <input type="range" min='0' max='5'>
-                        <input type="submit" value='Add' id='reviewSubmit'>
-                    </form>
+                </div>  
+
+                <div id="reviews" class='reviews'>
+                    <div class='review'>
+                        <!--Append review + te z localStorage-->
+                        <span class="dailyMenuTitle">
+                            Reviews
+                        </span>
+                        <!--Pull of of API-->
+                        <div class="dishCnt">
+                            <span class="dish">
+                                "The best restaurant i've ever been!"
+                            </span>
+                            <span class="cost">
+                                5/5
+                            </span>
+                            <span class="dish">
+                                "It's fine."
+                            </span>
+                            <span class="cost">
+                                3/5
+                            </span>
+                        </div>
+                    <div class='addReview'>
+                        <!--Add own review-->
+                        <span class="addReviewTitle">
+                            Share your opinion with others
+                        </span>
+                        <form id="addReview">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <input type="range" min='0' max='5'>
+                            <input type="submit" value='Add' id='reviewSubmit'>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
+
     </article>
 
     <!--Copyrights footer-->
