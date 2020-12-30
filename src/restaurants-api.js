@@ -1,15 +1,5 @@
 const fetch = require('node-fetch')
 
-/* Getting client's cuisines preferation
-const getUserCuisines = () => {
-    const allCuisines = ['Polish', 'Greek', 'Grill']   -We have to add all cuisines here
-    userCuisines = []
-    allCuisines.forEach( n =>
-    {if (document.getElementById(`${n}`).checked) {
-        userCuisines.push(document.getElementById(`${n}`).value);
-    }})
-}
- */
 
 const fetchData = async(url) => {
     /*
@@ -47,17 +37,26 @@ const fetchRestaurants = async(url, userCuisines) => {
         - filtres restaurants in the city by user cusines / if userCuisines is empty, returns all restaurants:
             - cuisines type
         - creates a JSON array with objects(for each restaurant new object) with main informations about filtred restaurants:
+            -restaurant id
+            -name of restaurant
             -photo url
-            -name
+            -cuisines
+            -price bracket of the restaurant(1-4)
             -address
+            -phone number
             -average rating
+            
     */
 
     const addRestaurant = (item) => {
         restaurantsFromCity.push({
+            id: item.restaurant.id,
             name: item.restaurant.name,
             logo: item.restaurant.photos_url,
+            cuisines: item.restaurant.cuisines,
+            price: item.restaurant.price_range,
             address: item.restaurant.location.address,
+            phone: item.restaurant.phone_numbers,
             rating: item.restaurant.user_rating.aggregate_rating
         })
     }
@@ -109,14 +108,13 @@ const mainFunc = async(getCityName, userCuisines) => {
         main function
         -parameters (string eg.'wroclaw', array of strings eg. ['Italian'])
     */
-    // await getUserCuisines() add when submit ready 
+    
 
 
     // Returns empty array if no CityName was provided
     if (getCityName.length === 0) return [];
 
     let cityName = await replacePolishChar(getCityName);
-
 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
 
@@ -127,6 +125,3 @@ const mainFunc = async(getCityName, userCuisines) => {
 
 // Exports function for testing (later to frontend also)
 module.exports = mainFunc;
-
-// Get info about client's cousines preferation:
-// document.getElementById('submit').addEventListener('click', getAllInfo)
