@@ -271,13 +271,46 @@ header, main, footer{
     margin: 0 auto;
     background: rgba(0,0,0,0.2);
     position: relative;
-    max-width: 800px;
+    max-width: 1200px;
     display: grid;
   }
 
   .restaurantContainer span{
     display: block;
   }
+
+  .restaurantContainer input[type="checkbox"]{
+    background: rgb(117, 117, 117);
+    position: relative;
+    width: 60px;
+    height: 30px;
+    appearance: none;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.15);
+    transition: 1s;
+  }
+  .restaurantContainer input:checked[type="checkbox"]{
+    background: rgb(45, 143, 7);
+  }
+  .restaurantContainer input[type="checkbox"]:before{
+    content: " ";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background: rgb(117, 117, 117);
+    border: 0.2px solid black;
+    
+    transform: scale(1.1);
+    transition:  0.5s;
+  }
+  .restaurantContainer input:checked[type="checkbox"]:before{
+    left:30px;
+  }
+
 
   .restaurantImg{
     height: 5em;
@@ -291,10 +324,15 @@ header, main, footer{
   }
   .restaurantAvgRating span, .restaurantAvgCost span{
     font-weight: bold;
+    
+  }
+  .addReview{
+    border: red solid 2px;
   }
   .addReviewTitle{
     font-weight: bold;
     font-size: 0.9em;
+   
   }
 
 

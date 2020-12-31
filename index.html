@@ -137,7 +137,7 @@
             </span>
 
             <div id="addFav" class='addFav'>
-                Add to fav
+                <p>Add to fav</p>
                 <input type="checkbox">
             </div>
 
@@ -196,7 +196,21 @@
                         </span>
                         <form id="addReview">
                             <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <input type="range" min='0' max='5'>
+                            <div class="stars">
+                                <label for="star1"> One Star </label>
+                                <input type="radio" name="star" value="1">
+                                <label for="star2"> Two Stars </label>
+                                <input type="radio" name="star" value="2">
+                                <label for="star3"> One Star </label>
+                                <input type="radio" name="star" value="3">
+                                <label for="star4"> One Star </label>
+                                <input type="radio" name="star" value="4">
+                                <label for="star5"> One Star </label>
+                                <input type="radio" name="star" value="5">
+                            </div>
+                            
+
+
                             <input type="submit" value='Add' id='reviewSubmit'>
                         </form>
                     </div>
