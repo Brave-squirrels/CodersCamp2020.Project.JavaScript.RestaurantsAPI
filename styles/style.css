@@ -267,7 +267,7 @@ header, main, footer{
   }
   
   .restaurantContainer{
-    padding: 2.5em;
+    padding: 1em;
     margin: 0 auto;
     background: rgba(0,0,0,0.2);
     position: relative;
