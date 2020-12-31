@@ -1,14 +1,14 @@
 /*Setup*/
 :root{
-  --bodyBg:#E6F5F5;
-  --mainBackground:rgba(0,0,0,0.3);
-  --secondBackground: rgba(0,0,0,0.1);
-  --favList: #7D7D7D;
+  --bodyBg:#E6ED3B;
+  --mainBackground:rgba(0,0,0,0.01);
+  --favListBg: #fff;
+  --resBg: rgba(0,0,0,0.2);
+  --secondBackground: #FCF7FC;
   --mainFont: 'Roboto', sans-serif;
   --logoFont: 'Montserrat', sans-serif;
-  --buttonBg: rgba(0,0,0,0.2);
-  --inputColor: #E8E8E8;
-  --titleColor: #353838;
+  --buttonBg: #383738;
+  --mainColor: #383738;
  }
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
@@ -62,7 +62,7 @@ header, main, footer{
 
     aside{
      box-sizing: border-box;
-     background: var(--favList);
+     background: var(--favListBg);
      position: fixed;
      z-index: 1;
      height: 100%;
@@ -85,7 +85,6 @@ header, main, footer{
 
   /* header styles */
   header{
-    background: var(--mainBackground);
     height: 15%;
     display: grid;
     grid-template-columns: 1fr 15%;
@@ -127,19 +126,19 @@ header, main, footer{
   
 
   .formTitle{
-    color: var(--titleColor);
+    color: var(--mainColor);
     font-size: 1.5em;
     text-transform: uppercase;
     text-align: center;
   }
 
   .townSearch{
-    background: var(--mainBackground);
+    background: transparent;
     border: none;
     border-bottom: 1px solid black;
     font-size: 1.4em;
     padding: 0.2em 0.4em;
-    color: var(--inputColor);
+    color: var(--mainColor);
     font-family: var(--mainFont);
     outline: none; 
     display: block;
@@ -153,7 +152,7 @@ header, main, footer{
     font-family: var(--mainFont);
     font-weight: bold;
     background: var(--mainBackground);
-    color: var(--inputColor);
+    color: var(--mainColor);
     cursor: pointer;
     outline: none;
     display: block;
@@ -166,8 +165,8 @@ header, main, footer{
     font-size: 1em;
     font-family: var(--mainFont);
     font-weight: bold;
-    background: var(--mainBackground);
-    color: var(--inputColor);
+    background: #FCF7FC;
+    color: var(--mainColor);
     cursor: pointer;
     outline: none;
   }
@@ -226,12 +225,12 @@ header, main, footer{
 
   .resDiv{
     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
-    background:#A6A6A6;
+    background:#fff;
     width: 100%;
     display: grid;
     cursor: pointer;
     position: relative;
-    color: var(--titleColor);
+    color: var(--mainColor);
     max-width: 650px;
     margin: 0 auto;
   }
@@ -262,14 +261,14 @@ header, main, footer{
   */
   article{
     background: var(--secondBackground);
-    color: var(--titleColor);
+    color: var(--mainColor);
     padding: 2em;
   }
   
   .restaurantContainer{
     padding: 1em;
     margin: 0 auto;
-    background: rgba(0,0,0,0.2);
+    background: var(--resBg);
     position: relative;
     max-width: 1200px;
     display: grid;
@@ -344,6 +343,7 @@ header, main, footer{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
   }
 
 
@@ -357,38 +357,6 @@ header, main, footer{
   }
   input::placeholder{
     color: rgba(0,0,0,0.4);
-  }
-
-
-  /*input range styles */
-  input[type=range] {
-    -webkit-appearance: none;
-    margin: 18px 0;
-  }
-  input[type=range]:focus {
-    outline: none;
-  }
-  input[type=range]::-webkit-slider-runnable-track {
-    height: 0.4em;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: var(--favList);
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 1.4em;
-    width: 1em;
-    border-radius: 3px;
-    background: var(--titleColor);
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -0.6em;
-  }
-  input[type=range]:focus::-webkit-slider-runnable-track {
-    background: var(--buttonBg);
   }
 
   /* Media queries */
