@@ -1,6 +1,6 @@
 /*Setup*/
 :root{
-  --bodyBg: rgba(0,0,0,0.2);
+  --bodyBg:#E6F5F5;
   --mainBackground:rgba(0,0,0,0.3);
   --secondBackground: rgba(0,0,0,0.1);
   --favList: #7D7D7D;
@@ -8,7 +8,7 @@
   --logoFont: 'Montserrat', sans-serif;
   --buttonBg: rgba(0,0,0,0.2);
   --inputColor: #E8E8E8;
-  --titleColor: #F7F7F7;
+  --titleColor: #353838;
  }
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
@@ -195,6 +195,20 @@ header, main, footer{
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .restaurantsNavCon{
+    display: grid;
+    grid-gap: 1em;
+  }
+
+  .paginationContainer{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    max-width: 650px;
+    width: 100%;
   }
 
   .resDiv span{
