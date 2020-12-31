@@ -22,6 +22,7 @@ body{
   height: 100vh;
   background: var(--bodyBg);
   font-family: var(--mainFont);
+  overflow-x: hidden;
 }
 
 /* Scroll styles */
@@ -109,10 +110,29 @@ header, main, footer{
     width: auto;
     cursor: pointer;
   }
+
+  /* Nav main page animation */
   .favTrigger{
     justify-content: flex-end;
+    position: relative;
+    animation-name: landingFav;
+    animation-duration: 1.5s;
   }
 
+  .siteTitle{
+    position: relative;
+    animation-name: landing;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes landing{
+    0%{top: -400px}
+    100%{top: 0}
+  }
+  @keyframes landingFav{
+    0%{right: -300px}
+    100%{right: 0}
+  }
 
   /* Main search block styles */
   main{
@@ -124,14 +144,26 @@ header, main, footer{
     align-items: center;
   }
   
+  /* Main content animate on landing */ 
+  .mainCnt{
+    animation-name: landing3;
+    animation-duration: 2.2s;
+    position: relative;
+  }
+
+  @keyframes landing3{
+    0%{left: -2000px}
+    100%{left: 0}
+  }
 
   .formTitle{
     color: var(--mainColor);
-    font-size: 1.5em;
+    font-size: 1.6em;
     text-transform: uppercase;
     text-align: center;
   }
 
+    /* Buttons animations and input animations main */
   .townSearch{
     background: transparent;
     border: none;
@@ -145,30 +177,29 @@ header, main, footer{
     margin: 0 auto;
   }
 
+  .townSearch:focus{
+    border-color: var(--bodyBg);
+  }
+
   .townFind{
     border: 2px solid var(--buttonBg);
     padding: 0.3em 0.9em;
     font-size: 1.4em;
     font-family: var(--mainFont);
     font-weight: bold;
-    background: var(--mainBackground);
     color: var(--mainColor);
     cursor: pointer;
     outline: none;
     display: block;
     margin: 0 auto;
+    background: linear-gradient(to right, var(--bodyBg) 50%, var(--mainBackground) 50%);
+    background-size: 200% 100%;
+    background-position: bottom right;
+    transition: all .5s ease-out;
   }
 
-    button{
-    border: 2px solid var(--buttonBg);
-    padding: 0.2em 0.8em;
-    font-size: 1em;
-    font-family: var(--mainFont);
-    font-weight: bold;
-    background: #FCF7FC;
-    color: var(--mainColor);
-    cursor: pointer;
-    outline: none;
+  .townFind:hover{
+    background-position: bottom left;
   }
 
   .imgDec{ 
@@ -233,7 +264,14 @@ header, main, footer{
     color: var(--mainColor);
     max-width: 650px;
     margin: 0 auto;
+    transition: 0.3s ease-in;
   }
+  .resDiv:hover{
+    transform: translateY(-10px);
+  }
+
+  
+
   .resTitle,.restaurantName, .dailyMenuTitle{
     font-weight: bold;
     font-size: 1.1em;
@@ -276,6 +314,25 @@ header, main, footer{
 
   .restaurantContainer span{
     display: block;
+  }
+
+  /* Rest of the buttons */
+  .displayMenu, .displayReviews, #btn1, #btn2, .reviewSubmit{
+    border: 2px solid var(--buttonBg);
+    padding: 0.2em 0.8em;
+    font-size: 1em;
+    font-family: var(--mainFont);
+    font-weight: bold;
+    color: var(--mainColor);
+    cursor: pointer;
+    outline: none;
+    background: linear-gradient(to right, var(--bodyBg) 50%, var(--favListBg) 50%);
+    background-size: 200% 100%;
+    background-position: bottom right;
+    transition: all .5s ease-out;
+  }
+  .displayMenu:hover, .displayReviews:hover, #btn1:hover, #btn2:hover, .reviewSubmit:hover{
+    background-position: bottom left;
   }
 
   .restaurantContainer input[type="checkbox"]{
