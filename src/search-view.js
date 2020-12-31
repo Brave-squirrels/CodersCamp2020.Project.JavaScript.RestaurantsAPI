@@ -13,9 +13,9 @@ const state = {
 //Display data when click on search button
 function display(){
     //Get DOM elements
-    const result = document.querySelector('nav');
+    const result = document.querySelector('#restaurantsNavCon');
     const val = document.querySelector('#townSearch').value;
-    const buttons = document.querySelector('#pages');
+    const buttons = document.querySelector('#paginationContainer');
     const divData = document.querySelector('nav');
 
     //Resets container by default
@@ -26,6 +26,7 @@ function display(){
         const tablica = [];
         //Creating templates with data and pushing into array
         final.forEach((n)=>{
+            //To the div add info about ID to download it on click and base on that display restaurant - waiting for backend to do this
             tablica.push(` <div id='resDiv' class='resDiv'>
             <span class='resTitle'>
                 ${n.name}
