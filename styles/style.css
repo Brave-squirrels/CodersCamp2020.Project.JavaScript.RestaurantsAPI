@@ -174,7 +174,16 @@ header, main, footer{
     border-color: var(--bodyBg);
   }
 
-  .townFind{
+  .favTitle{
+    height: 8%;
+    display: flex;
+    font-size: 1.2em;
+    font-family: var(--logoFont);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .townFind, .exportFavData {
     border: 2px solid var(--buttonBg);
     padding: 0.3em 0.9em;
     font-size: 1.4em;
@@ -191,18 +200,31 @@ header, main, footer{
     transition: all .5s ease-out;
   }
 
-  .townFind:hover{
+  .exportFavData {
+    height: 50%;
+    font-size: 1em;
+    margin: 0 0.5em 0 auto;
+  }
+
+  .townFind:hover, .exportFavData:hover{
     background-position: bottom left;
   }
 
-  .imgDec{ 
+  .imgDec{
     height: 3.5em;
     width: auto;
     position: absolute;
     right: 1em;
     bottom: 1em;
   }
-
+  
+  .favourites {
+   /* background: var(--bodyBg);*/
+    display: grid;
+    grid-gap: 1em;
+    padding: 1em 1em;
+  
+  }
   /* List of restaurants styles Edit when API
     Display: none; by default
     display: grid; with js
