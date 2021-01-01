@@ -1,10 +1,7 @@
 //Importing main function
 const mainFunc = require('./restaurants-api');
 
-//const {generateBtn, append} = require('./feature-pagination');
-
-//Pagination state
-
+const {generateBtn, append} = require('./feature-pagination');
 
 //Display data when click on search button
 function display(){
@@ -39,14 +36,14 @@ function display(){
 
         //To append pass array with data, elements that will contain the buttons, element that will contain data
         //Add event to generate buttons
-        /*document.addEventListener('click', (e)=>{
+        document.addEventListener('click', (e)=>{
             generateBtn(e);
             append(tablica, buttons, divData);
-        }); */ 
+        });
         
 
         //Default append data on the first site
-        //append(tablica, buttons, divData);
+        append(tablica, buttons, divData);
     })
 }
 
