@@ -1,14 +1,10 @@
 //Importing main function
 const mainFunc = require('./restaurants-api');
 
+const {generateBtn, append} = require('./feature-pagination');
 
 //Pagination state
-const state = {
-    //Elements on page
-    'pageSize': 3,
-    //On which page it starts
-    'pageNumber': 1
-}
+
 
 //Display data when click on search button
 function display(){
@@ -16,7 +12,7 @@ function display(){
     const result = document.querySelector('#restaurantsNavCon');
     const val = document.querySelector('#townSearch').value;
     const buttons = document.querySelector('#paginationContainer');
-    const divData = document.querySelector('nav');
+    const divData = document.querySelector('#restaurantsNavCon');
 
     //Resets container by default
     result.innerHTML ='';
@@ -41,42 +37,16 @@ function display(){
             </div>`);
         })
 
-        //Pagination functions
-
-        //Slice the array of templates
-        const paginate = (obj, pageSize, pageNumber) => {   
-            let current = (pageNumber-1)*pageSize;
-            let endData = current + pageSize;
-            return obj.slice(current, endData);
-        }
-        
-        //Generate buttons depending on which page we are
-        const generatePage = () => {
-            const maxPage = Math.ceil(tablica.length/state.pageSize);
-            buttons.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
-                                (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :
-                                `<button id='btn1'>Page ${state.pageNumber-1}</button> <br> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
-        }
-        
-        //Update DOM by appending current data
-        const appendData = (result)=>{
-            generatePage();
-            divData.innerHTML = result;
-        }
-        
-        //Switch pages events
+        //To append pass array with data, elements that will contain the buttons, element that will contain data
+        //Add event to generate buttons
         document.addEventListener('click', (e)=>{
-            if(e.target && e.target.id== 'btn2'){
-                state.pageNumber += 1;
-                appendData(paginate(tablica, state.pageSize, state.pageNumber));
-            }else if(e.target && e.target.id == 'btn1'){
-                state.pageNumber -= 1;
-                appendData(paginate(tablica, state.pageSize, state.pageNumber));
-            }
-        })
+            generateBtn(e);
+            append(tablica, buttons, divData);
+        });
         
+
         //Default append data on the first site
-        appendData(paginate(tablica, state.pageSize, state.pageNumber));
+        append(tablica, buttons, divData);
     })
 }
 

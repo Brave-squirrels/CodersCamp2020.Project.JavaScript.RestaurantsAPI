@@ -50,12 +50,12 @@ const fetchUserReviews = async(restaurantId) => {
     return listOfReviews;
 }
 
-
+/*
 const fetchDailyMenu = async(restaurantId) => {
     /*
         - parameters (Id of restaurant)
         @ return array of daily menu objects {dishName, dishPrice, startDate}
-    */
+    
     let dailyMenu = [];
     
     let result = await fetchData(`https://developers.zomato.com/api/v2.1/dailymenu?res_id=${restaurantId}`);
@@ -78,7 +78,7 @@ const fetchDailyMenu = async(restaurantId) => {
     return dailyMenu;
 }
 }
-
+*/
 
 
 const fetchRestaurants = async(url, userCuisines) => {
@@ -101,14 +101,14 @@ const fetchRestaurants = async(url, userCuisines) => {
     */
    
 
-    const addRestaurant = async (item, listReviews,listDailyMenu) => {
+    const addRestaurant = async (item, listReviews) => {
         
         restaurantsFromCity.push({
             name: item.restaurant.name,
             logo: item.restaurant.featured_image,
             cuisines: item.restaurant.cuisines,
             priceRaiting: item.restaurant.price_range,
-            dailyMenu: listDailyMenu,
+            //dailyMenu: listDailyMenu,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
             reviews: listReviews,
@@ -124,15 +124,15 @@ const fetchRestaurants = async(url, userCuisines) => {
 
     for (const item of result.restaurants) {
         if (noCuisines) {
-            let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
+            //let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
             let listReviews = await fetchUserReviews(item.restaurant.id);
-            addRestaurant(item, listReviews, listDailyMenu);
+            addRestaurant(item, listReviews);
         } else {
             let restaurantCuisines = JSON.stringify(item.restaurant.cuisines);
             if (userCuisines.some(cuisine => restaurantCuisines.includes(cuisine))) {
-                let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
+                //let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
                 let listReviews = await fetchUserReviews(item.restaurant.id); 
-                addRestaurant(item, listReviews, listDailyMenu);
+                addRestaurant(item, listReviews);
             }
         }
     }
