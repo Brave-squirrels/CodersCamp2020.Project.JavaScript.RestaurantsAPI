@@ -33,16 +33,20 @@ const fetchCity = async(url) => {
 const fetchUserReviews = async(restaurantId) => {
     /*
         - parameters (Id of restaurant)
-        - return array of users reviews about restaurant
+        @ return array of objects users reviews about restaurant and grade to each comment
     */
     let listOfReviews = [];
     let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
 
     for (const item of result.user_reviews){
         if (item.review.review_text!=''){
-        listOfReviews.push(item.review.review_text)
+        listOfReviews.push({
+            textReview: item.review.review_text,
+            ratingReview: item.review.rating
+        })
     }
     };
+
     return listOfReviews;
 }
 
@@ -173,8 +177,10 @@ const mainFunc = async(getCityName, userCuisines) => {
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, userCuisines);
     
+    console.log(restaurants);
     return restaurants;
 };
+
 
 // Exports function for testing (later to frontend also)
 module.exports = mainFunc;
