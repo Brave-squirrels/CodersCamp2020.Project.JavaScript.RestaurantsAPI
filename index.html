@@ -12,12 +12,69 @@
     
     <!--List of fav restaurants-->
     <aside>
-        <span id='closeFav' class='closeFav'>&times;</span>
+        <div>
+            <span id='closeFav' class='closeFav'>&times;</span>
+            <div class="favTitle">
+                 <img src="assets/logo.png" alt="logo" class='logo'>
+                <span class="logoTitle">Favourites</span>
+                <input type="submit" value='Export' id='exportFavData' class='exportFavData'>
+            </div>
+        </div>
         <!--Display if anything in localStorage-->
         <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
-        List of fav restaurants
+        <div class="favourites">
+            <div id='resDiv' class='resDiv'>
+                <span class='resTitle'>
+                    Restaurant 1 name
+                </span>
+                <span class='resCs'>
+                    Rating
+                </span>
+                <span class='resAdr'>
+                    Adress
+                </span>
+                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+                <div class='addFav'>
+                    <input type="checkbox" onclick="manageFavouriteRestaurant(this.id)" checked="isFavourite(this.id)" id="res1" name="starFav" class="starFavInput">
+                    <label for="res1" class="starFav" ></label>
+                </div>
+            </div>
+            <div id='resDiv' class='resDiv'>
+                <span class='resTitle'>
+                    Restaurant 2 name
+                </span>
+                <span class='resCs'>
+                    Rating
+                </span>
+                <span class='resAdr'>
+                    Adress
+                </span>
+                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+                <div class='addFav'>
+                    <input type="checkbox" onclick="manageFavouriteRestaurant(this.id)" id="res2" name="starFav" class="starFavInput">
+                    <label for="res2" class="starFav"></label>
+                </div>
+            </div>
+            <div id='resDiv' class='resDiv'>
+                <span class='resTitle'>
+                    Restaurant 3 name
+                </span>
+                <span class='resCs'>
+                    Rating
+                </span>
+                <span class='resAdr'>
+                    Adress
+                </span>
+                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+                <div class='addFav'>
+                    <input type="checkbox" onclick="manageFavouriteRestaurant(this.id)" id="res3" name="starFav" class="starFavInput">
+                    <label for="res3" class="starFav"></label>
+                </div>
+            </div>
+        </div>
         <!--Display when localStorage is empty-->
         No fav restaurants :c
+        
     </aside>
 
     <!--Header--> 
@@ -139,7 +196,7 @@
             </span>
 
             <div id="addFav" class='addFav'>
-                <input type="checkbox" id="starFav" name="starFav" class="starFavInput">
+                <input type="checkbox" onclick="manageFavouriteRestaurant(this.id)" id="starFav" name="starFav" class="starFavInput">
                 <label for="starFav" class="starFav"></label>
             </div>
 
@@ -229,7 +286,7 @@
     <footer>
         &#169; Copyrights by Brave Squirrels
     </footer>
-
+    <script src="src/favourites-feature.js"></script>
     <script src="src/index.js"></script>
 </body>
 </html>
