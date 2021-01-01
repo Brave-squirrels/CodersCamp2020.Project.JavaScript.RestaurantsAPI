@@ -335,14 +335,16 @@ header, main, footer{
     background-position: bottom left;
   }
   .starFav{
-    font-size: 3em;
+    font-size: 2em;
+  }
+  .starFav:hover{
+    cursor: pointer;
   }
   .starFavInput{
-    position: absolute;
-    left: -10000px;
+    visibility: hidden;
   }
   .starFavInput:checked~::before{
-    color: rgb(255, 212, 22);
+    color: var(--bodyBg);
   }
 
 
@@ -353,8 +355,8 @@ header, main, footer{
 
   .addFav{
     position: absolute;
-    top: 0.8em;
-    right: 0.6em;
+    top: 0.3em;
+    right: 0.3em;
   }
   .restaurantAvgRating span, .restaurantAvgCost span{
     font-weight: bold;
