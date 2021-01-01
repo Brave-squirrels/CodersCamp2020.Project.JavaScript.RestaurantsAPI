@@ -32,6 +32,17 @@ function display(){
             </span>
             <img src="${n.logo}'>
             </div>`);
+        });
+
+        //Get the array of all cuisines in the city
+        const cuisinesAll = [];
+        final.forEach((n)=>{
+            const cuisinesSplit = n.cuisines.split(',');
+            cuisinesSplit.forEach((n)=>{
+                if(!cuisinesAll.includes(n)){
+                    cuisinesAll.push(n);
+                }
+            })
         })
 
         //To append pass array with data, elements that will contain the buttons, element that will contain data
@@ -45,6 +56,7 @@ function display(){
         //Default append data on the first site
         append(tablica, buttons, divData);
     })
+    
 }
 
 //Exporting main function
