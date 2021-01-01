@@ -30,6 +30,53 @@ const fetchCity = async(url) => {
     return cityId;
 }
 
+const fetchUserReviews = async(restaurantId) => {
+    /*
+        - parameters (Id of restaurant)
+        - return array of users reviews about restaurant
+    */
+    let listOfReviews = [];
+    let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
+
+    for (const item of result.user_reviews){
+        if (item.review.review_text!=''){
+        listOfReviews.push(item.review.review_text)
+    }
+    };
+    return listOfReviews;
+}
+
+
+const fetchDailyMenu = async(restaurantId) => {
+    /*
+        - parameters (Id of restaurant)
+        @ return array of daily menu objects {dishName, dishPrice, startDate}
+    */
+    let dailyMenu = [];
+    
+    let result = await fetchData(`https://developers.zomato.com/api/v2.1/dailymenu?res_id=${restaurantId}`);
+
+
+    if (result.status != 'success') {
+        dailyMenu.push('No Daily Menu')
+        return dailyMenu;
+    } else {
+    for (const item of result.daily_menus){
+        for (const obj of item.daily_menu.dishes){
+            dailyMenu.push({
+                dishName: obj.dish.name,
+                dishPrice: obj.dish.price,
+                startDate: item.daily_menu.start_date
+            })
+        }
+    };
+ 
+    return dailyMenu;
+}
+}
+
+
+
 const fetchRestaurants = async(url, userCuisines) => {
     /*
         -parameters (url, userCuisines (array of cuisines))
@@ -37,26 +84,30 @@ const fetchRestaurants = async(url, userCuisines) => {
         - filtres restaurants in the city by user cusines / if userCuisines is empty, returns all restaurants:
             - cuisines type
         - creates a JSON array with objects(for each restaurant new object) with main informations about filtred restaurants:
-            -restaurant id
             -name of restaurant
             -photo url
             -cuisines
             -price bracket of the restaurant(1-4)
+            -object of daily menu (dish name, dish price and day when daily menu is starting) 
             -address
             -phone number
+            -reviews
             -average rating
             
     */
+   
 
-    const addRestaurant = (item) => {
+    const addRestaurant = async (item, listReviews,listDailyMenu) => {
+        
         restaurantsFromCity.push({
-            id: item.restaurant.id,
             name: item.restaurant.name,
-            logo: item.restaurant.photos_url,
+            logo: item.restaurant.featured_image,
             cuisines: item.restaurant.cuisines,
-            price: item.restaurant.price_range,
+            priceRaiting: item.restaurant.price_range,
+            dailyMenu: listDailyMenu,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
+            reviews: listReviews,
             rating: item.restaurant.user_rating.aggregate_rating
         })
     }
@@ -69,15 +120,19 @@ const fetchRestaurants = async(url, userCuisines) => {
 
     for (const item of result.restaurants) {
         if (noCuisines) {
-            addRestaurant(item);
+            let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
+            let listReviews = await fetchUserReviews(item.restaurant.id);
+            addRestaurant(item, listReviews, listDailyMenu);
         } else {
             let restaurantCuisines = JSON.stringify(item.restaurant.cuisines);
             if (userCuisines.some(cuisine => restaurantCuisines.includes(cuisine))) {
-                addRestaurant(item);
+                let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
+                let listReviews = await fetchUserReviews(item.restaurant.id); 
+                addRestaurant(item, listReviews, listDailyMenu);
             }
         }
     }
-
+    
     return restaurantsFromCity;
 }
 
@@ -109,8 +164,6 @@ const mainFunc = async(getCityName, userCuisines) => {
         -parameters (string eg.'wroclaw', array of strings eg. ['Italian'])
     */
     
-
-
     // Returns empty array if no CityName was provided
     if (getCityName.length === 0) return [];
 
@@ -119,7 +172,7 @@ const mainFunc = async(getCityName, userCuisines) => {
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, userCuisines);
-
+    
     return restaurants;
 };
 
