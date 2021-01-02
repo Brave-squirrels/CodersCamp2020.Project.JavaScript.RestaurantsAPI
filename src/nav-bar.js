@@ -2,7 +2,6 @@ const displayFav = (e)=>{
     const favList = document.querySelector('aside');
     const openList = document.querySelector('#favIcon');
     const closeList = document.querySelector('#closeFav');
-
     //Open favList
     if(e.target.id === 'favIcon'){
 

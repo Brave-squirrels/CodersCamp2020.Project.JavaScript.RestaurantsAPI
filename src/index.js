@@ -3,9 +3,9 @@ const favourites = require('../src/favourites-feature');
 
 //Handle the favList
 document.addEventListener('click', displayFav);
+document.addEventListener('click', favourites.manageFavouriteRestaurant);
 
 window.addEventListener('load', (event) => {
-    console.log("Onload check log.");
     //this returns HTML collection, therefore normal foreach cannot be used.
     var checkboxes = document.getElementsByClassName('starFavInput');
     Array.from(checkboxes).forEach((item) => {

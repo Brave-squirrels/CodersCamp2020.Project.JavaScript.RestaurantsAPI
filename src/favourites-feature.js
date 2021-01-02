@@ -1,6 +1,10 @@
 const favouritesKey = 'FAVOURITE_RESTAURANTS'
 
-const manageFavouriteRestaurant = (restaurantId) => {
+const manageFavouriteRestaurant = (e) => {
+    if (e.target.name != 'starFav'){
+        return
+    }
+    const restaurantId = e.target.id;
     /* extract favourites from local storage */
     let favourites = localStorage.getItem(favouritesKey);
     /* If local storage empty -> add restaurant to favourites */
