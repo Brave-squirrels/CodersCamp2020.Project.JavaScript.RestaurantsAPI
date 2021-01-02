@@ -19,11 +19,11 @@ function display(){
     filter.innerHTML = '';
     //Add value of checkbox here where is empty array
     const data = mainFunc(val,[]).then(function(final){
-        let tablica = [];
+        let navData = [];
         //Creating templates with data and pushing into array
         final.forEach((n)=>{
             //To the div add info about ID to download it on click and base on that display restaurant - waiting for backend to do this
-            tablica.push(`<div id='resDiv' class='resDiv'>
+            navData.push(`<div id='resDiv' class='resDiv'>
             <span class='resTitle'>
                 ${n.name}
             </span>
@@ -38,7 +38,7 @@ function display(){
 
 
         //Default append data on the first site
-        append(tablica, buttons, divData);
+        append(navData, buttons, divData);
 
 
         //Get the array of all cuisines in the city
@@ -61,7 +61,7 @@ function display(){
         })
 
         //Saving the array of data
-        let savedTablica = tablica;
+        let savedNavData = navData;
         const filterRestaurants = (e)=>{
             //Checking target of the event
             if(e.target.className === 'chkId'){
@@ -77,14 +77,14 @@ function display(){
                     }
                 })
 
-                let tmpTablica = [];
+                let tmpNavData = [];
 
                 //Getting restaurants with mathing cuisines
                     final.forEach((n)=>{
                         const splitArr = n.cuisines.split(',');
                         const rez = filterArray.some(r => splitArr.includes(r));
                         if(rez){
-                            tmpTablica.push(`<div id='resDiv' class='resDiv'>
+                            tmpNavData.push(`<div id='resDiv' class='resDiv'>
                             <span class='resTitle'>
                                 ${n.name}
                             </span>
@@ -99,14 +99,15 @@ function display(){
 
                     })
                 
-                if(tmpTablica.length !== 0){
-                    tablica = tmpTablica;
+                //Resets data to default when unchecked
+                if(tmpNavData.length !== 0){
+                    navData = tmpNavData;
                 }else{
-                    tablica=savedTablica;
+                    navData=savedNavData;
                 }
                 //Displaying filtered data and generate new buttons
                 generateBtn(e);
-                append(tablica, buttons, divData);
+                append(navData, buttons, divData);
 
             }
         }
@@ -118,7 +119,7 @@ function display(){
         //Add event to generate buttons
         document.addEventListener('click', (e)=>{
             generateBtn(e);
-            append(tablica, buttons, divData);
+            append(navData, buttons, divData);
         });
         
     })
