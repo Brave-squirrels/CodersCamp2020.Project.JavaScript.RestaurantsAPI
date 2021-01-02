@@ -328,16 +328,16 @@ header, main, footer{
     background-position: bottom left;
   }
   .starFav{
-    font-size: 2em;
+    font-size: 1.6em;
   }
   .starFav:hover{
     cursor: pointer;
   }
   .starFavInput{
-    visibility: hidden;
+    display: none;
   }
   .starFavInput:checked~::before{
-    color: var(--starsBg);
+    color: var(--bodyBg); 
   }
 
 

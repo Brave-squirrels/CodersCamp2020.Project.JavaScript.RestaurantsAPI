@@ -5,7 +5,14 @@ const displayFav = (e)=>{
 
     //Open favList
     if(e.target.id === 'favIcon'){
-        favList.style.width = '100%';
+
+        if(window.innerWidth < 1000){
+            favList.style.width = '100%';
+        }else{
+            favList.style.width = '45%';
+        }
+
+        
         favList.style.right = '0';
     }
     //Close favList
