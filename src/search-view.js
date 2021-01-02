@@ -10,17 +10,20 @@ function display(){
     const val = document.querySelector('#townSearch').value;
     const buttons = document.querySelector('#paginationContainer');
     const divData = document.querySelector('#restaurantsNavCon');
+    const filter = document.querySelector('#filter');
+
 
     //Resets container by default
     result.innerHTML ='';
     buttons.innerHTML ='';
+    filter.innerHTML = '';
     //Add value of checkbox here where is empty array
     const data = mainFunc(val,[]).then(function(final){
-        const tablica = [];
+        let tablica = [];
         //Creating templates with data and pushing into array
         final.forEach((n)=>{
             //To the div add info about ID to download it on click and base on that display restaurant - waiting for backend to do this
-            tablica.push(` <div id='resDiv' class='resDiv'>
+            tablica.push(`<div id='resDiv' class='resDiv'>
             <span class='resTitle'>
                 ${n.name}
             </span>
@@ -30,9 +33,13 @@ function display(){
             <span class='resAdr'>
                 ${n.address}
             </span>
-            <img src="${n.logo}'>
             </div>`);
         });
+
+
+        //Default append data on the first site
+        append(tablica, buttons, divData);
+
 
         //Get the array of all cuisines in the city
         const cuisinesAll = [];
@@ -45,6 +52,68 @@ function display(){
             })
         })
 
+        //Display filters
+        cuisinesAll.forEach((n)=>{
+            filter.innerHTML += `
+                <label for="${n}">${n}</label>
+                <input type="checkbox" id="${n}" name="cuisineFilter" value="${n}" class="chkId">
+            `;
+        })
+
+        //Saving the array of data
+        let savedTablica = tablica;
+        const filterRestaurants = (e)=>{
+            //Checking target of the event
+            if(e.target.className === 'chkId'){
+
+                const filterArray = [];
+                //Getting all the checkboxes
+                const checkedValues = document.querySelectorAll('.chkId');
+
+                //Pushing all checked value into the array
+                [...checkedValues].forEach((n)=>{
+                    if(n.checked){
+                        filterArray.push(n.value);
+                    }
+                })
+
+                let tmpTablica = [];
+
+                //Getting restaurants with mathing cuisines
+                    final.forEach((n)=>{
+                        const splitArr = n.cuisines.split(',');
+                        const rez = filterArray.some(r => splitArr.includes(r));
+                        if(rez){
+                            tmpTablica.push(`<div id='resDiv' class='resDiv'>
+                            <span class='resTitle'>
+                                ${n.name}
+                            </span>
+                            <span class='resCs'>
+                                ${n.rating}
+                            </span>
+                            <span class='resAdr'>
+                                ${n.address}
+                            </span>
+                            </div>`);
+                        }
+
+                    })
+                
+                if(tmpTablica.length !== 0){
+                    tablica = tmpTablica;
+                }else{
+                    tablica=savedTablica;
+                }
+                //Displaying filtered data and generate new buttons
+                generateBtn(e);
+                append(tablica, buttons, divData);
+
+            }
+        }
+
+        //Run filter
+        filter.addEventListener('click', filterRestaurants);
+
         //To append pass array with data, elements that will contain the buttons, element that will contain data
         //Add event to generate buttons
         document.addEventListener('click', (e)=>{
@@ -52,49 +121,9 @@ function display(){
             append(tablica, buttons, divData);
         });
         
-
-        //Default append data on the first site
-        append(tablica, buttons, divData);
     })
     
 }
 
 //Exporting main function
 module.exports = display;
-
-
-
-//Some demo - doesn't matter right now
-/*
-const getUserCuisines = () => {
-    const allCuisines = ['Polish', 'Greek', 'Grill'];
-    userCuisines = []
-    allCuisines.forEach( n =>
-    {if (document.getElementById(`${n}`).checked) {
-        userCuisines.push(document.getElementById(`${n}`).value);
-    }})
-}
-
-const fetchCusines = async()=>{
-    
-    let response = await fetch('https://developers.zomato.com/api/v2.1/cuisines?city_id=280', {headers: {
-        'Content-type': 'application/json',
-        'user-key': 'a2312f9d231f29610389057aa0a28111'}
-    } )
-    .then(res => res.json());
-    return response;
-
-}
-
-const resultData = fetchCusines().then(function(rez){
-    const array = [];
-    rez.cuisines.forEach((n)=>{
-        
-        if(!array.includes(n.cuisine.cuisine_name)){
-            array.push(n.cuisine.cuisine_name);
-        }
-
-    });
-    console.log(array);
-})
-*/

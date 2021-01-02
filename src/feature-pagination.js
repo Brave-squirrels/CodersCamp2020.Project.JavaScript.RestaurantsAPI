@@ -16,9 +16,14 @@ const paginate = (obj, pageSize, pageNumber) => {
 //Generate buttons depending on which page we are
 const generatePage = (arr,btnContainer) => {
     const maxPage = Math.ceil(arr.length/state.pageSize);
-    btnContainer.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
-                        (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :
-                        `<button id='btn1'>Page ${state.pageNumber-1}</button> <br> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
+
+    if(arr.length <= state.pageSize){
+        btnContainer.innerHTML = '';
+    }else{
+        btnContainer.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
+                            (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :
+                            `<button id='btn1'>Page ${state.pageNumber-1}</button> <br> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
+    }
 }
 
 //Update DOM by appending current data
