@@ -9,6 +9,7 @@
   --logoFont: 'Montserrat', sans-serif;
   --buttonBg: #383738;
   --mainColor: #383738;
+  --starsBg: #a8a8a8;
  }
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
@@ -45,16 +46,8 @@ html{
 header, main, footer{
   padding: 0.6em 1em;
 }
-.dailyMenu, .reviews, nav div{
+.dailyMenu, nav div{
   padding: 0.3em 0.8em;
-}
-
-.addReview, .review{
-  padding: 0.1em 0.5em;
-}
-
-.mainRight, .mainLeft{
-  padding: 2em;
 }
 
   /* Main styles */
@@ -344,7 +337,7 @@ header, main, footer{
     visibility: hidden;
   }
   .starFavInput:checked~::before{
-    color: var(--bodyBg);
+    color: var(--starsBg);
   }
 
 
@@ -369,28 +362,25 @@ header, main, footer{
   }
 
   .stars{
-    background: #fff;
     display:flex;
-    justify-content:center;
-    border-radius: 15px;
+    justify-content:space-around;
     flex-direction: row-reverse;
     width: 9em;
   }
   .stars input{
-    position: absolute;
-    left: -10000px;
+    display: none;
   }
   label::before{
     content: '★';
     font-size: 1.5em;
     line-height: 1.2em;
     letter-spacing: 0.2em;
-    color: #a8a8a8;
+    color: var(--starsBg);
   }
   label:hover::before,
   label:hover~::before,
   .stars input:checked~::before{
-    color: rgb(255, 212, 22);
+    color: var(--bodyBg);
   }
 
 
