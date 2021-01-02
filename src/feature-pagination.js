@@ -18,7 +18,9 @@ const generatePage = (arr,btnContainer) => {
     const maxPage = Math.ceil(arr.length/state.pageSize);
 
     if(arr.length <= state.pageSize){
+        //Delete buttons and back to the first page when elements are less or equal of max elements per page
         btnContainer.innerHTML = '';
+        state.pageNumber = 1;
     }else{
         btnContainer.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
                             (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :

@@ -10,7 +10,10 @@ function display(){
     const val = document.querySelector('#townSearch').value;
     const buttons = document.querySelector('#paginationContainer');
     const divData = document.querySelector('#restaurantsNavCon');
-    const filter = document.querySelector('#filter');
+    const filter = document.querySelector('#filterRestaurants');
+    const container = document.querySelector('nav');
+
+    container.style.display = 'grid';
 
 
     //Resets container by default
@@ -18,12 +21,13 @@ function display(){
     buttons.innerHTML ='';
     filter.innerHTML = '';
     //Add value of checkbox here where is empty array
-    const data = mainFunc(val,[]).then(function(final){
+    mainFunc(val,[]).then(function(final){
         let navData = [];
         //Creating templates with data and pushing into array
         final.forEach((n)=>{
             //To the div add info about ID to download it on click and base on that display restaurant - waiting for backend to do this
-            navData.push(`<div id='resDiv' class='resDiv'>
+            //data-name - get this on click and base on that display restaurant
+            navData.push(`<div id='resDiv' class='resDiv' data-name="${n.name}">
             <span class='resTitle'>
                 ${n.name}
             </span>
@@ -33,9 +37,14 @@ function display(){
             <span class='resAdr'>
                 ${n.address}
             </span>
+            <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
             </div>`);
         });
 
+        //Save data to localStorage for future
+        localStorage.setItem("data", JSON.stringify(final));
+
+        
 
         //Default append data on the first site
         append(navData, buttons, divData);
@@ -84,7 +93,7 @@ function display(){
                         const splitArr = n.cuisines.split(',');
                         const rez = filterArray.some(r => splitArr.includes(r));
                         if(rez){
-                            tmpNavData.push(`<div id='resDiv' class='resDiv'>
+                            tmpNavData.push(`<div id='resDiv' class='resDiv data-name="${n.name}"'>
                             <span class='resTitle'>
                                 ${n.name}
                             </span>
@@ -94,12 +103,13 @@ function display(){
                             <span class='resAdr'>
                                 ${n.address}
                             </span>
+                            <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
                             </div>`);
                         }
 
                     })
                 
-                //Resets data to default when unchecked
+                //Resets data to default when uncheckedw
                 if(tmpNavData.length !== 0){
                     navData = tmpNavData;
                 }else{

@@ -11,7 +11,7 @@ const fetchData = async(url) => {
     let response = await fetch(url, {
             headers: {
                 'Content-type': 'application/json',
-                'user-key': 'a2312f9d231f29610389057aa0a28111'
+                'user-key': '9ca0851393a84a45eeed8e3fdb85f2d6'
             }
         })
         .then(res => res.json());
@@ -177,7 +177,6 @@ const mainFunc = async(getCityName, userCuisines) => {
 
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, userCuisines);
     
-    console.log(restaurants);
     return restaurants;
 };
 
