@@ -10,6 +10,7 @@ const manageFavouriteRestaurant = (e) => {
     /* If local storage empty -> add restaurant to favourites */
     if (!favourites) {
         localStorage.setItem(favouritesKey, restaurantId);
+        generateFavourites();
         return
     }
         //  Else -> retrieve and split by comma
@@ -28,6 +29,7 @@ const manageFavouriteRestaurant = (e) => {
 // then join array by comma and save (setItem)
     favourites = favouritesArray.join(',');
     localStorage.setItem(favouritesKey, favourites);
+    generateFavourites();
 }
 
 const isFavourite = (restaurantId) => {
@@ -48,6 +50,39 @@ const isFavourite = (restaurantId) => {
 }
 
 const generateFavourites = () => {
+    console.log('dupa')
+    let restaurants = getRestaurants();
+    let html = '';
+    restaurants.forEach((restaurant) => {
+        if (isFavourite(restaurant.id)) {
+            html += '<div class=\'resDiv\'>' +
+            '<span class=\'resTitle\'>' + restaurant.name + '</span>' +
+            '<span class=\'resCs\'>' + restaurant.rating + '</span>' +
+            '<span class=\'resAdr\'>' + restaurant.address + '</span>' +
+            '<div class=\'addFav\'>' +
+            '<input type="checkbox" id="' + restaurant.id + '" name="starFav" class="starFavInput">' +
+            '<label for="' + restaurant.id + '" class="starFav" ></label>' +
+            '</div></div>'
+        }
+    });
+    document.getElementById('favourites').innerHTML = html;
+
+    var checkboxes = document.getElementsByClassName('starFavInput');
+    Array.from(checkboxes).forEach((item) => {
+        item.checked = isFavourite(item.id);
+    });
+}
+
+const manageHTMLFavourite = (e) => {
+    let restaurantId = e.target.id;
+    console.log(e, restaurantId);
+    let fav = document.getElementById('favourites').innerHTML;
+
+}
+
+export {isFavourite, manageFavouriteRestaurant, generateFavourites, manageHTMLFavourite};
+
+const getRestaurants = () => {
     let restaurants = [
         {
             'id': 'res1',
@@ -68,30 +103,5 @@ const generateFavourites = () => {
             'address': 'Address 3'
         }
     ];
-    let html = '';
-    restaurants.forEach((restaurant) => {
-        html += '<div class=\'resDiv\'>' +
-        '<span class=\'resTitle\'>' + restaurant.name + '</span>' +
-        '<span class=\'resCs\'>' + restaurant.rating + '</span>' +
-        '<span class=\'resAdr\'>' + restaurant.address + '</span>' +
-        '<div class=\'addFav\'>' +
-        '<input type="checkbox" id="' + restaurant.id + '" name="starFav" class="starFavInput">' +
-        '<label for="' + restaurant.id + '" class="starFav" ></label>' +
-        '</div></div>'
-    })
-    document.getElementById('favourites').innerHTML = html;
-
-    var checkboxes = document.getElementsByClassName('starFavInput');
-    Array.from(checkboxes).forEach((item) => {
-       item.checked = isFavourite(item.id);
-    });
+    return restaurants
 }
-
-const manageHTMLFavourite = (e) => {
-    let restaurantId = e.target.id;
-    console.log(e, restaurantId);
-    let fav = document.getElementById('favourites').innerHTML;
-
-}
-
-export {isFavourite, manageFavouriteRestaurant, generateFavourites, manageHTMLFavourite};
