@@ -2,6 +2,7 @@
 :root{
   --bodyBg:#E6ED3B;
   --mainBackground:rgba(0,0,0,0.01);
+  --favListHd:#E6ED3B;
   --favListBg: #fff;
   --resBg: rgba(0,0,0,0.2);
   --secondBackground: #FCF7FC;
@@ -46,7 +47,7 @@ html{
 header, main, footer{
   padding: 0.6em 1em;
 }
-.dailyMenu, nav div{
+.dailyMenu, nav div, .favourites div{
   padding: 0.3em 0.8em;
 }
 
@@ -76,6 +77,35 @@ header, main, footer{
      cursor: pointer;
    }
 
+  /* Favourites additional styling (some used from main page) */
+  .favTitle{
+    height: 8%;
+    display: flex;
+    font-size: 1.2em;
+    font-family: var(--logoFont);
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5em 0;
+  }
+
+  .favourites {
+    display: grid;
+    grid-gap: 1em;
+    padding: 1em 1em;
+    /*background: var(--favListBg);*/
+  }
+
+  .noFav div {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .noFav h1 {
+    color: var(--mainColor);
+    font-size: 1.6em;
+    text-transform: uppercase;
+    text-align: center;
+  }
 
   /* header styles */
   header{
@@ -174,14 +204,7 @@ header, main, footer{
     border-color: var(--bodyBg);
   }
 
-  .favTitle{
-    height: 8%;
-    display: flex;
-    font-size: 1.2em;
-    font-family: var(--logoFont);
-    align-items: center;
-    justify-content: space-between;
-  }
+
 
   .townFind, .exportFavData {
     border: 2px solid var(--buttonBg);
@@ -217,14 +240,7 @@ header, main, footer{
     right: 1em;
     bottom: 1em;
   }
-  
-  .favourites {
-   /* background: var(--bodyBg);*/
-    display: grid;
-    grid-gap: 1em;
-    padding: 1em 1em;
-  
-  }
+
   /* List of restaurants styles Edit when API
     Display: none; by default
     display: grid; with js

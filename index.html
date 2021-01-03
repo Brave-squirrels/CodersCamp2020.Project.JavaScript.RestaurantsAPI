@@ -15,69 +15,74 @@
         <div>
             <span id='closeFav' class='closeFav'>&times;</span>
             <div class="favTitle">
-                 <img src="assets/logo.png" alt="logo" class='logo'>
+                <img src="assets/logo.png" alt="logo" class='logo'>
                 <span class="logoTitle">Favourites</span>
                 <input type="submit" value='Export' id='exportFavData' class='exportFavData'>
             </div>
         </div>
         <!--Display if anything in localStorage-->
         <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
-        <div class="favourites">
-            <div id='resDiv' class='resDiv'>
-                <span class='resTitle'>
-                    Restaurant 1 name
-                </span>
-                <span class='resCs'>
-                    Rating
-                </span>
-                <span class='resAdr'>
-                    Adress
-                </span>
-                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                <div class='addFav'>
-                    <input type="checkbox" id="res1" name="starFav" class="starFavInput">
-                    <label for="res1" class="starFav" ></label>
+        <div>
+            <div class="favourites">
+                <div id='resDiv' class='resDiv'>
+                    <span class='resTitle'>
+                        Restaurant 1 name
+                    </span>
+                    <span class='resCs'>
+                        Rating
+                    </span>
+                    <span class='resAdr'>
+                        Adress
+                    </span>
+                    <div class='addFav'>
+                        <input type="checkbox" id="res1" name="starFav" class="starFavInput">
+                        <label for="res1" class="starFav" ></label>
+                    </div>
+                </div>
+                <div id='resDiv' class='resDiv'>
+                    <span class='resTitle'>
+                        Restaurant 2 name
+                    </span>
+                    <span class='resCs'>
+                        Rating
+                    </span>
+                    <span class='resAdr'>
+                        Adress
+                    </span>
+                    <div class='addFav'>
+                        <input type="checkbox" id="res2" name="starFav" class="starFavInput">
+                        <label for="res2" class="starFav"></label>
+                    </div>
+                </div>
+                <div id='resDiv' class='resDiv'>
+                    <span class='resTitle'>
+                        Restaurant 3 name
+                    </span>
+                    <span class='resCs'>
+                        Rating
+                    </span>
+                    <span class='resAdr'>
+                        Adress
+                    </span>
+                    <div class='addFav'>
+                        <input type="checkbox" id="res3" name="starFav" class="starFavInput">
+                        <label for="res3" class="starFav"></label>
+                    </div>
                 </div>
             </div>
-            <div id='resDiv' class='resDiv'>
-                <span class='resTitle'>
-                    Restaurant 2 name
-                </span>
-                <span class='resCs'>
-                    Rating
-                </span>
-                <span class='resAdr'>
-                    Adress
-                </span>
-                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                <div class='addFav'>
-                    <input type="checkbox" id="res2" name="starFav" class="starFavInput">
-                    <label for="res2" class="starFav"></label>
-                </div>
-            </div>
-            <div id='resDiv' class='resDiv'>
-                <span class='resTitle'>
-                    Restaurant 3 name
-                </span>
-                <span class='resCs'>
-                    Rating
-                </span>
-                <span class='resAdr'>
-                    Adress
-                </span>
-                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                <div class='addFav'>
-                    <input type="checkbox" id="res3" name="starFav" class="starFavInput">
-                    <label for="res3" class="starFav"></label>
+            <!--Display when localStorage is empty-->
+            <div id="noFav" class="noFav">
+                <h1>
+                    No favourites yet
+                </h1>
+                <div>
+                    Search for restaurants to find what you like!
                 </div>
             </div>
         </div>
-        <!--Display when localStorage is empty-->
-        No fav restaurants :c
-        
     </aside>
 
-    <!--Header--> 
+    <!--Header-->
     <header>
         <div class="siteTitle">
            <img src="assets/logo.png" alt="logo" class='logo'>
