@@ -47,4 +47,51 @@ const isFavourite = (restaurantId) => {
     return false;
 }
 
-export {isFavourite, manageFavouriteRestaurant};
+const generateFavourites = () => {
+    let restaurants = [
+        {
+            'id': 'res1',
+            'name': 'Rstaurant 1 name',
+            'rating': 'Rating1',
+            'address': 'Address 1'
+        },
+        {
+            'id': 'res2',
+            'name': 'Rstaurant 2 name',
+            'rating': 'Rating2',
+            'address': 'Address 2'
+        },
+        {
+            'id': 'res3',
+            'name': 'Rstaurant 3 name',
+            'rating': 'Rating3',
+            'address': 'Address 3'
+        }
+    ];
+    let html = '';
+    restaurants.forEach((restaurant) => {
+        html += '<div class=\'resDiv\'>' +
+        '<span class=\'resTitle\'>' + restaurant.name + '</span>' +
+        '<span class=\'resCs\'>' + restaurant.rating + '</span>' +
+        '<span class=\'resAdr\'>' + restaurant.address + '</span>' +
+        '<div class=\'addFav\'>' +
+        '<input type="checkbox" id="' + restaurant.id + '" name="starFav" class="starFavInput">' +
+        '<label for="' + restaurant.id + '" class="starFav" ></label>' +
+        '</div></div>'
+    })
+    document.getElementById('favourites').innerHTML = html;
+
+    var checkboxes = document.getElementsByClassName('starFavInput');
+    Array.from(checkboxes).forEach((item) => {
+       item.checked = isFavourite(item.id);
+    });
+}
+
+const manageHTMLFavourite = (e) => {
+    let restaurantId = e.target.id;
+    console.log(e, restaurantId);
+    let fav = document.getElementById('favourites').innerHTML;
+
+}
+
+export {isFavourite, manageFavouriteRestaurant, generateFavourites, manageHTMLFavourite};
