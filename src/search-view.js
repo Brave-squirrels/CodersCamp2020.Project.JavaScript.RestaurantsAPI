@@ -14,10 +14,12 @@ function display(e){
     const filter = document.querySelector('#filterRestaurants');
     const container = document.querySelector('nav');
 
+    //Expresion of the invalid charackters
+    const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     //Validate value in form
-    if(!isNaN(val.value) || val.value.length === 0){
+    if(!isNaN(val.value) || val.value.length === 0 || format.test(val.value)){
         val.classList.add("invalid");
-
+        console.log(":/");
         setTimeout(function(){
             val.classList.remove('invalid');
         }, 500);
