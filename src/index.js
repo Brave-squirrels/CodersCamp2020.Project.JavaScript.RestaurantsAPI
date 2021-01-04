@@ -4,8 +4,11 @@ const favourites = require('../src/favourites-feature');
 //Handle the favList
 document.addEventListener('click', displayFav);
 document.addEventListener('click', favourites.manageFavouriteRestaurant);
-var el = document.getElementById("favIcon");
-el.addEventListener('click', favourites.generateFavourites);
+
+var addFavRestaurant = document.getElementById("favIcon");
+addFavRestaurant.addEventListener('click', favourites.generateFavourites);
+var exportFavourites = document.getElementById("exportFavData");
+exportFavourites.addEventListener('click', favourites.exportFavourites);
 
 document.querySelectorAll('.starFav').forEach(item => {
     item.addEventListener('click', favourites.manageHTMLFavourite);
