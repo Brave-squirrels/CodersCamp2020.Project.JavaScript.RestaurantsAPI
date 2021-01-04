@@ -174,6 +174,18 @@ header, main, footer{
     border-color: var(--bodyBg);
   }
 
+  /* invalid input style */
+  .invalid{
+    position: relative;
+    border: 2px solid #FA4C3B;
+    animation: shake 0.1s linear;
+    animation-iteration-count: 3;
+  }
+  @keyframes shake{
+    0% {left: -5px}
+    100% {right: -5px};
+  }
+
   .townFind{
     border: 2px solid var(--buttonBg);
     padding: 0.3em 0.9em;
