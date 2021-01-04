@@ -1,7 +1,7 @@
 //Importing main function
 const mainFunc = require('./restaurants-api');
-
 const {generateBtn, append} = require('./feature-pagination');
+const { validateTown, notValid } = require('./validate');
 
 //Display data when click on search button
 function display(e){
@@ -14,26 +14,24 @@ function display(e){
     const filter = document.querySelector('#filterRestaurants');
     const container = document.querySelector('nav');
 
-    //Expresion of the invalid charackters
-    const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    //Validate value in form
-    if(!isNaN(val.value) || val.value.length === 0 || format.test(val.value)){
-        val.classList.add("invalid");
-        console.log(":/");
-        setTimeout(function(){
-            val.classList.remove('invalid');
-        }, 500);
 
+    //Resets container by default
+    result.innerHTML ='';
+    buttons.innerHTML ='';
+    filter.innerHTML = '';
+
+    //Format the input
+    const inputValue = val.value.trim();
+
+    //Validate value in form
+    if(validateTown(inputValue)){
+        //Not valid effect
+       notValid(val);
     }else{
         container.style.display = 'grid';
 
-
-        //Resets container by default
-        result.innerHTML ='';
-        buttons.innerHTML ='';
-        filter.innerHTML = '';
         //Add value of checkbox here where is empty array
-        mainFunc(val.value,[]).then(function(final){
+        mainFunc(inputValue,[]).then(function(final){
             let navData = [];
             //Creating templates with data and pushing into array
 
@@ -56,8 +54,6 @@ function display(e){
 
             //Save data to localStorage for future
             localStorage.setItem("data", JSON.stringify(final));
-
-            
 
             //Default append data on the first site
             append(navData, buttons, divData);
@@ -145,8 +141,12 @@ function display(e){
                 append(navData, buttons, divData);
             });
             
+            //Scroll to the nav after submit
+            container.scrollIntoView();
+
         })
     }
+
     
 }
 
