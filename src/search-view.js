@@ -33,7 +33,15 @@ function display(e){
             if(final[0]==='incorrect syntax'){
                 notValid(val);
             }else if(final[0]==='city does not exist'){
-                console.log(`not ${inputValue}`);
+                container.style.display = 'grid';
+                container.innerHTML = 
+                    `
+                        <div class='townNotFound'>
+                            We can't find the restaurants in ${inputValue}.
+                        </div>
+                    `;
+                //Scroll to the nav after submit
+                container.scrollIntoView();
             }else{
                 //Creating templates with data and pushing into array
                 container.style.display = 'grid';
@@ -44,10 +52,10 @@ function display(e){
                         ${n.name}
                     </span>
                     <span class='resCs'>
-                        ${n.rating}
+                        ${n.address}
                     </span>
                     <span class='resAdr'>
-                        ${n.address}
+                        ${n.rating}
                     </span>
                     <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
                     </div>`);
@@ -107,10 +115,10 @@ function display(e){
                                         ${n.name}
                                     </span>
                                     <span class='resCs'>
-                                        ${n.rating}
+                                        ${n.address}
                                     </span>
                                     <span class='resAdr'>
-                                        ${n.address}
+                                        ${n.rating}
                                     </span>
                                     <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
                                     </div>`);
