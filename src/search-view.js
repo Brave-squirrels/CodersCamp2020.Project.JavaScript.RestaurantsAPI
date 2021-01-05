@@ -3,6 +3,23 @@ const mainFunc = require('./restaurants-api');
 const {generateBtn, append} = require('./feature-pagination');
 const notValid = require('./validate');
 
+//Creating template string for restaurant nav
+const pushTemplate = (obj, arr)=>{
+    arr.push(`<div id='resDiv' class='resDiv' data-name="${obj.id}">
+                <span class='resTitle'>
+                    ${obj.name}
+                </span>
+                <span class='resCs'>
+                    ${obj.address}
+                </span>
+                <span class='resAdr'>
+                    ${obj.rating}
+                </span>
+                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+            </div>`);
+}
+
+
 //Display data when click on search button
 function display(e){
 
@@ -47,22 +64,8 @@ function display(e){
                 container.style.display = 'grid';
                 final.forEach((n)=>{
                     //data-name - get this on click and base on that display restaurant
-                    navData.push(`<div id='resDiv' class='resDiv' data-name="${n.id}">
-                    <span class='resTitle'>
-                        ${n.name}
-                    </span>
-                    <span class='resCs'>
-                        ${n.address}
-                    </span>
-                    <span class='resAdr'>
-                        ${n.rating}
-                    </span>
-                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                    </div>`);
+                    pushTemplate(n,navData);
                 });
-
-                //Save data to localStorage for future
-                localStorage.setItem("data", JSON.stringify(final));
 
                 //Default append data on the first site
                 append(navData, buttons, divData);
@@ -112,18 +115,7 @@ function display(e){
                                 const splitArr = n.cuisines.split(',');
                                 const rez = filterArray.some(r => splitArr.includes(r));
                                 if(rez){
-                                    tmpNavData.push(`<div id='resDiv' class='resDiv data-name="${n.id}"'>
-                                    <span class='resTitle'>
-                                        ${n.name}
-                                    </span>
-                                    <span class='resCs'>
-                                        ${n.address}
-                                    </span>
-                                    <span class='resAdr'>
-                                        ${n.rating}
-                                    </span>
-                                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                                    </div>`);
+                                    pushTemplate(n,tmpNavData);
                                 }
 
                             })
