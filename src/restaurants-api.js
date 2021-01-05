@@ -80,6 +80,7 @@ const fetchRestaurants = async(url) => {
 
     const addRestaurant = async(item, listReviews) => {
         restaurantsFromCity.push({
+            id: item.restaurant.id,
             name: item.restaurant.name,
             logo: item.restaurant.featured_image,
             cuisines: item.restaurant.cuisines,
@@ -128,7 +129,7 @@ const replacePolishChar = (getCityName) => {
 
 const validateTown = (getCityNames) => {  
     const format = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/;
-    return !isNaN(getCityNames) || getCityNames.length === 0 || format.test(getCityNames);
+    return isNaN(getCityNames) || getCityNames.length !== 0 || !format.test(getCityNames);
 }
 
 const mainFunc = async(getCityName) => {
@@ -137,18 +138,15 @@ const mainFunc = async(getCityName) => {
         -parameters (string eg.'wroclaw')
     */
 
-    // Returns empty array if no CityName was provided
-    let ValidateCity = await validateTown(getCityName);
-    
-    if (!ValidateCity) return []; /* @return [] if incorrect city name*/ 
-    
-
-
     let cityName = await replacePolishChar(getCityName);
+    // Returns empty array if no CityName was provided
+    let ValidateCity = await validateTown(cityName);
+        
+    if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/ 
 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
     
-    if (cityId==undefined) return []; /* @return [] if incorrect id*/ 
+    if (cityId===undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/ 
         
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
     
