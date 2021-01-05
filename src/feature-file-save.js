@@ -20,7 +20,7 @@ const createTxtFile = async(restaurants) => {
     await createFolder();
 
     await restaurants.forEach(restaurant => {
-        fs.appendFile('FavouriteRestaurants/MyFavRestaurants.txt', `Restaurant name: ${restaurant.name} Address: ${restaurant.address} Rating: ${restaurant.rating} Phone: ${restaurant.phone} Cuisines: ${restaurant.cuisines.join(' ')}\n`, (err) => {
+        fs.writeFile('FavouriteRestaurants/MyFavRestaurants.txt', `Restaurant name: ${restaurant.name} Address: ${restaurant.address} Rating: ${restaurant.rating} Phone: ${restaurant.phone} Cuisines: ${restaurant.cuisines.join(' ')}\n`, (err) => {
             if (err) throw new Error(err);
         })
     })
