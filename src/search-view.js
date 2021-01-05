@@ -81,8 +81,10 @@ function display(e){
                 //Display filters
                 cuisinesAll.forEach((n)=>{
                     filter.innerHTML += `
-                        <label for="${n}" id="filterLabel">${n}</label>
+                        <label for="${n}" id="filterLabel" class='container'>${n}
                         <input type="checkbox" id="${n}" name="cuisineFilter" value="${n}" class="chkId">
+                        <span class='checkmark'></span>
+                        </label>
                     `;
                 })
 
