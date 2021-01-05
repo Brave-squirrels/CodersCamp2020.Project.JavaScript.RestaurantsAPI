@@ -13,7 +13,7 @@ const createFolder = async() => {
 
 const createTxtFile = async(restaurants) => {
     /*
-        - parameters (string array)
+        - parameters (object array)
         @ creates txt file with favourite restaurants name
     */
 
