@@ -275,6 +275,19 @@ header, main, footer{
     transform: translateY(-10px);
   }
 
+  .townNotFound{
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+    background:#fff;
+    width: 100%;
+    color: var(--mainColor);
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 1em 0;
+  }
   
 
   .resTitle,.restaurantName, .dailyMenuTitle{
