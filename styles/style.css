@@ -232,6 +232,13 @@ header, main, footer{
     align-items: center;
   }
 
+  .filterRestaurants{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
   .restaurantsNavCon{
     display: grid;
     grid-gap: 1em;
@@ -395,15 +402,15 @@ header, main, footer{
   .stars input{
     display: none;
   }
-  label::before{
+  .starLabel::before{
     content: '★';
     font-size: 1.5em;
     line-height: 1.2em;
     letter-spacing: 0.2em;
     color: var(--starsBg);
   }
-  label:hover::before,
-  label:hover~::before,
+  .starLabel:hover::before,
+  .starLabel:hover~::before,
   .stars input:checked~::before{
     color: var(--bodyBg);
   }
@@ -433,10 +440,70 @@ header, main, footer{
     color: rgba(0,0,0,0.4);
   }
 
+  /* Filter checkbox styles */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 2.1875em;
+    margin-bottom: 0.75em;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--mainColor);
+    font-family: var(--mainFont);
+  }
+
+  .container input {
+      display: none;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0.7em;
+    height: 1.1em;
+    width: 1.1em;
+    background-color: var(--secondBackground);
+  }
+
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .container input:checked ~ .checkmark {
+    background-color: #949494;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .container .checkmark:after {
+    left: 0.4em;
+    bottom: 0.27em;
+    width: 0.18em;
+    height: 0.45em;
+    border: solid var(--secondBackground);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
   /* Media queries */
   @media only screen and (min-width: 700px){
     :root{
       font-size: 20px;
+    }
+    .filterRestaurants{
+      grid-template-columns: repeat(6,1fr);
     }
   }
   @media only screen and (min-width: 1080px){
@@ -444,3 +511,7 @@ header, main, footer{
       font-size: 22px;
     }
   }
+
+
+
+
