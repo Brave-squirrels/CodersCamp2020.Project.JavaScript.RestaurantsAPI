@@ -11,3 +11,7 @@ Poniżej krótka instrukcja co należy zrobić po ściągnięciu repo:
 Po wykonaniu git clone wpisz w konsoli w folderze z repo: `npm install` żeby zainstalować wszystkie moduły.
 Żeby odpalić serwer deweloperski wpisz: `npm run dev`.
 Żeby wykonać produkcyjnego builda wpisz: `npm run prod`.
+
+**Testy**
+W celu wykonania testów w folderze z repo uruchom w konsoli komende: `npm install` żeby zainstalować wszystkie moduły.
+Następnie testy możesz uruchomić komendą: `npm test`.
