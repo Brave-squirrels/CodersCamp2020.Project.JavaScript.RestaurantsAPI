@@ -26,8 +26,15 @@ const fetchCity = async(url) => {
     */
 
     let res = await fetchData(url);
+    if (res.location_suggestions[0]==undefined) {
+        let cityId = undefined
+
+        return cityId
+    } else {
     let cityId = res.location_suggestions[0].city_id;
-    return cityId;
+    
+    return cityId
+    }
 }
 
 const fetchUserReviews = async(restaurantId) => {
@@ -153,7 +160,7 @@ const replacePolishChar = (getCityName) => {
 const mainFunc = async(getCityName) => {
     /*
         main function
-        -parameters (string eg.'wroclaw', array of strings eg. ['Italian'])
+        -parameters (string eg.'wroclaw')
     */
 
     // Returns empty array if no CityName was provided
@@ -162,10 +169,19 @@ const mainFunc = async(getCityName) => {
     let cityName = await replacePolishChar(getCityName);
 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
-
+    
+    if (cityId==undefined) {
+        /*
+        if city is incorrect @ return ['error'] 
+        */
+        let restaurants = ['error']
+    
+        return restaurants
+    } else {
+        
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
-
-    return restaurants;
+    
+    return restaurants;}
 };
 
 
