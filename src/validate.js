@@ -1,9 +1,3 @@
-const format = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/;
-
-const validateTown = (inputValue) => {  
-    return !isNaN(inputValue) || inputValue.length === 0 || format.test(inputValue);
-}
-
 const notValid = (inputDOM) => {
     inputDOM.classList.add("invalid");
     setTimeout(function(){
@@ -11,7 +5,4 @@ const notValid = (inputDOM) => {
     }, 500);
 }
 
-module.exports = {
-    validateTown: validateTown,
-    notValid: notValid
-}
+module.exports = notValid;

@@ -1,11 +1,14 @@
 //Importing main function
 const mainFunc = require('./restaurants-api');
 const {generateBtn, append} = require('./feature-pagination');
-const { validateTown, notValid } = require('./validate');
+const notValid = require('./validate');
 
 //Display data when click on search button
 function display(e){
+
+    //Prevent from reloading page on submit 
     e.preventDefault();
+
     //Get DOM elements
     const result = document.querySelector('#restaurantsNavCon');
     const val = document.querySelector('#townSearch');
@@ -23,22 +26,20 @@ function display(e){
     //Format the input
     const inputValue = val.value.trim();
 
-    //Validate value in form
-    if(validateTown(inputValue)){
-        //Not valid effect
-       notValid(val);
-    }else{
-        container.style.display = 'grid';
-
         //Add value of checkbox here where is empty array
-        mainFunc(inputValue,[]).then(function(final){
+        mainFunc(inputValue).then(function(final){
             let navData = [];
-            //Creating templates with data and pushing into array
-
+            //Validation
+            if(final[0]==='incorrect syntax'){
+                notValid(val);
+            }else if(final[0]==='city does not exist'){
+                console.log(`not ${inputValue}`);
+            }else{
+                //Creating templates with data and pushing into array
+            container.style.display = 'grid';
             final.forEach((n)=>{
-                //To the div add info about ID to download it on click and base on that display restaurant - waiting for backend to do this
                 //data-name - get this on click and base on that display restaurant
-                navData.push(`<div id='resDiv' class='resDiv' data-name="${n.name}">
+                navData.push(`<div id='resDiv' class='resDiv' data-name="${n.id}">
                 <span class='resTitle'>
                     ${n.name}
                 </span>
@@ -57,7 +58,6 @@ function display(e){
 
             //Default append data on the first site
             append(navData, buttons, divData);
-
 
             //Get the array of all cuisines in the city
             const cuisinesAll = [];
@@ -97,12 +97,12 @@ function display(e){
 
                     let tmpNavData = [];
 
-                    //Getting restaurants with mathing cuisines
+                    //Getting restaurants with matching cuisines
                         final.forEach((n)=>{
                             const splitArr = n.cuisines.split(',');
                             const rez = filterArray.some(r => splitArr.includes(r));
                             if(rez){
-                                tmpNavData.push(`<div id='resDiv' class='resDiv data-name="${n.name}"'>
+                                tmpNavData.push(`<div id='resDiv' class='resDiv data-name="${n.id}"'>
                                 <span class='resTitle'>
                                     ${n.name}
                                 </span>
@@ -118,7 +118,7 @@ function display(e){
 
                         })
                     
-                    //Resets data to default when uncheckedw
+                    //Resets data to default when unchecked
                     if(tmpNavData.length !== 0){
                         navData = tmpNavData;
                     }else{
@@ -134,7 +134,7 @@ function display(e){
             //Run filter
             filter.addEventListener('click', filterRestaurants);
 
-            //To append pass array with data, elements that will contain the buttons, element that will contain data
+            //To append pass array with data, element that will contain the buttons, element that will contain data
             //Add event to generate buttons
             document.addEventListener('click', (e)=>{
                 generateBtn(e);
@@ -143,9 +143,9 @@ function display(e){
             
             //Scroll to the nav after submit
             container.scrollIntoView();
-
+            }
         })
-    }
+    
 
     
 }
