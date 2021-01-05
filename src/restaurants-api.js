@@ -129,7 +129,7 @@ const replacePolishChar = (getCityName) => {
 
 const validateTown = (getCityNames) => {  
     const format = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/;
-    return isNaN(getCityNames) || getCityNames.length !== 0 || !format.test(getCityNames);
+    return isNaN(getCityNames) && getCityNames.length !== 0 && !format.test(getCityNames);
 }
 
 const mainFunc = async(getCityName) => {
