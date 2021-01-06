@@ -28,15 +28,9 @@ function display(e){
 
     //Get DOM elements
     const val = document.querySelector('#townSearch');
-    const buttons = document.querySelector('#paginationContainer');
-    const divData = document.querySelector('#restaurantsNavCon');
-    const filter = document.querySelector('#filterRestaurants');
     const container = document.querySelector('nav');
 
     //Resets container by default
-    divData.innerHTML ='';
-    buttons.innerHTML ='';
-    filter.innerHTML = '';
     container.style.display = 'none';
     document.querySelector('article').style.display = 'none';
     //Format the input
@@ -44,13 +38,19 @@ function display(e){
 
         //Add value of checkbox here where is empty array
         mainFunc(inputValue).then(function(final){
+            const buttons = document.querySelector('#paginationContainer');
+            const divData = document.querySelector('#restaurantsNavCon');
+            const filter = document.querySelector('#filterRestaurants');
             let navData = [];
             //Validation
             if(final[0]==='incorrect syntax'){
                 notValid(val);
             }else if(final[0]==='city does not exist'){
                 container.style.display = 'grid';
-                container.innerHTML = 
+                divData.style.display = 'none';
+                buttons.style.display = 'none';
+                filter.style.display = 'none';
+                container.innerHTML += 
                     `
                         <div class='townNotFound'>
                             We can't find the restaurants in ${inputValue}.
@@ -59,6 +59,15 @@ function display(e){
                 //Scroll to the nav after submit
                 container.scrollIntoView();
             }else{
+                if(container.contains(document.querySelector('.townNotFound'))){
+                    container.removeChild(document.querySelector('.townNotFound'));
+                }
+                divData.innerHTML ='';
+                buttons.innerHTML ='';
+                filter.innerHTML = '';
+                divData.style.display = 'grid';
+                buttons.style.display = 'flex';
+                filter.style.display = 'grid';
                 //Creating templates with data and pushing into array
                 container.style.display = 'grid';
                 final.forEach((n)=>{
