@@ -11,7 +11,7 @@ const fetchData = async(url) => {
     let response = await fetch(url, {
             headers: {
                 'Content-type': 'application/json',
-                'user-key': 'a2312f9d231f29610389057aa0a28111'
+                'user-key': '9ca0851393a84a45eeed8e3fdb85f2d6'
             }
         })
         .then(res => res.json());
@@ -56,7 +56,6 @@ const fetchUserReviews = async(restaurantId) => {
 
     return listOfReviews;
 }
-
 
 
 const fetchRestaurants = async(url) => {
