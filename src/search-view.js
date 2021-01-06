@@ -36,6 +36,8 @@ function display(e){
     //Format the input
     const inputValue = val.value.trim();
 
+    const loading = document.querySelector("#loading");
+    loading.style.display='flex';
         //Add value of checkbox here where is empty array
         mainFunc(inputValue).then(function(final){
             const buttons = document.querySelector('#paginationContainer');
@@ -156,7 +158,9 @@ function display(e){
                 //Scroll to the nav after submit
                 container.scrollIntoView();
             }
+            loading.style.display='none';
         })
+        
 }
 
 //Exporting main function

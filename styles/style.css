@@ -50,6 +50,23 @@ header, main, footer{
   padding: 0.3em 0.8em;
 }
 
+
+  /* Loader data style */
+
+  .loading{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0,0,0,0.1);
+    justify-content: center;
+    align-items: center;
+  }
+
+
   /* Main styles */
   
   /* Fav restaurants list styles */
@@ -199,7 +216,7 @@ header, main, footer{
     cursor: pointer;
     outline: none;
     display: block;
-    margin: 0 auto;
+    margin: 0.5em auto 0 auto;
     background: linear-gradient(to right, var(--bodyBg) 50%, var(--mainBackground) 50%);
     background-size: 200% 100%;
     background-position: bottom right;
