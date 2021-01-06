@@ -255,7 +255,7 @@ header, main, footer{
   .filterRestaurants{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    max-width: 650px;
+    width: 90%;
     margin: 0 auto;
   }
 
@@ -535,7 +535,3 @@ header, main, footer{
       font-size: 22px;
     }
   }
-
-
-
-
