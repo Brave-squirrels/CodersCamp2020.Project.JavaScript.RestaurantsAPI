@@ -34,12 +34,11 @@ function display(e){
     const filter = document.querySelector('#filterRestaurants');
     const container = document.querySelector('nav');
 
-
     //Resets container by default
     result.innerHTML ='';
     buttons.innerHTML ='';
     filter.innerHTML = '';
-
+    //document.querySelector('article').style.display = 'none'; - uncomment later - disable single restaurant view when search
     //Format the input
     const inputValue = val.value.trim();
 
@@ -91,8 +90,10 @@ function display(e){
                     `;
                 })
 
-                //Saving the array of data
-                let savedNavData = navData;
+                
+                 //Saving the array of data
+                 let savedNavData = navData;
+
                 const filterRestaurants = (e)=>{
                     //Checking target of the event
                     if(e.target.className === 'chkId'){
@@ -121,11 +122,11 @@ function display(e){
                             })
                         
                         //Resets data to default when unchecked
-                        if(tmpNavData.length !== 0){
-                            navData = tmpNavData;
-                        }else{
-                            navData=savedNavData;
-                        }
+                       
+
+                        navData = (tmpNavData.length !== 0) ? tmpNavData :
+                                  savedNavData;
+
                         //Displaying filtered data and generate new buttons
                         generateBtn(e);
                         append(navData, buttons, divData);
