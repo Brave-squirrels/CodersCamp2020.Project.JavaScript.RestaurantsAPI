@@ -39,15 +39,15 @@ function display(e){
     const loading = document.querySelector("#loading");
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
-        mainFunc(inputValue).then(function(final){
+        mainFunc(inputValue).then(function(result){
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');
             let navData = [];
             //Validation
-            if(final[0]==='incorrect syntax'){
+            if(result[0]==='incorrect syntax'){
                 notValid(val);
-            }else if(final[0]==='city does not exist'){
+            }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
                 buttons.style.display = 'none';
@@ -72,9 +72,9 @@ function display(e){
                 filter.style.display = 'grid';
                 //Creating templates with data and pushing into array
                 container.style.display = 'grid';
-                final.forEach((n)=>{
+                result.forEach((element)=>{
                     //data-name - get this on click and base on that display restaurant
-                    pushTemplate(n,navData);
+                    pushTemplate(element,navData);
                 });
 
                 //Default append data on the first site
@@ -82,20 +82,20 @@ function display(e){
 
                 //Get the array of all cuisines in the city
                 const cuisinesAll = [];
-                final.forEach((n)=>{
-                    const cuisinesSplit = n.cuisines.split(',');
-                    cuisinesSplit.forEach((n)=>{
-                        if(!cuisinesAll.includes(n)){
-                            cuisinesAll.push(n);
+                result.forEach((element)=>{
+                    const cuisinesSplit = element.cuisines.split(',');
+                    cuisinesSplit.forEach((cuisine)=>{
+                        if(!cuisinesAll.includes(cuisine.trim())){
+                            cuisinesAll.push(cuisine.trim());
                         }
                     })
                 })
 
                 //Display filters
-                cuisinesAll.forEach((n)=>{
+                cuisinesAll.forEach((element)=>{
                     filter.innerHTML += `
-                        <label for="${n}" id="filterLabel" class='container'>${n}
-                        <input type="checkbox" id="${n}" name="cuisineFilter" value="${n}" class="chkId">
+                        <label for="${element}" id="filterLabel" class='container'>${element}
+                        <input type="checkbox" id="${element}" name="cuisineFilter" value="${element}" class="chkId">
                         <span class='checkmark'></span>
                         </label>
                     `;
@@ -114,20 +114,20 @@ function display(e){
                         const checkedValues = document.querySelectorAll('.chkId');
 
                         //Pushing all checked value into the array
-                        [...checkedValues].forEach((n)=>{
-                            if(n.checked){
-                                filterArray.push(n.value);
+                        [...checkedValues].forEach((element)=>{
+                            if(element.checked){
+                                filterArray.push(element.value);
                             }
                         })
 
                         let tmpNavData = [];
 
                         //Getting restaurants with matching cuisines
-                            final.forEach((n)=>{
-                                const splitArr = n.cuisines.split(',');
+                            result.forEach((element)=>{
+                                const splitArr = element.cuisines.split(',');
                                 const rez = filterArray.some(r => splitArr.includes(r));
                                 if(rez){
-                                    pushTemplate(n,tmpNavData);
+                                    pushTemplate(element,tmpNavData);
                                 }
 
                             })
