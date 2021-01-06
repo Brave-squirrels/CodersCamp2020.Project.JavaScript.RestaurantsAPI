@@ -38,7 +38,7 @@ function display(e){
     result.innerHTML ='';
     buttons.innerHTML ='';
     filter.innerHTML = '';
-    //document.querySelector('article').style.display = 'none'; - uncomment later - disable single restaurant view when search
+    document.querySelector('article').style.display = 'none';
     //Format the input
     const inputValue = val.value.trim();
 
