@@ -221,7 +221,7 @@ header, main, footer{
   */
   nav{
     background: var(--bodyBg);
-    display: grid;
+    display: none;
     grid-gap: 1em;
     padding: 1em 2em;
   }
@@ -326,6 +326,7 @@ header, main, footer{
     background: var(--secondBackground);
     color: var(--mainColor);
     padding: 2em;
+    display: none;
   }
   
   .restaurantContainer{
