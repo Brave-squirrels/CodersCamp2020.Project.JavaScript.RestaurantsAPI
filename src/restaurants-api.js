@@ -11,7 +11,7 @@ const fetchData = async(url) => {
     let response = await fetch(url, {
             headers: {
                 'Content-type': 'application/json',
-                'user-key': 'a2312f9d231f29610389057aa0a28111'
+                'user-key': 'bf125caddb8a3f5e44d842e1cf448db1'
             }
         })
         .then(res => res.json());
@@ -26,8 +26,15 @@ const fetchCity = async(url) => {
     */
 
     let res = await fetchData(url);
+    if (res.location_suggestions[0]==undefined) {
+        let cityId = undefined
+
+        return cityId
+    } else {
     let cityId = res.location_suggestions[0].city_id;
-    return cityId;
+    
+    return cityId
+    }
 }
 
 const fetchUserReviews = async(restaurantId) => {
@@ -38,52 +45,22 @@ const fetchUserReviews = async(restaurantId) => {
     let listOfReviews = [];
     let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
 
-    for (const item of result.user_reviews){
-        if (item.review.review_text!=''){
-        listOfReviews.push({
-            textReview: item.review.review_text,
-            ratingReview: item.review.rating
-        })
-    }
+    for (const item of result.user_reviews) {
+        if (item.review.review_text != '') {
+            listOfReviews.push({
+                textReview: item.review.review_text,
+                ratingReview: item.review.rating
+            })
+        }
     };
 
     return listOfReviews;
 }
 
 
-const fetchDailyMenu = async(restaurantId) => {
+const fetchRestaurants = async(url) => {
     /*
-        - parameters (Id of restaurant)
-        @ return array of daily menu objects {dishName, dishPrice, startDate}
-    */
-    let dailyMenu = [];
-    
-    let result = await fetchData(`https://developers.zomato.com/api/v2.1/dailymenu?res_id=${restaurantId}`);
-
-
-    if (result.status != 'success') {
-        dailyMenu.push('No Daily Menu')
-        return dailyMenu;
-    } else {
-    for (const item of result.daily_menus){
-        for (const obj of item.daily_menu.dishes){
-            dailyMenu.push({
-                dishName: obj.dish.name,
-                dishPrice: obj.dish.price,
-                startDate: item.daily_menu.start_date
-            })
-        }
-    };
- 
-    return dailyMenu;
-}
-}
-
-
-
-const fetchRestaurants = async(url, userCuisines) => {
-    /*
-        -parameters (url, userCuisines (array of cuisines))
+        -parameters url
         @ returns JSON objec
         - filtres restaurants in the city by user cusines / if userCuisines is empty, returns all restaurants:
             - cuisines type
@@ -92,23 +69,21 @@ const fetchRestaurants = async(url, userCuisines) => {
             -photo url
             -cuisines
             -price bracket of the restaurant(1-4)
-            -object of daily menu (dish name, dish price and day when daily menu is starting) 
             -address
             -phone number
             -reviews
             -average rating
             
     */
-   
 
-    const addRestaurant = async (item, listReviews,listDailyMenu) => {
-        
+
+    const addRestaurant = async(item, listReviews) => {
         restaurantsFromCity.push({
+            id: item.restaurant.id,
             name: item.restaurant.name,
             logo: item.restaurant.featured_image,
             cuisines: item.restaurant.cuisines,
             priceRaiting: item.restaurant.price_range,
-            dailyMenu: listDailyMenu,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
             reviews: listReviews,
@@ -116,27 +91,15 @@ const fetchRestaurants = async(url, userCuisines) => {
         })
     }
 
-    const noCuisines = userCuisines.length === 0;
-
     let result = await fetchData(url);
     let restaurantsFromCity = []
 
 
     for (const item of result.restaurants) {
-        if (noCuisines) {
-            let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
-            let listReviews = await fetchUserReviews(item.restaurant.id);
-            addRestaurant(item, listReviews, listDailyMenu);
-        } else {
-            let restaurantCuisines = JSON.stringify(item.restaurant.cuisines);
-            if (userCuisines.some(cuisine => restaurantCuisines.includes(cuisine))) {
-                let listDailyMenu = await fetchDailyMenu(item.restaurant.id);
-                let listReviews = await fetchUserReviews(item.restaurant.id); 
-                addRestaurant(item, listReviews, listDailyMenu);
-            }
-        }
+        let listReviews = await fetchUserReviews(item.restaurant.id);
+        addRestaurant(item, listReviews);
+
     }
-    
     return restaurantsFromCity;
 }
 
@@ -162,24 +125,33 @@ const replacePolishChar = (getCityName) => {
 }
 
 
-const mainFunc = async(getCityName, userCuisines) => {
+
+const validateTown = (getCityNames) => {  
+    const format = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/;
+    return isNaN(getCityNames) && getCityNames.length !== 0 && !format.test(getCityNames);
+}
+
+const mainFunc = async(getCityName) => {
     /*
         main function
-        -parameters (string eg.'wroclaw', array of strings eg. ['Italian'])
+        -parameters (string eg.'wroclaw')
     */
-    
-    // Returns empty array if no CityName was provided
-    if (getCityName.length === 0) return [];
 
     let cityName = await replacePolishChar(getCityName);
+    // Returns empty array if no CityName was provided
+    let ValidateCity = await validateTown(cityName);
+        
+    if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/ 
 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
-
-    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, userCuisines);
     
-    console.log(restaurants);
+    if (cityId===undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/ 
+        
+    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
+    
     return restaurants;
-};
+}
+
 
 
 // Exports function for testing (later to frontend also)

@@ -1,3 +1,4 @@
+const { create } = require('domain');
 const fs = require('fs');
 
 const createFolder = async() => {
@@ -10,17 +11,19 @@ const createFolder = async() => {
     })
 }
 
-const createTxtFile = async(restaurantNames) => {
+const createTxtFile = async(restaurants) => {
     /*
-        - parameters (string array)
+        - parameters (object array)
         @ creates txt file with favourite restaurants name
     */
 
     await createFolder();
 
-    await restaurantNames.forEach(restaurantName => {
-        fs.writeFile('FavouriteRestaurants/MyFavRestaurants.txt', `${restaurantName}\n`, (err) => {
+    await restaurants.forEach(restaurant => {
+        fs.writeFile('FavouriteRestaurants/MyFavRestaurants.txt', `Restaurant name: ${restaurant.name} Address: ${restaurant.address} Rating: ${restaurant.rating} Phone: ${restaurant.phone} Cuisines: ${restaurant.cuisines.join(' ')}\n`, (err) => {
             if (err) throw new Error(err);
         })
     })
 }
+
+module.exports = createTxtFile;
