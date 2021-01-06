@@ -254,6 +254,10 @@ header, main, footer{
     max-width: 650px;
     width: 100%;
   }
+  #btn2{
+    margin-left: auto;
+    margin-right: 0;
+  }
 
   .resDiv span{
     display: block;
