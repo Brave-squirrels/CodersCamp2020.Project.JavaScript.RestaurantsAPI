@@ -5,8 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant API</title>
     <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="icon" type="image/png" href="assets/logo.png" sizes="16x16" />
+    <meta name="theme-color" content="rgba(0,0,0,0.3)" />
 </head>
 <body>
+    
+    <!--List of fav restaurants-->
+    <aside>
+        <span id='closeFav' class='closeFav'>&times;</span>
+        <!--Display if anything in localStorage-->
+        <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
+        List of fav restaurants
+        <!--Display when localStorage is empty-->
+        No fav restaurants :c
+    </aside>
+
+    <!--Header--> 
+    <header>
+        <div class="siteTitle">
+           <img src="assets/logo.png" alt="logo" class='logo'>
+           <span class='logoTitle'>
+            We'll help you find the best restaurant!
+           </span>
+        </div>
+
+        <div class="favTrigger">
+            <img src="assets/fav.png" alt="favIcon" class='favIcon' id='favIcon'>
+        </div>
+        
+    </header>
+
+    <!--Main - search engine-->
+    <main>
+        <div class="mainCnt">
+            <h1 class='formTitle'>
+                search for the restaurant
+            </h1>
+            <form id='searchForm'>
+                <input type="text" id='townSearch' class='townSearch' placeholder='Type the town'>
+                <!-- cuisine option/checkbox - zalezy co bedzie lepiej wygladac w sumie from API (js)-->
+                <br>
+                <input type="submit" value='Search' id='townFind' class='townFind'>
+              
+            </form>
+
+            
+        </div>
+     
+        <img src="assets/imgMain.png" alt="imgMain" class='imgDec'>
+    </main>
+
+    <!-- Restaurant showup with pagination -->
+    <nav>
+        <div id="filterRestaurants" class='filterRestaurants'>
+            
+        </div>
+        <div id="restaurantsNavCon">
+            
+        </div>
+       <div id="paginationContainer" class='paginationContainer'>
+       </div>
+    </nav>
+    
+    <!-- The restaurant that we show -->
+    <article>
+        
+        <!--Appending when click on restaurant, same with the buttons -->
+        
+        <div class="restaurantContainer">
+
+            <span class='restaurantName'>
+                Name of the restaurant
+            </span>
+
+            <span class='restaurantAdress'>
+                Wroclaw, ul. Whatever 21/37
+            </span>
+
+            <img src="assets/sample.jpg" alt="restauration" class='restaurantImg'>
+
+            <span class='restaurantAvgRating'>
+                <span>Average rating:</span> 4/5
+            </span>
+
+            <span class='restaurantAvgCost'>
+                <span>Average cost for a couple:</span> 11.11zł
+            </span>
+
+            <div id="addFav" class='addFav'>
+                <input type="checkbox" id="starFav" name="starFav" class="starFavInput">
+                <label for="starFav" class="starFav"></label>
+            </div>
+
+
+            <div class='restaurantSpecificInfo'>
+                <button id='displayReviews' class='displayReviews'>Reviews</button>
+                <!--Demo of the checkbox-->
+
+                <div id="reviews" class='reviews'>
+                    <div class='review'>
+                        <!--Append review + te z localStorage-->
+                        <span class="dailyMenuTitle">
+                            Reviews
+                        </span>
+                        <!--Pull of of API-->
+                        <div class="dishCnt">
+                            <span class="dish">
+                                "The best restaurant i've ever been!"
+                            </span>
+                            <span class="cost">
+                                5/5
+                            </span>
+                            <span class="dish">
+                                "It's fine."
+                            </span>
+                            <span class="cost">
+                                3/5
+                            </span>
+                        </div>
+                    <div class='addReview'>
+                        <!--Add own review-->
+                        <span class="addReviewTitle">
+                            Share your opinion with others
+                        </span>
+                        <form id="addReview">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <div class="stars">
+                                <input type="radio" id="star5" name="star" value="5">
+                                <label for="star5" class='starLabel'></label>
+                                <input type="radio" id="star4" name="star" value="4">
+                                <label for="star4" class='starLabel'></label>
+                                <input type="radio" id="star3" name="star" value="3">
+                                <label for="star3" class='starLabel'></label>
+                                <input type="radio" id="star2" name="star" value="2">
+                                <label for="star2" class='starLabel'></label>
+                                <input type="radio" id="star1" name="star" value="1">
+                                <label for="star1" class='starLabel'></label>
+                            </div>
+
+                            
+
+
+                            <input type="submit" value='Add' id='reviewSubmit' class='reviewSubmit'>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </article>
+
+    <!--Copyrights footer-->
+    <footer>
+        &#169; Copyrights by Brave Squirrels
+    </footer>
+
     <script src="src/index.js"></script>
 </body>
 </html>

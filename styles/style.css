@@ -1,0 +1,520 @@
+/*Setup*/
+:root{
+  --bodyBg:#E6ED3B;
+  --mainBackground:rgba(0,0,0,0.01);
+  --favListBg: #fff;
+  --resBg: rgba(0,0,0,0.2);
+  --secondBackground: #FCF7FC;
+  --mainFont: 'Roboto', sans-serif;
+  --logoFont: 'Montserrat', sans-serif;
+  --buttonBg: #383738;
+  --mainColor: #383738;
+  --starsBg: #a8a8a8;
+ }
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+*{
+  box-sizing: border-box;
+  letter-spacing: 0.04em;
+}
+body{
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background: var(--bodyBg);
+  font-family: var(--mainFont);
+  overflow-x: hidden;
+}
+
+/* Scroll styles */
+body::-webkit-scrollbar {
+  width: 4px;
+}
+body::-webkit-scrollbar-track {
+  background: #ddd;
+}
+body::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+/*padding standards - demo */
+
+header, main, footer{
+  padding: 0.6em 1em;
+}
+.dailyMenu, nav div{
+  padding: 0.3em 0.8em;
+}
+
+  /* Main styles */
+  
+  /* Fav restaurants list styles */
+
+    aside{
+     box-sizing: border-box;
+     background: var(--favListBg);
+     position: fixed;
+     z-index: 1;
+     height: 100%;
+     width: 0;
+     top: 0;
+     right: -4em;
+     transition: 0.5s;
+     font-size: 1em;
+     padding: 1em 2em;
+   }
+
+   .closeFav{
+     position: absolute;
+     top: 0; 
+     right: 0.3em;
+     font-size: 2em;
+     cursor: pointer;
+   }
+
+
+  /* header styles */
+  header{
+    height: 15%;
+    display: grid;
+    grid-template-columns: 1fr 15%;
+    font-size: 1.2em;
+    font-family: var(--logoFont);
+  }
+  .siteTitle, .favTrigger{
+    display: flex;
+    align-items: center;
+  }
+  .logo{
+    height: 2.2em;
+    width: auto;
+  }
+  .logoTitle{
+    padding-left: 0.7em;
+    font-weight: bold;
+    text-align: center;
+  }
+  .favIcon{
+    height: 1.7em;
+    width: auto;
+    cursor: pointer;
+  }
+
+  /* Nav main page animation */
+  .favTrigger{
+    justify-content: flex-end;
+    position: relative;
+    animation-name: landingFav;
+    animation-duration: 1.5s;
+  }
+
+  .siteTitle{
+    position: relative;
+    animation-name: landing;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes landing{
+    0%{top: -400px}
+    100%{top: 0}
+  }
+  @keyframes landingFav{
+    0%{right: -300px}
+    100%{right: 0}
+  }
+
+  /* Main search block styles */
+  main{
+    background: var(--secondBackground);
+    height: 78%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Main content animate on landing */ 
+  .mainCnt{
+    animation-name: landing3;
+    animation-duration: 2.2s;
+    position: relative;
+  }
+
+  @keyframes landing3{
+    0%{left: -2000px}
+    100%{left: 0}
+  }
+
+  .formTitle{
+    color: var(--mainColor);
+    font-size: 1.6em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+    /* Buttons animations and input animations main */
+  .townSearch{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1.4em;
+    padding: 0.2em 0.4em;
+    color: var(--mainColor);
+    font-family: var(--mainFont);
+    outline: none; 
+    display: block;
+    margin: 0 auto;
+  }
+
+  .townSearch:focus{
+    border-color: var(--bodyBg);
+  }
+
+  /* invalid input style */
+  .invalid{
+    position: relative;
+    border: 2px solid #FA4C3B;
+    animation: shake 0.1s linear;
+    animation-iteration-count: 3;
+  }
+  .invalid:focus{
+    border-color:  #FA4C3B;
+  }
+  @keyframes shake{
+    0% {left: -5px}
+    100% {right: -5px};
+  }
+
+  .townFind{
+    border: 2px solid var(--buttonBg);
+    padding: 0.3em 0.9em;
+    font-size: 1.4em;
+    font-family: var(--mainFont);
+    font-weight: bold;
+    color: var(--mainColor);
+    cursor: pointer;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(to right, var(--bodyBg) 50%, var(--mainBackground) 50%);
+    background-size: 200% 100%;
+    background-position: bottom right;
+    transition: all .5s ease-out;
+  }
+
+  .townFind:hover{
+    background-position: bottom left;
+  }
+
+  .imgDec{ 
+    height: 3.5em;
+    width: auto;
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+  }
+
+  /* List of restaurants styles Edit when API
+    Display: none; by default
+    display: grid; with js
+  */
+  nav{
+    background: var(--bodyBg);
+    display: none;
+    grid-gap: 1em;
+    padding: 1em 2em;
+  }
+
+  .paginationContainer, .filterRestaurants{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filterRestaurants{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .restaurantsNavCon{
+    display: grid;
+  }
+
+  .paginationContainer{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    max-width: 650px;
+    width: 100%;
+  }
+
+  .resDiv span{
+    display: block;
+  }
+  
+  .resImg{
+    height: 0.9em;
+    width: auto;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .resDiv{
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+    background:#fff;
+    width: 100%;
+    display: grid;
+    cursor: pointer;
+    position: relative;
+    color: var(--mainColor);
+    max-width: 650px;
+    margin: 1em auto;
+    transition: 0.3s ease-in;
+  }
+  .resDiv:hover{
+    transform: translateY(-10px);
+  }
+
+  .townNotFound{
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+    background:#fff;
+    width: 100%;
+    color: var(--mainColor);
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 1em 0;
+  }
+  
+
+  .resTitle,.restaurantName, .dailyMenuTitle{
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .resAdr, .restaurantAdress{
+    font-size: 0.9em;
+  }
+
+  
+  .dishCnt{
+    display: grid;
+    grid-template-columns: 1fr 20%;
+  }
+  .cost{
+    text-align: right;
+  }
+
+  .dishCnt span{
+    display:block;
+  }
+
+  /* Display restaurant styles Edit when API
+    Display: none; by default
+    Display: block; with js
+  */
+  article{
+    background: var(--secondBackground);
+    color: var(--mainColor);
+    padding: 2em;
+    display: none;
+  }
+  
+  .restaurantContainer{
+    padding: 1em;
+    margin: 0 auto;
+    background: var(--resBg);
+    position: relative;
+    max-width: 1200px;
+    display: grid;
+  }
+
+  .restaurantContainer span{
+    display: block;
+  }
+
+  /* Rest of the buttons */
+  .displayMenu, .displayReviews, #btn1, #btn2, .reviewSubmit{
+    border: 2px solid var(--buttonBg);
+    padding: 0.2em 0.8em;
+    font-size: 1em;
+    font-family: var(--mainFont);
+    font-weight: bold;
+    color: var(--mainColor);
+    cursor: pointer;
+    outline: none;
+    background: linear-gradient(to right, var(--bodyBg) 50%, var(--favListBg) 50%);
+    background-size: 200% 100%;
+    background-position: bottom right;
+    transition: all .5s ease-out;
+  }
+  .displayMenu:hover, .displayReviews:hover, #btn1:hover, #btn2:hover, .reviewSubmit:hover{
+    background-position: bottom left;
+  }
+  .starFav{
+    font-size: 1.6em;
+  }
+  .starFav:hover{
+    cursor: pointer;
+  }
+  .starFavInput{
+    display: none;
+  }
+  .starFavInput:checked~::before{
+    color: var(--bodyBg); 
+  }
+
+
+  .restaurantImg{
+    height: 5em;
+    width: auto;
+  }
+
+  .addFav{
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
+  }
+  .restaurantAvgRating span, .restaurantAvgCost span{
+    font-weight: bold;
+  }
+ 
+  .addReviewTitle{
+    font-weight: bold;
+    font-size: 0.9em;
+   
+  }
+
+  .stars{
+    display:flex;
+    justify-content:space-around;
+    flex-direction: row-reverse;
+    width: 9em;
+  }
+  .stars input{
+    display: none;
+  }
+  .starLabel::before{
+    content: '★';
+    font-size: 1.5em;
+    line-height: 1.2em;
+    letter-spacing: 0.2em;
+    color: var(--starsBg);
+  }
+  .starLabel:hover::before,
+  .starLabel:hover~::before,
+  .stars input:checked~::before{
+    color: var(--bodyBg);
+  }
+
+
+
+  /* Footer styles */
+  footer{
+    background: var(--mainBackground);
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+
+  #reviewCustomInput{
+    font-size: 0.7em;
+    margin-top: 0.3em;
+  }
+  #reviewSubmit{
+    font-size: 0.8em;
+    margin-top: 0.3em;
+  }
+  input::placeholder{
+    color: rgba(0,0,0,0.4);
+  }
+
+  /* Filter checkbox styles */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 2.1875em;
+    margin-bottom: 0.75em;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--mainColor);
+    font-family: var(--mainFont);
+  }
+
+  .container input {
+      display: none;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0.7em;
+    height: 1.1em;
+    width: 1.1em;
+    background-color: var(--secondBackground);
+  }
+
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .container input:checked ~ .checkmark {
+    background-color: #949494;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .container .checkmark:after {
+    left: 0.4em;
+    bottom: 0.27em;
+    width: 0.18em;
+    height: 0.45em;
+    border: solid var(--secondBackground);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
+  /* Media queries */
+  @media only screen and (min-width: 700px){
+    :root{
+      font-size: 20px;
+    }
+    .filterRestaurants{
+      grid-template-columns: repeat(6,1fr);
+    }
+  }
+  @media only screen and (min-width: 1080px){
+    :root{
+      font-size: 22px;
+    }
+  }
+
+
+
+

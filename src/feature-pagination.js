@@ -31,7 +31,7 @@ const generatePage = (arr,btnContainer) => {
 //Update DOM by appending current data
 const appendData = (result, arr, btnContainer, dataContainer)=>{
     generatePage(arr, btnContainer);
-    dataContainer.innerHTML = result;
+    dataContainer.innerHTML = result.join(" ");
 }
 
 //Default data when reloading the site - envoke this in filter/search function as a setup

@@ -37,6 +37,7 @@ function display(e){
     divData.innerHTML ='';
     buttons.innerHTML ='';
     filter.innerHTML = '';
+    container.style.display = 'none';
     document.querySelector('article').style.display = 'none';
     //Format the input
     const inputValue = val.value.trim();
