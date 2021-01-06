@@ -27,7 +27,6 @@ function display(e){
     e.preventDefault();
 
     //Get DOM elements
-    const result = document.querySelector('#restaurantsNavCon');
     const val = document.querySelector('#townSearch');
     const buttons = document.querySelector('#paginationContainer');
     const divData = document.querySelector('#restaurantsNavCon');
@@ -35,7 +34,7 @@ function display(e){
     const container = document.querySelector('nav');
 
     //Resets container by default
-    result.innerHTML ='';
+    divData.innerHTML ='';
     buttons.innerHTML ='';
     filter.innerHTML = '';
     document.querySelector('article').style.display = 'none';
