@@ -51,6 +51,6 @@ const generateBtn = (e)=>{
 }
 
 module.exports = {
-    generateBtn: generateBtn,
-    append: append
+    generateBtn,
+    append
 }
