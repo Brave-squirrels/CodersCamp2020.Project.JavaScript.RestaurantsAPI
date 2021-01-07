@@ -55,7 +55,7 @@ const fetchRestaurants = async(url) => {
     */
 
 
-    const addRestaurant = async(item, listReviews) => {
+    const addRestaurant = (item) => {
         restaurantsFromCity.push({
             id: item.restaurant.id,
             name: item.restaurant.name,
@@ -73,7 +73,7 @@ const fetchRestaurants = async(url) => {
     let restaurantsFromCity = []
 
     for (const item of result.restaurants) {
-        addRestaurant(item, listReviews);
+        addRestaurant(item);
     }
 
     return restaurantsFromCity;
@@ -157,5 +157,8 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
 }
 
 // Exports function for testing (later to frontend also)
-module.exports = mainFunc;
-module.exports = fetchUserReviews;
+module.exports = {
+        mainFunc,
+        fetchUserReviews
+    }
+    // module.exports = fetchUserReviews;
