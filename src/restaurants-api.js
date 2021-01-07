@@ -11,7 +11,7 @@ const fetchData = async(url) => {
     let response = await fetch(url, {
             headers: {
                 'Content-type': 'application/json',
-                'user-key': 'bf125caddb8a3f5e44d842e1cf448db1'
+                'user-key': '63106852ba4b223bc312eb4f6606cbe3'
             }
         })
         .then(res => res.json());
@@ -64,7 +64,6 @@ const fetchRestaurants = async(url) => {
             priceRaiting: item.restaurant.price_range,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
-            reviews: [],
             rating: item.restaurant.user_rating.aggregate_rating
         })
     }
