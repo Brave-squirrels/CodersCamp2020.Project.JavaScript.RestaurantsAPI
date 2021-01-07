@@ -6,6 +6,11 @@ const state = {
     'pageNumber': 1
 }
 
+const resetState = ()=>{
+    state.pageSize = 3;
+    state.pageNumber = 1;
+}
+
 //Generate slice of the array that we wanna display (depends on setup in state object)
 const paginate = (obj, pageSize, pageNumber) => {   
     let current = (pageNumber-1)*pageSize;
@@ -24,7 +29,7 @@ const generatePage = (arr,btnContainer) => {
     }else{
         btnContainer.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
                             (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :
-                            `<button id='btn1'>Page ${state.pageNumber-1}</button> <br> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
+                            `<button id='btn1'>Page ${state.pageNumber-1}</button> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
     }
 }
 
@@ -52,5 +57,6 @@ const generateBtn = (e)=>{
 
 module.exports = {
     generateBtn,
-    append
+    append,
+    resetState
 }
