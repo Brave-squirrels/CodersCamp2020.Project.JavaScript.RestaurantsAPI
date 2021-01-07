@@ -147,7 +147,7 @@ header, main, footer{
   /* Main search block styles */
   main{
     background: var(--secondBackground);
-    height: 78%;
+    height: 79%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -244,6 +244,7 @@ header, main, footer{
     display: none;
     grid-gap: 1em;
     padding: 1em 2em;
+    height: calc(100vh - 6%);
   }
 
   .paginationContainer, .filterRestaurants{
@@ -291,7 +292,7 @@ header, main, footer{
 
   .resDiv{
     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
-    background:#fff;
+    background:var(--secondBackground);
     width: 100%;
     display: grid;
     cursor: pointer;
@@ -306,8 +307,6 @@ header, main, footer{
   }
 
   .townNotFound{
-    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
-    background:#fff;
     width: 100%;
     color: var(--mainColor);
     max-width: 650px;
@@ -316,7 +315,10 @@ header, main, footer{
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    font-size: 2.3em;
     padding: 1em 0;
+    text-align: center;
+    letter-spacing: 0.2em;
   }
   
 
@@ -443,12 +445,13 @@ header, main, footer{
 
   /* Footer styles */
   footer{
-    background: var(--mainBackground);
-    height: 7%;
+    background: rgba(0,0,0,0.1);
+    height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    font-size: 0.7em;
   }
 
 

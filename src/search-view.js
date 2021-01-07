@@ -25,7 +25,7 @@ function display(e){
 
     //Prevent from reloading page on submit 
     e.preventDefault();
-
+    document.querySelector('main').style.height = '79%';
     //Get DOM elements
     const val = document.querySelector('#townSearch');
     const container = document.querySelector('nav');
@@ -40,6 +40,7 @@ function display(e){
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
         mainFunc(inputValue).then(function(result){
+            document.querySelector('main').style.height = '85%';
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');
@@ -47,6 +48,7 @@ function display(e){
             //Validation
             if(result[0]==='incorrect syntax'){
                 notValid(val);
+                document.querySelector('main').style.height = '79%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
@@ -55,7 +57,7 @@ function display(e){
                 container.innerHTML += 
                     `
                         <div class='townNotFound'>
-                            We can't find the restaurants in ${inputValue}.
+                            Sorry, we can't find the restaurants in <br> <br> ${inputValue}
                         </div>
                     `;
                 //Scroll to the nav after submit
