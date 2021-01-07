@@ -1,5 +1,5 @@
 //Importing main function
-const mainFunc = require('./restaurants-api');
+const {mainFunc} = require('./restaurants-api');
 const {generateBtn, append} = require('./feature-pagination');
 const notValid = require('./validate');
 
@@ -29,6 +29,7 @@ function display(e){
     //Get DOM elements
     const val = document.querySelector('#townSearch');
     const container = document.querySelector('nav');
+    const mainSection = document.querySelector('main');
 
     //Resets container by default
     container.style.display = 'none';
@@ -40,7 +41,7 @@ function display(e){
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
         mainFunc(inputValue).then(function(result){
-            document.querySelector('main').style.height = '85%';
+            mainSection.style.height = '85%';
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');
@@ -48,7 +49,7 @@ function display(e){
             //Validation
             if(result[0]==='incorrect syntax'){
                 notValid(val);
-                document.querySelector('main').style.height = '79%';
+                mainSection.style.height = '79%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
