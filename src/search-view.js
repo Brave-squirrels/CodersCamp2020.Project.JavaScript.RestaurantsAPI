@@ -1,6 +1,6 @@
 //Importing main function
 const {mainFunc} = require('./restaurants-api');
-const {generateBtn, append} = require('./feature-pagination');
+const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 
 //Creating template string for restaurant nav
@@ -15,14 +15,16 @@ const pushTemplate = (obj, arr)=>{
                 <span class='resAdr'>
                     ${obj.rating}
                 </span>
-                <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+                <div class='imgArrow'>
+                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+                </div>
             </div>`);
 }
 
 
 //Display data when click on search button
 function display(e){
-
+    resetState()
     //Prevent from reloading page on submit 
     e.preventDefault();
     document.querySelector('main').style.height = '79%';
@@ -88,12 +90,13 @@ function display(e){
                 result.forEach((element)=>{
                     const cuisinesSplit = element.cuisines.split(',');
                     cuisinesSplit.forEach((cuisine)=>{
-                        if(!cuisinesAll.includes(cuisine.trim())){
+                        if(!cuisinesAll.includes(cuisine.trim()) && cuisine.length >=3){
                             cuisinesAll.push(cuisine.trim());
                         }
                     })
                 })
 
+                
                 //Display filters
                 cuisinesAll.forEach((element)=>{
                     filter.innerHTML += `
@@ -111,7 +114,7 @@ function display(e){
                 const filterRestaurants = (e)=>{
                     //Checking target of the event
                     if(e.target.className === 'chkId'){
-
+                        resetState();
                         const filterArray = [];
                         //Getting all the checkboxes
                         const checkedValues = document.querySelectorAll('.chkId');
@@ -124,11 +127,12 @@ function display(e){
                         })
 
                         let tmpNavData = [];
-
                         //Getting restaurants with matching cuisines
                             result.forEach((element)=>{
                                 const splitArr = element.cuisines.split(',');
-                                const rez = filterArray.some(r => splitArr.includes(r));
+                                const formatedArr = splitArr.map(el=>el.trim());
+                                console.log(formatedArr);
+                                const rez = filterArray.some(r => formatedArr.includes(r));
                                 if(rez){
                                     pushTemplate(element,tmpNavData);
                                 }
@@ -137,14 +141,24 @@ function display(e){
                         
                         //Resets data to default when unchecked
                        
-
-                        navData = (tmpNavData.length !== 0) ? tmpNavData :
-                                  savedNavData;
-
+                        if(tmpNavData.length === 0){
+                            let check = true;
+                            [...checkedValues].forEach((element)=>{
+                                if(element.checked){
+                                    check = false;
+                                }
+                            });
+                            if(check===true){
+                                navData = savedNavData;
+                            }else{
+                                navData = [];
+                            }
+                        }else{
+                            navData = tmpNavData;
+                        }
                         //Displaying filtered data and generate new buttons
                         generateBtn(e);
                         append(navData, buttons, divData);
-
                     }
                 }
 

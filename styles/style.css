@@ -39,6 +39,7 @@ body::-webkit-scrollbar-thumb {
 }
 html{
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /*padding standards - demo */
@@ -242,9 +243,8 @@ header, main, footer{
   nav{
     background: var(--bodyBg);
     display: none;
-    grid-gap: 1em;
-    padding: 1em 2em;
-    height: calc(100vh - 6%);
+    width: 100%;
+    min-height: calc(100vh - 6%);
   }
 
   .paginationContainer, .filterRestaurants{
@@ -255,13 +255,26 @@ header, main, footer{
 
   .filterRestaurants{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    width: 90%;
-    margin: 0 auto;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    padding: 0.5em 1em;
+    background: rgba(0,0,0,0.1);
+  }
+
+  .filterTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--mainColor);
+    text-align: center;
+    background: rgba(0,0,0,0.1);
   }
 
   .restaurantsNavCon{
     display: grid;
+    padding: 1em 2em;
   }
 
   .paginationContainer{
@@ -271,6 +284,7 @@ header, main, footer{
     justify-content: space-between;
     max-width: 650px;
     width: 100%;
+    padding: 1em 2em;
   }
   #btn2{
     margin-left: auto;
@@ -278,16 +292,13 @@ header, main, footer{
   }
 
   .resDiv span{
-    display: block;
+    display: flex;
+    align-items: center;
   }
   
   .resImg{
     height: 0.9em;
     width: auto;
-    position: absolute;
-    right: 1em;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .resDiv{
@@ -296,14 +307,33 @@ header, main, footer{
     width: 100%;
     display: grid;
     cursor: pointer;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: repeat(3, 1fr);
     position: relative;
     color: var(--mainColor);
     max-width: 650px;
+    height: 5.625em;
     margin: 1em auto;
     transition: 0.3s ease-in;
   }
   .resDiv:hover{
     transform: translateY(-10px);
+  }
+
+  .imgArrow{
+    height: 100%;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .resCs{
+    font-size: 0.7em;
+  }
+  .resAdr{
+    font-size: 0.6em;
   }
 
   .townNotFound{
@@ -324,9 +354,9 @@ header, main, footer{
 
   .resTitle,.restaurantName, .dailyMenuTitle{
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
   }
-  .resAdr, .restaurantAdress{
+  .restaurantAdress{
     font-size: 0.9em;
   }
 
