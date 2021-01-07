@@ -26,37 +26,15 @@ const fetchCity = async(url) => {
     */
 
     let res = await fetchData(url);
-    if (res.location_suggestions[0]==undefined) {
+    if (res.location_suggestions[0] == undefined) {
         let cityId = undefined
 
         return cityId
     } else {
-    let cityId = res.location_suggestions[0].city_id;
-    
-    return cityId
+        let cityId = res.location_suggestions[0].city_id;
+        return cityId
     }
 }
-
-const fetchUserReviews = async(restaurantId) => {
-    /*
-        - parameters (Id of restaurant)
-        @ return array of objects users reviews about restaurant and grade to each comment
-    */
-    let listOfReviews = [];
-    let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
-
-    for (const item of result.user_reviews) {
-        if (item.review.review_text != '') {
-            listOfReviews.push({
-                textReview: item.review.review_text,
-                ratingReview: item.review.rating
-            })
-        }
-    };
-
-    return listOfReviews;
-}
-
 
 const fetchRestaurants = async(url) => {
     /*
@@ -86,7 +64,7 @@ const fetchRestaurants = async(url) => {
             priceRaiting: item.restaurant.price_range,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
-            reviews: listReviews,
+            reviews: [],
             rating: item.restaurant.user_rating.aggregate_rating
         })
     }
@@ -94,12 +72,10 @@ const fetchRestaurants = async(url) => {
     let result = await fetchData(url);
     let restaurantsFromCity = []
 
-
     for (const item of result.restaurants) {
-        let listReviews = await fetchUserReviews(item.restaurant.id);
         addRestaurant(item, listReviews);
-
     }
+
     return restaurantsFromCity;
 }
 
@@ -126,7 +102,7 @@ const replacePolishChar = (getCityName) => {
 
 
 
-const validateTown = (getCityNames) => {  
+const validateTown = (getCityNames) => {
     const format = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/;
     return isNaN(getCityNames) && getCityNames.length !== 0 && !format.test(getCityNames);
 }
@@ -140,19 +116,46 @@ const mainFunc = async(getCityName) => {
     let cityName = await replacePolishChar(getCityName);
     // Returns empty array if no CityName was provided
     let ValidateCity = await validateTown(cityName);
-        
-    if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/ 
+
+    if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/
 
     let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
-    
-    if (cityId===undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/ 
-        
+
+    if (cityId === undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/
+
     let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
-    
+
     return restaurants;
 }
 
+const fetchUserReviews = async(restaurantId, restaurants) => {
+    /*
+        - parameters (Id of restaurant)
+        @ return array of objects users reviews about restaurant and grade to each comment
+    */
+    let listOfReviews = [];
+    let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
 
+    for (const item of result.user_reviews) {
+        if (item.review.review_text != '') {
+            listOfReviews.push({
+                textReview: item.review.review_text,
+                ratingReview: item.review.rating
+            })
+        }
+    };
+
+    restaurants.forEach(resturant => {
+        if (resturant.id == restaurantId) {
+            listOfReviews.forEach(review => {
+                restaurant.reviews.push(review);
+            })
+        }
+    })
+
+    return restaurants;
+}
 
 // Exports function for testing (later to frontend also)
 module.exports = mainFunc;
+module.exports = fetchUserReviews;
