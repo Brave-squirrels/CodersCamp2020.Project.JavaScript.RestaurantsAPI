@@ -157,5 +157,8 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
 }
 
 // Exports function for testing (later to frontend also)
-module.exports = mainFunc;
-// module.exports = fetchUserReviews;
+module.exports = {
+        mainFunc,
+        fetchUserReviews
+    }
+    // module.exports = fetchUserReviews;
