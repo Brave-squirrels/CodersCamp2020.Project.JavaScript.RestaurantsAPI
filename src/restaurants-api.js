@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-
+const { saveInfo } = require('./restaurants-api');
 
 const fetchData = async(url) => {
     /*
@@ -36,7 +36,7 @@ const fetchCity = async(url) => {
     }
 }
 
-const fetchRestaurants = async(url) => {
+const fetchRestaurants = async(url, cityName) => {
     /*
         -parameters url
         @ returns JSON objec
@@ -64,7 +64,8 @@ const fetchRestaurants = async(url) => {
             priceRaiting: item.restaurant.price_range,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
-            rating: item.restaurant.user_rating.aggregate_rating
+            rating: item.restaurant.user_rating.aggregate_rating,
+            city: cityName
         })
     }
 
@@ -106,14 +107,14 @@ const validateTown = (getCityNames) => {
     return isNaN(getCityNames) && getCityNames.length !== 0 && !format.test(getCityNames);
 }
 
-const mainFunc = async(getCityName) => {
+const mainFunc = async(cityName) => {
     /*
         main function
         -parameters (string eg.'wroclaw')
     */
 
-    let cityName = await replacePolishChar(getCityName);
-    // Returns empty array if no CityName was provided
+    let cityName = await replacePolishChar(cityName);
+
     let ValidateCity = await validateTown(cityName);
 
     if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/
@@ -122,7 +123,7 @@ const mainFunc = async(getCityName) => {
 
     if (cityId === undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/
 
-    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
+    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`, cityName);
 
     return restaurants;
 }
@@ -151,6 +152,8 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
             })
         }
     })
+
+    saveInfo(restaurants, restaurants[0].city);
 
     return restaurants;
 }

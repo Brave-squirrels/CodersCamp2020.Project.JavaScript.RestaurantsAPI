@@ -1,12 +1,12 @@
-const saveToLocalStorage = (restaurant) => {
+const saveInfo = (restaurants, cityName) => {
     /*
-        @ saves restuarant as object
+        @ save to cookies all restaurants from the current city (without reviews)
     */
 
     let nextDay = new Date();
     nextDay.setDate(new Date().getDate() + 1);
 
-    document.cookie = `${restaurant.id} = ${JSON.stringify(restaurant)}; expires = ${nextDay}`
+    document.cookie = `${cityName} = ${JSON.stringify(restaurants)}; expires = ${nextDay}`
 };
 
-module.exports = saveToLocalStorage;
+module.exports = saveInfo;
