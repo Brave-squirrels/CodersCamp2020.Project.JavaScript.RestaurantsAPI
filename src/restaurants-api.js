@@ -76,6 +76,8 @@ const fetchRestaurants = async(url, cityName) => {
         addRestaurant(item);
     }
 
+    saveInfo(restaurants, restaurants[0].city);
+
     return restaurantsFromCity;
 }
 
