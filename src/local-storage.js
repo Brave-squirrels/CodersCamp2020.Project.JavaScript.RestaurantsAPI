@@ -1,6 +1,6 @@
 const saveInfo = (restaurants, cityName) => {
     /*
-        @ save to cookies all restaurants from the current city (without reviews)
+        @ save to cookies all restaurants from the current city 
     */
 
     let nextDay = new Date();
