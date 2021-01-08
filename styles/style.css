@@ -39,6 +39,7 @@ body::-webkit-scrollbar-thumb {
 }
 html{
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /*padding standards - demo */
@@ -147,7 +148,7 @@ header, main, footer{
   /* Main search block styles */
   main{
     background: var(--secondBackground);
-    height: 78%;
+    height: 79%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -242,8 +243,8 @@ header, main, footer{
   nav{
     background: var(--bodyBg);
     display: none;
-    grid-gap: 1em;
-    padding: 1em 2em;
+    width: 100%;
+    min-height: calc(100vh - 6%);
   }
 
   .paginationContainer, .filterRestaurants{
@@ -254,13 +255,26 @@ header, main, footer{
 
   .filterRestaurants{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    max-width: 650px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    padding: 0.5em 1em;
+    background: rgba(0,0,0,0.1);
+  }
+
+  .filterTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--mainColor);
+    text-align: center;
+    background: rgba(0,0,0,0.1);
   }
 
   .restaurantsNavCon{
     display: grid;
+    padding: 1em 2em;
   }
 
   .paginationContainer{
@@ -270,6 +284,7 @@ header, main, footer{
     justify-content: space-between;
     max-width: 650px;
     width: 100%;
+    padding: 1em 2em;
   }
   #btn2{
     margin-left: auto;
@@ -277,27 +292,27 @@ header, main, footer{
   }
 
   .resDiv span{
-    display: block;
+    display: flex;
+    align-items: center;
   }
   
   .resImg{
     height: 0.9em;
     width: auto;
-    position: absolute;
-    right: 1em;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .resDiv{
     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
-    background:#fff;
+    background:var(--secondBackground);
     width: 100%;
     display: grid;
     cursor: pointer;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: repeat(3, 1fr);
     position: relative;
     color: var(--mainColor);
     max-width: 650px;
+    height: 5.625em;
     margin: 1em auto;
     transition: 0.3s ease-in;
   }
@@ -305,9 +320,23 @@ header, main, footer{
     transform: translateY(-10px);
   }
 
+  .imgArrow{
+    height: 100%;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .resCs{
+    font-size: 0.7em;
+  }
+  .resAdr{
+    font-size: 0.6em;
+  }
+
   .townNotFound{
-    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
-    background:#fff;
     width: 100%;
     color: var(--mainColor);
     max-width: 650px;
@@ -316,15 +345,18 @@ header, main, footer{
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    font-size: 2.3em;
     padding: 1em 0;
+    text-align: center;
+    letter-spacing: 0.2em;
   }
   
 
   .resTitle,.restaurantName, .dailyMenuTitle{
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
   }
-  .resAdr, .restaurantAdress{
+  .restaurantAdress{
     font-size: 0.9em;
   }
 
@@ -443,12 +475,13 @@ header, main, footer{
 
   /* Footer styles */
   footer{
-    background: var(--mainBackground);
-    height: 7%;
+    background: rgba(0,0,0,0.1);
+    height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    font-size: 0.7em;
   }
 
 
@@ -535,7 +568,3 @@ header, main, footer{
       font-size: 22px;
     }
   }
-
-
-
-
