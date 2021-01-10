@@ -40,6 +40,7 @@ body::-webkit-scrollbar-thumb {
 }
 html{
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /*padding standards - demo */
@@ -50,6 +51,23 @@ header, main, footer{
 .dailyMenu, nav div, .favourites div{
   padding: 0.3em 0.8em;
 }
+
+
+  /* Loader data style */
+
+  .loading{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0,0,0,0.1);
+    justify-content: center;
+    align-items: center;
+  }
+
 
   /* Main styles */
   
@@ -160,7 +178,7 @@ header, main, footer{
   /* Main search block styles */
   main{
     background: var(--secondBackground);
-    height: 78%;
+    height: 79%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -204,7 +222,20 @@ header, main, footer{
     border-color: var(--bodyBg);
   }
 
-
+  /* invalid input style */
+  .invalid{
+    position: relative;
+    border: 2px solid #FA4C3B;
+    animation: shake 0.1s linear;
+    animation-iteration-count: 3;
+  }
+  .invalid:focus{
+    border-color:  #FA4C3B;
+  }
+  @keyframes shake{
+    0% {left: -5px}
+    100% {right: -5px}
+  }
 
   .townFind, .exportFavData {
     border: 2px solid var(--buttonBg);
@@ -216,7 +247,7 @@ header, main, footer{
     cursor: pointer;
     outline: none;
     display: block;
-    margin: 0 auto;
+    margin: 0.5em auto 0 auto;
     background: linear-gradient(to right, var(--bodyBg) 50%, var(--mainBackground) 50%);
     background-size: 200% 100%;
     background-position: bottom right;
@@ -247,9 +278,9 @@ header, main, footer{
   */
   nav{
     background: var(--bodyBg);
-    display: grid;
-    grid-gap: 1em;
-    padding: 1em 2em;
+    display: none;
+    width: 100%;
+    min-height: calc(100vh - 6%);
   }
 
   .paginationContainer, .filterRestaurants{
@@ -258,9 +289,28 @@ header, main, footer{
     align-items: center;
   }
 
+  .filterRestaurants{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    padding: 0.5em 1em;
+    background: rgba(0,0,0,0.1);
+  }
+
+  .filterTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--mainColor);
+    text-align: center;
+    background: rgba(0,0,0,0.1);
+  }
+
   .restaurantsNavCon{
     display: grid;
-    grid-gap: 1em;
+    padding: 1em 2em;
   }
 
   .paginationContainer{
@@ -270,44 +320,79 @@ header, main, footer{
     justify-content: space-between;
     max-width: 650px;
     width: 100%;
+    padding: 1em 2em;
+  }
+  #btn2{
+    margin-left: auto;
+    margin-right: 0;
   }
 
   .resDiv span{
-    display: block;
+    display: flex;
+    align-items: center;
   }
   
   .resImg{
     height: 0.9em;
     width: auto;
-    position: absolute;
-    right: 1em;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .resDiv{
     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
-    background:#fff;
+    background:var(--secondBackground);
     width: 100%;
     display: grid;
     cursor: pointer;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: repeat(3, 1fr);
     position: relative;
     color: var(--mainColor);
     max-width: 650px;
-    margin: 0 auto;
+    height: 5.625em;
+    margin: 1em auto;
     transition: 0.3s ease-in;
   }
   .resDiv:hover{
     transform: translateY(-10px);
   }
 
-  
+  .imgArrow{
+    height: 100%;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .resCs{
+    font-size: 0.7em;
+  }
+  .resAdr{
+    font-size: 0.6em;
+  }
+
+  .townNotFound{
+    width: 100%;
+    color: var(--mainColor);
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2.3em;
+    padding: 1em 0;
+    text-align: center;
+    letter-spacing: 0.2em;
+  }
+
 
   .resTitle,.restaurantName, .dailyMenuTitle{
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
   }
-  .resAdr, .restaurantAdress{
+  .restaurantAdress{
     font-size: 0.9em;
   }
 
@@ -332,6 +417,7 @@ header, main, footer{
     background: var(--secondBackground);
     color: var(--mainColor);
     padding: 2em;
+    display: none;
   }
   
   .restaurantContainer{
@@ -408,15 +494,15 @@ header, main, footer{
   .stars input{
     display: none;
   }
-  label::before{
+  .starLabel::before{
     content: '★';
     font-size: 1.5em;
     line-height: 1.2em;
     letter-spacing: 0.2em;
     color: var(--starsBg);
   }
-  label:hover::before,
-  label:hover~::before,
+  .starLabel:hover::before,
+  .starLabel:hover~::before,
   .stars input:checked~::before{
     color: var(--bodyBg);
   }
@@ -425,12 +511,13 @@ header, main, footer{
 
   /* Footer styles */
   footer{
-    background: var(--mainBackground);
-    height: 7%;
+    background: rgba(0,0,0,0.1);
+    height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    font-size: 0.7em;
   }
 
 
@@ -446,10 +533,70 @@ header, main, footer{
     color: rgba(0,0,0,0.4);
   }
 
+  /* Filter checkbox styles */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 2.1875em;
+    margin-bottom: 0.75em;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--mainColor);
+    font-family: var(--mainFont);
+  }
+
+  .container input {
+      display: none;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0.7em;
+    height: 1.1em;
+    width: 1.1em;
+    background-color: var(--secondBackground);
+  }
+
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .container input:checked ~ .checkmark {
+    background-color: #949494;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .container .checkmark:after {
+    left: 0.4em;
+    bottom: 0.27em;
+    width: 0.18em;
+    height: 0.45em;
+    border: solid var(--secondBackground);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
   /* Media queries */
   @media only screen and (min-width: 700px){
     :root{
       font-size: 20px;
+    }
+    .filterRestaurants{
+      grid-template-columns: repeat(6,1fr);
     }
   }
   @media only screen and (min-width: 1080px){
