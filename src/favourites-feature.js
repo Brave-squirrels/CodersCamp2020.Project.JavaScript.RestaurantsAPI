@@ -89,7 +89,7 @@ console.log('Favourites will get exported to JSON file... Eventually')
 }
 
 const sendToRestaurantView = (e) => {
-    if (e.target.name = )
+    //if (e.target.name = )
 }
 
 export {isFavourite, manageFavouriteRestaurant, generateFavourites, exportFavourites, sendToRestaurantView};
