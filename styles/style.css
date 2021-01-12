@@ -330,6 +330,7 @@ header, main, footer{
   .resDiv span{
     display: flex;
     align-items: center;
+   
   }
   
   .resImg{
@@ -451,8 +452,11 @@ header, main, footer{
   .displayMenu:hover, .displayReviews:hover, #btn1:hover, #btn2:hover, .reviewSubmit:hover{
     background-position: bottom left;
   }
+  /*.fas fa-star{
+   scale: 2;
+  }*/
   .starFav{
-    font-size: 1.6em;
+   font-size: 1.2em;
   }
   .starFav:hover{
     cursor: pointer;
@@ -464,6 +468,19 @@ header, main, footer{
     color: var(--bodyBg); 
   }
 
+  
+
+  .starFav::before{
+    content: '★';
+    font-size: 1.8em;
+    line-height: 1.2em;
+    letter-spacing: 0.2em;
+    color: var(--starsBg);
+  }
+ 
+  .starFav:checked~::before{
+    color: var(--bodyBg);
+  }
 
   .restaurantImg{
     height: 5em;
@@ -471,9 +488,12 @@ header, main, footer{
   }
 
   .addFav{
-    position: absolute;
-    top: 0.3em;
-    right: 0.3em;
+    height: 100%;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .restaurantAvgRating span, .restaurantAvgCost span{
     font-weight: bold;
