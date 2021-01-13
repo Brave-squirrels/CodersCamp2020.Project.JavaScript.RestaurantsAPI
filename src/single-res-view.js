@@ -1,3 +1,5 @@
+const {mainFunc, fetchUserReviews} = require('./restaurants-api');
+
 //template for basic info
 const createTemplateFirst = (resObj) => {
     return `
@@ -11,8 +13,8 @@ const createTemplateFirst = (resObj) => {
             ${resObj.address}
         </span>
 
-    <input type="checkbox" name="starFav" class="starFavInput" id='sample'>
-    <label  class="starFav" for='sample' ></label>
+    <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
+    <label  class="starFav" for='${resObj.id}' ></label>
 
     </div>
 
@@ -49,11 +51,12 @@ const createTemplateSecond = (obj)=>{
             tempString += `
                 <div class="singleReview">
                     <span class="dish">
-                        ${n.testReview}
+                        ${n.textReview}
                     </span>
                     <span class="cost">
-                        ${n.ratingReview}
+                        Rate: ${n.ratingReview}/5
                     </span>
+                </div>
             `
 
         });
@@ -74,47 +77,35 @@ const createTemplateSecond = (obj)=>{
 
 
 //display restaurant function
-const displayRestaurant = (e)=>{
-    if(e.target.id === 'resDiv'){
-        const resId = e.target.dataset.name;
+const displayRestaurant = (result, resId)=>{
         const resCnt = document.querySelector('article');
-        const firstSectionCnt = document.querySelector('#restaurantFirst');
-
+        const firstSectionCnt = document.querySelector('#restaurantFirst');  
         resCnt.style.display = 'block';
-        //Search for the result with resId (or name, doesn't matter) and pass into createTemplateFirst
-        //result - fetch result 
-        const objOfReviews = result.map((n)=>{
-            if(n.id === resId){
-                return n;
-            }
+        
+        //Take the restaurant with this ID from result
+        let objOfReviews = [];
+        result.map((n)=>{
+                if(n.id === resId){
+                    objOfReviews = n;
+                }
         })
 
-
-        firstSectionCnt.innerHTML = createTemplateFirst(objOfReviews);
-
-        const revButton = document.querySelector('#displayReviews');
-
-
-        //display reviews
-        //Here fetch the reviews and pass object to createTemplateSecond to display (fetch by id/name that we get first)
-
-        //Or fetch reviews at start and save in variable, doesn't matter
-        revButton.addEventListener('click', ()=>{
-            const revCnt = document.querySelector('#restaurantSpecificInfo');
-            revCnt.style.display = 'grid';
-            if(revCnt.classList.contains('revDisplayed')){
-                revCnt.style.display = 'none';
-                revCnt.classList.remove('revDisplayed');
-            }else{
-                revCnt.innerHTML = createTemplateSecond(objOfReviews); 
-                revCnt.classList.add('revDisplayed');
-            }
-            
-
-        });
-
-
-    }
+            //Append the base data
+            firstSectionCnt.innerHTML = createTemplateFirst(objOfReviews);
+        
+            //Handle review show button
+            const revButton = document.querySelector('#displayReviews');
+            revButton.addEventListener('click', ()=>{
+                const revCnt = document.querySelector('#restaurantSpecificInfo');
+                revCnt.style.display = 'grid';
+                if(revCnt.classList.contains('revDisplayed')){
+                    revCnt.style.display = 'none';
+                    revCnt.classList.remove('revDisplayed');
+                }else{
+                    revCnt.innerHTML = createTemplateSecond(objOfReviews); 
+                    revCnt.classList.add('revDisplayed');
+                }
+            });
 }
 
 module.exports = displayRestaurant;

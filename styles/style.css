@@ -364,6 +364,10 @@ header, main, footer{
   .restaurantAdress{
     font-size: 0.9em;
   }
+  .restaurantAdress, .restaurantName{
+    display: block;
+    width: 70%;
+  }
 
   /* Display restaurant styles Edit when API
     Display: none; by default
