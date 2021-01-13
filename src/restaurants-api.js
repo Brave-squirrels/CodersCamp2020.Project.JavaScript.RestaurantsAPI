@@ -1,5 +1,51 @@
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
+const saveInfo = require('./cookies');
 
+const checkCookies = (cityName) => {
+    if (document.cookie.includes(cityName)) {
+        return true;
+    }
+}
+
+const checkReviewsCookies = (restaurantId) => {
+    let cookies = document.cookie;
+    let index = cookies.indexOf('=');
+    cookies = cookies.split('; ');
+    cookies.forEach(cookie => {
+        cookie = cookie.slice(index + 1);
+        cookie = JSON.parse(cookie);
+        if (cookie.id == restaurantId) {
+            if (cookie.reviews != []) return true;
+        }
+    })
+}
+
+const getCookies = (value, restaurants = []) => {
+    let cookies = document.cookie;
+    let index = cookies.indexOf('=');
+    cookies = cookies.split('; ');
+    if (typeof(value) === 'string') {
+        cookies.forEach(cookie => {
+            cookie = cookie.slice(index + 1);
+            cookie = JSON.parse(cookie);
+            restaurants.push(cookie);
+        })
+        return restaurants;
+    } else {
+        cookies.forEach(cookie => {
+            cookie = cookie.slice(index + 1);
+            cookie = JSON.parse(cookie);
+            if (cookie.id == value) {
+                cookie.reviews.forEach(review => {
+                    restaurants.reviews.push({
+                        textReviews: `${review.review_text}`,
+                        ratingReview: `${review.rating}`
+                    })
+                })
+            }
+        })
+    }
+}
 
 const fetchData = async(url) => {
     /*
@@ -65,7 +111,8 @@ const fetchRestaurants = async(url) => {
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
             rating: item.restaurant.user_rating.aggregate_rating,
-            reviews: []
+            reviews: [],
+            city: replacePolishChar(item.restaurant.location.city)
         })
     }
 
@@ -97,6 +144,7 @@ const replacePolishChar = (getCityName) => {
         .replace(/ż/gi, 'z')
         .replace(/ź/gi, 'z')
 
+    cityName = cityName.toLowerCase();
     return cityName
 }
 
@@ -119,13 +167,23 @@ const mainFunc = async(getCityName) => {
 
     if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/
 
-    let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
+    // Check if maybe there are cookies saved with this city restaurants
+    let checkCookie = await checkCookies(cityName);
+    if (checkCookie) {
+        // if yes, get data from cookies :)
+        let restaurants = await getCookies(cityName);
+        return restaurants;
+    } else {
+        let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
 
-    if (cityId === undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/
+        if (cityId === undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/
 
-    let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
+        let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
 
-    return restaurants;
+        await saveInfo(restaurants);
+
+        return restaurants;
+    }
 }
 
 const fetchUserReviews = async(restaurantId, restaurants) => {
@@ -133,6 +191,12 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
         - parameters (Id of restaurant)
         @ return array of objects users reviews about restaurant and grade to each comment
     */
+
+    // Check if maybe there are already cookies with reviews from this restaurant
+    // if (await checkReviewsCookies(restaurantId)) {
+    //     // If yes, return data from cookies :)
+    //     getCookies(Number(restaurantId));
+    // } else {
     let listOfReviews = [];
     let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
 
@@ -153,7 +217,10 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
         }
     })
 
+    // await saveInfo(restaurants);
+
     return restaurants;
+    // }
 }
 
 // Exports function for testing (later to frontend also)
