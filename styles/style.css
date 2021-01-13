@@ -3,7 +3,6 @@
   --bodyBg:#E6ED3B;
   --mainBackground:rgba(0,0,0,0.01);
   --favListBg: #fff;
-  --resBg: rgba(0,0,0,0.2);
   --secondBackground: #FCF7FC;
   --mainFont: 'Roboto', sans-serif;
   --logoFont: 'Montserrat', sans-serif;
@@ -331,9 +330,15 @@ header, main, footer{
 
   .resCs{
     font-size: 0.7em;
+    pointer-events: none;
   }
   .resAdr{
     font-size: 0.6em;
+    pointer-events: none;
+  }
+
+  .resTitle{
+    pointer-events: none;
   }
 
   .townNotFound{
@@ -368,6 +373,7 @@ header, main, footer{
     background: var(--secondBackground);
     color: var(--mainColor);
     padding: 1.5em;
+    display: none;
   }
   
   .restaurantContainer{
@@ -382,6 +388,7 @@ header, main, footer{
   }
 
   .restaurantIntro{
+    position: relative;
     display: grid;
     grid-gap: 0.3em;
     background: var(--favListBg);
@@ -426,26 +433,47 @@ header, main, footer{
     color: var(--mainColor);
     cursor: pointer;
     outline: none;
-    background: linear-gradient(to right, var(--bodyBg) 50%, var(--favListBg) 50%);
+    background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, var(--favListBg) 50%);
     background-size: 200% 100%;
     background-position: bottom right;
     transition: all .5s ease-out;
+  }
+  .displayReviews{
+    margin: 0 auto;
+    max-width: 18em;
   }
   .displayReviews:hover, #btn1:hover, #btn2:hover, .reviewSubmit:hover{
     background-position: bottom left;
   }
   .starFav{
-    font-size: 1.6em;
-  }
-  .starFav:hover{
-    cursor: pointer;
-  }
-  .starFavInput{
-    display: none;
-  }
-  .starFavInput:checked~::before{
-    color: var(--bodyBg); 
-  }
+    font-size: 1.2em;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+   }
+   .starFav:hover{
+     cursor: pointer;
+   }
+   .starFavInput{
+     display: none;
+   }
+   .starFavInput:checked~::before{
+     color: var(--bodyBg); 
+   }
+ 
+   
+ 
+   .starFav::before{
+     content: '★';
+     font-size: 1.8em;
+     line-height: 1.2em;
+     letter-spacing: 0.2em;
+     color: var(--starsBg);
+   }
+  
+   .starFav:checked~::before{
+     color: var(--bodyBg);
+   }
 
 
   .restaurantImg{
