@@ -3,7 +3,6 @@
   --bodyBg:#E6ED3B;
   --mainBackground:rgba(0,0,0,0.01);
   --favListBg: #fff;
-  --resBg: rgba(0,0,0,0.2);
   --secondBackground: #FCF7FC;
   --mainFont: 'Roboto', sans-serif;
   --logoFont: 'Montserrat', sans-serif;
@@ -47,7 +46,7 @@ html{
 header, main, footer{
   padding: 0.6em 1em;
 }
-.dailyMenu, nav div{
+  nav div{
   padding: 0.3em 0.8em;
 }
 
@@ -331,9 +330,15 @@ header, main, footer{
 
   .resCs{
     font-size: 0.7em;
+    pointer-events: none;
   }
   .resAdr{
     font-size: 0.6em;
+    pointer-events: none;
+  }
+
+  .resTitle{
+    pointer-events: none;
   }
 
   .townNotFound{
@@ -352,25 +357,12 @@ header, main, footer{
   }
   
 
-  .resTitle,.restaurantName, .dailyMenuTitle{
+  .restaurantName{
     font-weight: bold;
     font-size: 1em;
   }
   .restaurantAdress{
     font-size: 0.9em;
-  }
-
-  
-  .dishCnt{
-    display: grid;
-    grid-template-columns: 1fr 20%;
-  }
-  .cost{
-    text-align: right;
-  }
-
-  .dishCnt span{
-    display:block;
   }
 
   /* Display restaurant styles Edit when API
@@ -380,25 +372,59 @@ header, main, footer{
   article{
     background: var(--secondBackground);
     color: var(--mainColor);
-    padding: 2em;
+    padding: 1.5em;
     display: none;
   }
   
   .restaurantContainer{
-    padding: 1em;
+    padding: 1.4em;
     margin: 0 auto;
-    background: var(--resBg);
+    background: var(--bodyBg);
     position: relative;
     max-width: 1200px;
     display: grid;
+    grid-gap: 0.8em;
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+  }
+
+  .restaurantIntro{
+    position: relative;
+    display: grid;
+    grid-gap: 0.3em;
+    background: var(--favListBg);
+    padding: 1em 0 1em 1em;
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+  }
+
+  .reviewsTitle{
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .singleReview, .restaurantAvg{
+    display: grid;
+    background: var(--favListBg);
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+    padding: 0.5em;
+  }
+  
+  .reviews, .restaurantSpecificInfo, .addReview{
+    display: grid;
+    grid-gap: 0.8em;
   }
 
   .restaurantContainer span{
     display: block;
   }
 
+  .addReviewInput{
+    width: 20em;
+    height: 10em;
+    resize: none;
+  }
+
+
   /* Rest of the buttons */
-  .displayMenu, .displayReviews, #btn1, #btn2, .reviewSubmit{
+  .displayReviews, #btn1, #btn2, .reviewSubmit{
     border: 2px solid var(--buttonBg);
     padding: 0.2em 0.8em;
     font-size: 1em;
@@ -407,31 +433,53 @@ header, main, footer{
     color: var(--mainColor);
     cursor: pointer;
     outline: none;
-    background: linear-gradient(to right, var(--bodyBg) 50%, var(--favListBg) 50%);
+    background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, var(--favListBg) 50%);
     background-size: 200% 100%;
     background-position: bottom right;
     transition: all .5s ease-out;
   }
-  .displayMenu:hover, .displayReviews:hover, #btn1:hover, #btn2:hover, .reviewSubmit:hover{
+  .displayReviews{
+    margin: 0 auto;
+    max-width: 18em;
+  }
+  .displayReviews:hover, #btn1:hover, #btn2:hover, .reviewSubmit:hover{
     background-position: bottom left;
   }
   .starFav{
-    font-size: 1.6em;
-  }
-  .starFav:hover{
-    cursor: pointer;
-  }
-  .starFavInput{
-    display: none;
-  }
-  .starFavInput:checked~::before{
-    color: var(--bodyBg); 
-  }
+    font-size: 1.2em;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+   }
+   .starFav:hover{
+     cursor: pointer;
+   }
+   .starFavInput{
+     display: none;
+   }
+   .starFavInput:checked~::before{
+     color: var(--bodyBg); 
+   }
+ 
+   
+ 
+   .starFav::before{
+     content: '★';
+     font-size: 1.8em;
+     line-height: 1.2em;
+     letter-spacing: 0.2em;
+     color: var(--starsBg);
+   }
+  
+   .starFav:checked~::before{
+     color: var(--bodyBg);
+   }
 
 
   .restaurantImg{
     height: 5em;
     width: auto;
+    box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
   }
 
   .addFav{
@@ -445,8 +493,7 @@ header, main, footer{
  
   .addReviewTitle{
     font-weight: bold;
-    font-size: 0.9em;
-   
+    font-size: 1.2em;
   }
 
   .stars{
