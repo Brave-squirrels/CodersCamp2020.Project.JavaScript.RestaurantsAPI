@@ -74,84 +74,33 @@
         
         <div class="restaurantContainer">
 
-            <span class='restaurantName'>
-                Name of the restaurant
-            </span>
-
-            <span class='restaurantAdress'>
-                Wroclaw, ul. Whatever 21/37
-            </span>
-
-            <img src="assets/sample.jpg" alt="restauration" class='restaurantImg'>
-
-            <span class='restaurantAvgRating'>
-                <span>Average rating:</span> 4/5
-            </span>
-
-            <span class='restaurantAvgCost'>
-                <span>Average cost for a couple:</span> 11.11zł
-            </span>
-
-            <div id="addFav" class='addFav'>
-                <input type="checkbox" id="starFav" name="starFav" class="starFavInput">
-                <label for="starFav" class="starFav"></label>
+            <div id="restaurantFirst"> 
             </div>
 
-
-            <div class='restaurantSpecificInfo'>
-                <button id='displayReviews' class='displayReviews'>Reviews</button>
-                <!--Demo of the checkbox-->
-
-                <div id="reviews" class='reviews'>
-                    <div class='review'>
-                        <!--Append review + te z localStorage-->
-                        <span class="dailyMenuTitle">
-                            Reviews
-                        </span>
-                        <!--Pull of of API-->
-                        <div class="dishCnt">
-                            <span class="dish">
-                                "The best restaurant i've ever been!"
-                            </span>
-                            <span class="cost">
-                                5/5
-                            </span>
-                            <span class="dish">
-                                "It's fine."
-                            </span>
-                            <span class="cost">
-                                3/5
-                            </span>
+            <div class='restaurantSpecificInfo' id='restaurantSpecificInfo'>
+                <!--<div class='addReview'>
+                        
+                    <span class="addReviewTitle">
+                        Share your opinion with others
+                    </span>
+                    <form id="addReviewForm" class='addReviewForm'>
+                        <textarea class='addReviewInput'></textarea>
+                        <div class="stars">
+                            <input type="radio" id="star5" name="star" value="5">
+                            <label for="star5" class='starLabel'></label>
+                            <input type="radio" id="star4" name="star" value="4">
+                            <label for="star4" class='starLabel'></label>
+                            <input type="radio" id="star3" name="star" value="3">
+                            <label for="star3" class='starLabel'></label>
+                            <input type="radio" id="star2" name="star" value="2">
+                            <label for="star2" class='starLabel'></label>
+                            <input type="radio" id="star1" name="star" value="1">
+                            <label for="star1" class='starLabel'></label>
                         </div>
-                    <div class='addReview'>
-                        <!--Add own review-->
-                        <span class="addReviewTitle">
-                            Share your opinion with others
-                        </span>
-                        <form id="addReview">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="stars">
-                                <input type="radio" id="star5" name="star" value="5">
-                                <label for="star5" class='starLabel'></label>
-                                <input type="radio" id="star4" name="star" value="4">
-                                <label for="star4" class='starLabel'></label>
-                                <input type="radio" id="star3" name="star" value="3">
-                                <label for="star3" class='starLabel'></label>
-                                <input type="radio" id="star2" name="star" value="2">
-                                <label for="star2" class='starLabel'></label>
-                                <input type="radio" id="star1" name="star" value="1">
-                                <label for="star1" class='starLabel'></label>
-                            </div>
-
-                            
-
-
-                            <input type="submit" value='Add' id='reviewSubmit' class='reviewSubmit'>
-                        </form>
-                    </div>
-                </div>
+                        <input type="submit" value='Add' id='reviewSubmit' class='reviewSubmit'>
+                    </form>
+                </div> -->
             </div>
-
         </div>
 
     </article>
