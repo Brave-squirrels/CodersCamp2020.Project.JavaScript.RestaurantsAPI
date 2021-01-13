@@ -64,7 +64,8 @@ const fetchRestaurants = async(url) => {
             priceRaiting: item.restaurant.price_range,
             address: item.restaurant.location.address,
             phone: item.restaurant.phone_numbers,
-            rating: item.restaurant.user_rating.aggregate_rating
+            rating: item.restaurant.user_rating.aggregate_rating,
+            reviews: []
         })
     }
 
@@ -144,8 +145,8 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
         }
     };
 
-    restaurants.forEach(resturant => {
-        if (resturant.id == restaurantId) {
+    restaurants.forEach(restaurant => {
+        if (restaurant.id == restaurantId) {
             listOfReviews.forEach(review => {
                 restaurant.reviews.push(review);
             })

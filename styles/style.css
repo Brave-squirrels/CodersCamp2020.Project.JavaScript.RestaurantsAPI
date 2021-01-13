@@ -364,6 +364,10 @@ header, main, footer{
   .restaurantAdress{
     font-size: 0.9em;
   }
+  .restaurantAdress, .restaurantName{
+    display: block;
+    width: 70%;
+  }
 
   /* Display restaurant styles Edit when API
     Display: none; by default
@@ -376,7 +380,7 @@ header, main, footer{
     display: none;
   }
   
-  .restaurantContainer{
+  .restaurantContainer {
     padding: 1.4em;
     margin: 0 auto;
     background: var(--bodyBg);
@@ -385,6 +389,23 @@ header, main, footer{
     display: grid;
     grid-gap: 0.8em;
     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+  }
+  #restaurantFirst{
+    display: grid;
+    grid-gap: 0.8em;
+  }
+
+  .noRevFound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--mainColor);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    text-align: center;
+    letter-spacing: 0.1em;
   }
 
   .restaurantIntro{
@@ -407,9 +428,13 @@ header, main, footer{
     padding: 0.5em;
   }
   
-  .reviews, .restaurantSpecificInfo, .addReview{
+  .reviews, .addReview{
     display: grid;
     grid-gap: 0.8em;
+  }
+
+  .restaurantSpecificInfo{
+    display: none;
   }
 
   .restaurantContainer span{
