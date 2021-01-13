@@ -1,12 +1,3 @@
-const obj = {
-
-    name: "res1",
-    adress: "wrocław ul. costam 1/2b",
-    rating: 4/5,
-    price: 11
-
-}
-
 //template for basic info
 const createTemplateFirst = (resObj) => {
     return `
@@ -17,7 +8,7 @@ const createTemplateFirst = (resObj) => {
         </span>
 
         <span class='restaurantAdress'>
-            ${resObj.adress}
+            ${resObj.address}
         </span>
 
     <input type="checkbox" name="starFav" class="starFavInput" id='sample'>
@@ -34,7 +25,7 @@ const createTemplateFirst = (resObj) => {
         </span>
 
         <span class='restaurantAvgCost'>
-            <span>Average cost for a couple:</span> ${resObj.price}zł
+            <span>Price rating:</span> ${resObj.priceRaiting}zł
         </span>
     </div>
 
@@ -43,34 +34,41 @@ const createTemplateFirst = (resObj) => {
 }
 
 //template for reviews - add loop for display reviews
-const createTemplateSecond = ()=>{
-    return `
-    <div id="reviews">
-    <div class='reviews'>
-        <!--Append review + te z localStorage-->
-        <span class="reviewsTitle">
-            Reviews
-        </span>
-        <!--Pull of of API-->
-        <div class="singleReview">
-            <span class="dish">
-                "The best restaurant i've ever been!"
-            </span>
-            <span class="cost">
-                5/5
-            </span>
+const createTemplateSecond = (obj)=>{
+    let templateString = ``;
+    if(obj.length === 0){
+        templateString =  `
+        <div class='noRevFound'>
+            There's no reviews for this restaurant
         </div>
-        <div class="singleReview">
-            <span class="dish">
-                "It's fine."
+        `;
+    }else{
+        let tempString = ``;
+        obj.reviews.forEach((n)=>{
+
+            tempString += `
+                <div class="singleReview">
+                    <span class="dish">
+                        ${n.testReview}
+                    </span>
+                    <span class="cost">
+                        ${n.ratingReview}
+                    </span>
+            `
+
+        });
+        templateString = `
+        <div id="reviews">
+        <div class='reviews'>
+            <span class="reviewsTitle">
+                Reviews
             </span>
-            <span class="cost">
-                3/5
-            </span>
+            ${tempString}
         </div>
-    </div>
-    </div>
-    `
+        </div>
+        `;
+    }
+    return templateString;
 }
 
 
@@ -83,10 +81,16 @@ const displayRestaurant = (e)=>{
         const firstSectionCnt = document.querySelector('#restaurantFirst');
 
         resCnt.style.display = 'block';
-
         //Search for the result with resId (or name, doesn't matter) and pass into createTemplateFirst
+        //result - fetch result 
+        const objOfReviews = result.map((n)=>{
+            if(n.id === resId){
+                return n;
+            }
+        })
 
-        firstSectionCnt.innerHTML = createTemplateFirst(obj);
+
+        firstSectionCnt.innerHTML = createTemplateFirst(objOfReviews);
 
         const revButton = document.querySelector('#displayReviews');
 
@@ -102,7 +106,7 @@ const displayRestaurant = (e)=>{
                 revCnt.style.display = 'none';
                 revCnt.classList.remove('revDisplayed');
             }else{
-                revCnt.innerHTML = createTemplateSecond(); 
+                revCnt.innerHTML = createTemplateSecond(objOfReviews); 
                 revCnt.classList.add('revDisplayed');
             }
             

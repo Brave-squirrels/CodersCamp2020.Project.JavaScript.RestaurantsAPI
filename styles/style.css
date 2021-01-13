@@ -391,6 +391,19 @@ header, main, footer{
     grid-gap: 0.8em;
   }
 
+  .noRevFound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--mainColor);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
   .restaurantIntro{
     position: relative;
     display: grid;
