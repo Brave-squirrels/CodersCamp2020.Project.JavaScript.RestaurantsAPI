@@ -7,44 +7,16 @@ const checkCookies = (cityName) => {
     }
 }
 
-const checkReviewsCookies = (restaurantId) => {
+const getCookies = (value, restaurants = []) => {
     let cookies = document.cookie;
     let index = cookies.indexOf('=');
     cookies = cookies.split('; ');
     cookies.forEach(cookie => {
         cookie = cookie.slice(index + 1);
         cookie = JSON.parse(cookie);
-        if (cookie.id == restaurantId) {
-            if (cookie.reviews != []) return true;
-        }
+        restaurants.push(cookie);
     })
-}
-
-const getCookies = (value, restaurants = []) => {
-    let cookies = document.cookie;
-    let index = cookies.indexOf('=');
-    cookies = cookies.split('; ');
-    if (typeof(value) === 'string') {
-        cookies.forEach(cookie => {
-            cookie = cookie.slice(index + 1);
-            cookie = JSON.parse(cookie);
-            restaurants.push(cookie);
-        })
-        return restaurants;
-    } else {
-        cookies.forEach(cookie => {
-            cookie = cookie.slice(index + 1);
-            cookie = JSON.parse(cookie);
-            if (cookie.id == value) {
-                cookie.reviews.forEach(review => {
-                    restaurants.reviews.push({
-                        textReviews: `${review.review_text}`,
-                        ratingReview: `${review.rating}`
-                    })
-                })
-            }
-        })
-    }
+    return restaurants;
 }
 
 const fetchData = async(url) => {
