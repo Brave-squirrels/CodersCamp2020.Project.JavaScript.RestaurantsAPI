@@ -111,6 +111,7 @@ header, main, footer{
       height: 5.625em;
       margin: 1em auto;
       transition: 0.3s ease-in;
+      padding: 0.3em 0.8em;
 
       //Hover style
       &:hover{
@@ -332,7 +333,7 @@ header, main, footer{
       }
       @keyframes shake{
         0% {left: -5px}
-        100% {right: -5px};
+        100% {right: -5px}
       }
     
       //Submit button
@@ -716,9 +717,7 @@ header, main, footer{
   //Fav add/remove button global styles
    .starFav{
     font-size: 1.2em;
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+
     &:hover{
       cursor: pointer;
     }
@@ -740,6 +739,15 @@ header, main, footer{
       color: $bodyBg; 
     }
    }
+
+  .addFav{
+    height: 100%;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
   /* Media queries */
   @media only screen and (min-width: 700px){
