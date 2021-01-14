@@ -5,6 +5,7 @@
     --mainBackground: rgba(0, 0, 0, 0.01);
     --favListBg: #fff;
     --secondBackground: #FCF7FC;
+    --checkboxChecked: rgba(184, 182, 182, 0.774);
     --mainFont: 'Roboto', sans-serif;
     --logoFont: 'Montserrat', sans-serif;
     --buttonBg: #383738;
@@ -674,19 +675,22 @@ input::placeholder {
     height: 1.1em;
     width: 1.1em;
     background-color: var(--secondBackground);
+    box-shadow: -1px 1px 4px black;
+    transition: 0.1s;
 }
 
 .container:hover input~.checkmark {
-    background-color: #ccc;
+    background-color: var(--checkboxChecked);
 }
 
 .container input:checked~.checkmark {
-    background-color: #949494;
+    background-color: var(--checkboxChecked);
 }
 
 .checkmark:after {
     content: "";
-    position: absolute;
+    margin-left: 0.4em;
+    margin-top: 0.1em;
     display: none;
 }
 
