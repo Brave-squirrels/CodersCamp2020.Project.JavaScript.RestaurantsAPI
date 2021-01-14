@@ -3,6 +3,7 @@ const {mainFunc, fetchUserReviews} = require('./restaurants-api');
 const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 const displayRestaurant = require('./single-res-view');
+const filterNav = require('./filter-nav');
 
 //Creating template string for restaurant nav
 const pushTemplate = (obj, arr)=>{
@@ -97,17 +98,18 @@ function display(e){
                     })
                 })
 
-                
+                const arrayOfHTML = [];
                 //Display filters
                 cuisinesAll.forEach((element)=>{
-                    filter.innerHTML += `
+                    arrayOfHTML.push(`
                         <label for="${element}" id="filterLabel" class='container'>${element}
                         <input type="checkbox" id="${element}" name="cuisineFilter" value="${element}" class="chkId">
                         <span class='checkmark'></span>
                         </label>
-                    `;
+                    `);
                 })
 
+                filterNav(arrayOfHTML, filter);
                 
                  //Saving the array of data
                  let savedNavData = navData;
@@ -160,6 +162,7 @@ function display(e){
                         generateBtn(e);
                         append(navData, buttons, divData);
                     }
+                    
                 }
 
                 //Run filter
