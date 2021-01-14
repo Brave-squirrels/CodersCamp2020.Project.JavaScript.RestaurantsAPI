@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant API</title>
-    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/style.scss"/>
     <link rel="icon" type="image/png" href="assets/logo.png" sizes="16x16" />
     <meta name="theme-color" content="rgba(0,0,0,0.3)" />
 </head>
@@ -13,14 +13,30 @@
     <div id="loading" class='loading'>
         <img src='assets/loading.svg'>
     </div>
+    
     <!--List of fav restaurants-->
     <aside>
-        <span id='closeFav' class='closeFav'>&times;</span>
+        <div>
+            <span id='closeFav' class='closeFav'>&times;</span>
+            <div class="favTitle">
+                <img src="assets/logo.png" alt="logo" class='logo'>
+                <span class="logoTitle">Favourites</span>
+                <input type="submit" value='Export' id='exportFavData' class='exportFavData'>
+            </div>
+        </div>
         <!--Display if anything in localStorage-->
         <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
-        List of fav restaurants
-        <!--Display when localStorage is empty-->
-        No fav restaurants :c
+        <div>
+            <div id="favourites" class="favourites">
+                <!-- test environment-->
+
+            </div>
+            <!--Display when localStorage is empty-->
+            <div id="noFav" class="noFav">
+       
+
+            </div>
+        </div>
     </aside>
 
     <!--Header--> 
@@ -67,42 +83,14 @@
        </div>
     </nav>
     
-    <!-- The restaurant that we show -->
+    <!-- Single restaurant section -->
     <article>
-        
-        <!--Appending when click on restaurant, same with the buttons -->
-        
         <div class="restaurantContainer">
-
             <div id="restaurantFirst"> 
             </div>
-
             <div class='restaurantSpecificInfo' id='restaurantSpecificInfo'>
-                <!--<div class='addReview'>
-                        
-                    <span class="addReviewTitle">
-                        Share your opinion with others
-                    </span>
-                    <form id="addReviewForm" class='addReviewForm'>
-                        <textarea class='addReviewInput'></textarea>
-                        <div class="stars">
-                            <input type="radio" id="star5" name="star" value="5">
-                            <label for="star5" class='starLabel'></label>
-                            <input type="radio" id="star4" name="star" value="4">
-                            <label for="star4" class='starLabel'></label>
-                            <input type="radio" id="star3" name="star" value="3">
-                            <label for="star3" class='starLabel'></label>
-                            <input type="radio" id="star2" name="star" value="2">
-                            <label for="star2" class='starLabel'></label>
-                            <input type="radio" id="star1" name="star" value="1">
-                            <label for="star1" class='starLabel'></label>
-                        </div>
-                        <input type="submit" value='Add' id='reviewSubmit' class='reviewSubmit'>
-                    </form>
-                </div> -->
             </div>
         </div>
-
     </article>
 
     <!--Copyrights footer-->
