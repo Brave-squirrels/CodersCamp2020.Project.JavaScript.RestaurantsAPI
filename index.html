@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant API</title>
-    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/style.css" />
     <link rel="icon" type="image/png" href="assets/logo.png" sizes="16x16" />
     <meta name="theme-color" content="rgba(0,0,0,0.3)" />
 </head>
+
 <body>
     <!--Loading animation-->
     <div id="loading" class='loading'>
@@ -23,11 +25,11 @@
         No fav restaurants :c
     </aside>
 
-    <!--Header--> 
+    <!--Header-->
     <header>
         <div class="siteTitle">
-           <img src="assets/logo.png" alt="logo" class='logo'>
-           <span class='logoTitle'>
+            <img src="assets/logo.png" alt="logo" class='logo'>
+            <span class='logoTitle'>
             We'll help you find the best restaurant!
            </span>
         </div>
@@ -35,7 +37,7 @@
         <div class="favTrigger">
             <img src="assets/fav.png" alt="favIcon" class='favIcon' id='favIcon'>
         </div>
-        
+
     </header>
 
     <!--Main - search engine-->
@@ -47,34 +49,38 @@
             <form id='searchForm'>
                 <input type="text" id='townSearch' class='townSearch' placeholder='Type the town'>
                 <input type="submit" value='Search' id='townFind' class='townFind'>
-            </form> 
+            </form>
         </div>
         <img src="assets/imgMain.png" alt="imgMain" class='imgDec'>
     </main>
 
     <!-- Restaurant showup with pagination -->
     <nav>
-        <div class="filterTitle">
+        <!-- <div class="filterTitle">
             Filters
-        </div>
-        <div id="filterRestaurants" class='filterRestaurants'>
-            
-        </div>
+        </div> -->
+        <ol id="filterRestaurants" class='filterRestaurants'>
+            <li><a href='#'>Filters</a>
+                <ul id="listFilter">
+                    <div class="filtred"></div>
+                </ul>
+            </li>
+        </ol>
         <div id="restaurantsNavCon" class='restaurantsNavCon'>
-            
+
         </div>
-       <div id="paginationContainer" class='paginationContainer'>
-       </div>
+        <div id="paginationContainer" class='paginationContainer'>
+        </div>
     </nav>
-    
+
     <!-- The restaurant that we show -->
     <article>
-        
+
         <!--Appending when click on restaurant, same with the buttons -->
-        
+
         <div class="restaurantContainer">
 
-            <div id="restaurantFirst"> 
+            <div id="restaurantFirst">
             </div>
 
             <div class='restaurantSpecificInfo' id='restaurantSpecificInfo'>
@@ -109,7 +115,8 @@
     <footer>
         &#169; Copyrights by Brave Squirrels
     </footer>
-      
+
     <script src="src/index.js"></script>
 </body>
+
 </html>

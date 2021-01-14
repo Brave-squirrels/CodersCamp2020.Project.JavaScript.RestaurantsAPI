@@ -306,11 +306,27 @@ nav {
 }
 
 .filterRestaurants {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+    text-align: center;
     width: 100%;
     padding: 0.5em 1em;
     background: rgba(0, 0, 0, 0.1);
+}
+
+.filterRestaurants a,
+.filterRestaurants a:visited {
+    text-decoration: none;
+    color: var(--mainFont);
+}
+
+#listFilter {
+    list-style: none;
+}
+
+.filtred {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .filterTitle {
