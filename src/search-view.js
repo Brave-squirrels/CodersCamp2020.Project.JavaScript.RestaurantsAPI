@@ -109,6 +109,7 @@ function display(e){
                     `);
                 })
 
+                //Hide and show more filters
                 filterNav(arrayOfHTML, filter);
                 
                  //Saving the array of data
