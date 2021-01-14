@@ -1,7 +1,6 @@
 import 'regenerator-runtime/runtime'
 
 const display = require('../src/search-view');
-document.querySelector('#searchForm').addEventListener('submit', display);
 const displayFav = require('../src/nav-bar');
 const favourites = require('../src/favourites-feature');
 
@@ -26,3 +25,6 @@ window.addEventListener('load', (event) => {
     });
   });
 
+
+//Handle search form
+document.querySelector('#searchForm').addEventListener('submit', display);

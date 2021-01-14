@@ -1,7 +1,8 @@
 //Importing main function
-const {mainFunc} = require('./restaurants-api');
+const {mainFunc, fetchUserReviews} = require('./restaurants-api');
 const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
+const displayRestaurant = require('./single-res-view');
 
 //Creating template string for restaurant nav
 const pushTemplate = (obj, arr)=>{
@@ -21,10 +22,10 @@ const pushTemplate = (obj, arr)=>{
             </div>`);
 }
 
-
 //Display data when click on search button
 function display(e){
     resetState()
+    let rez;
     //Prevent from reloading page on submit 
     e.preventDefault();
     document.querySelector('main').style.height = '79%';
@@ -42,7 +43,7 @@ function display(e){
     const loading = document.querySelector("#loading");
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
-        mainFunc(inputValue).then(function(result){
+    mainFunc(inputValue).then(function(result){
             mainSection.style.height = '85%';
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
@@ -131,7 +132,6 @@ function display(e){
                             result.forEach((element)=>{
                                 const splitArr = element.cuisines.split(',');
                                 const formatedArr = splitArr.map(el=>el.trim());
-                                console.log(formatedArr);
                                 const rez = filterArray.some(r => formatedArr.includes(r));
                                 if(rez){
                                     pushTemplate(element,tmpNavData);
@@ -172,13 +172,25 @@ function display(e){
                     append(navData, buttons, divData);
                 });
                 
+                //Event for display single restaurant
+                document.addEventListener('click', function(e){
+                    const resId = e.target.dataset.name;
+                    if(e.target.id === 'resDiv'){
+                        //Fetching reviews and passing into display function
+                        fetchUserReviews(resId, result).then(function(res){
+                            const resCnt = document.querySelector('article');
+                            resCnt.style.display = 'none';
+                            displayRestaurant(res, resId);
+                            resCnt.scrollIntoView();
+                        });
+                    }
+                });
+
                 //Scroll to the nav after submit
                 container.scrollIntoView();
             }
             loading.style.display='none';
         })
-        
 }
-
 //Exporting main function
 module.exports = display;

@@ -1,0 +1,759 @@
+//Setup
+
+//Variables
+$bodyBg:#E6ED3B;
+$mainBackground:rgba(0,0,0,0.01);
+$favListBg: #fff;
+$secondBackground: #FCF7FC;
+$mainFont: 'Roboto', sans-serif;
+$logoFont: 'Montserrat', sans-serif;
+$buttonBg: #383738;
+$mainColor: #383738;
+$starsBg: #a8a8a8;
+$invalid: #FA4C3B;
+$checkboxChecked: rgba(184, 182, 182, 0.774);
+
+//Font import
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+//Basic site style reset
+*{
+  box-sizing: border-box;
+  letter-spacing: 0.04em;
+}
+body{
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background: $bodyBg;
+  font-family: $mainFont;
+  overflow-x: hidden;
+}
+
+//Scroll style
+body::-webkit-scrollbar {
+  width: 4px;
+}
+body::-webkit-scrollbar-track {
+  background: #ddd;
+}
+body::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+//Padding setup
+header, main, footer{
+  padding: 0.6em 1em;
+}
+  nav div{
+  padding: 0.3em 0.8em;
+}
+
+
+
+//Styles for loading animation
+  .loading{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0,0,0,0.1);
+    justify-content: center;
+    align-items: center;
+  }
+
+
+//Main styles
+  
+  //Fav-list style
+   aside{
+    //Parent style
+    box-sizing: border-box;
+    background: $favListBg;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 0;
+    top: 0;
+    right: -4em;
+    transition: 0.5s;
+    font-size: 1em;
+    padding: 1em 2em;
+    //Close trigger style
+    .closeFav{
+      position: absolute;
+      top: 0; 
+      right: 0.3em;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .resDiv{
+      box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+      background:$secondBackground;
+      width: 100%;
+      display: grid;
+      cursor: pointer;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: repeat(3, 1fr);
+      position: relative;
+      color: $mainColor;
+      max-width: 650px;
+      height: 5.625em;
+      margin: 1em auto;
+      transition: 0.3s ease-in;
+
+      //Hover style
+      &:hover{
+        transform: translateY(-10px);
+      }
+
+      //Display block to position
+      span{
+        display: flex;
+        align-items: center;
+      }
+
+      //Arrow image container and image itself
+      .imgArrow{
+        height: 100%;
+        grid-row: 1 / 4;
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .resImg{
+          height: 0.9em;
+          width: auto;
+        }
+      }
+      
+      //Restaurant title, address and raiting style
+      .resTitle{
+        pointer-events: none;
+      }
+      .resCs{
+        font-size: 0.7em;
+        pointer-events: none;
+      }
+      .resAdr{
+        font-size: 0.6em;
+        pointer-events: none;
+      }
+    }
+
+    .favTitle{
+      height: 8%;
+      display: flex;
+      font-size: 1.2em;
+      font-family: $logoFont;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.5em 0;
+      .logo{
+        height: 2.2em;
+        width: auto;
+      }
+      .logoTitle{
+        padding-left: 0.7em;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+    
+    .favourites {
+      display: grid;
+      grid-gap: 1em;
+      padding: 1em 1em;
+    }
+    
+    .noFav{
+      div{ 
+      font-weight: bold;
+      text-align: center;
+      }
+      h1 {
+        color: $mainColor;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+
+    //Export button
+    .exportFavData {
+      height: 2em;
+      font-size: 0.8em;
+      margin: 0 0.5em 0 auto;
+      border: 2px solid $buttonBg;
+      padding: 0.3em 0.9em;
+      font-family: $mainFont;
+      font-weight: bold;
+      color: $mainColor;
+      cursor: pointer;
+      outline: none;
+      display: block;
+      background: linear-gradient(to right, $bodyBg 50%, $mainBackground 50%);
+      background-size: 200% 100%;
+      background-position: bottom right;
+      transition: all .5s ease-out;
+      &:hover{
+        background-position: bottom left;
+      }
+    }
+  }
+
+  
+
+
+  //Header styles
+  header{
+    //Main header styles
+    height: 15%;
+    display: grid;
+    grid-template-columns: 1fr 15%;
+    font-size: 1.2em;
+    font-family: $logoFont;
+
+    //Positioning containers
+    .siteTitle, .favTrigger{
+      display: flex;
+      align-items: center;
+    }
+
+    //Site title and logo styles
+    .siteTitle{
+      //Parent style
+      position: relative;
+      animation-name: landing;
+      animation-duration: 1.5s;
+      @keyframes landing{
+        0%{top: -400px}
+        100%{top: 0}
+      }
+      .logo{
+        height: 2.2em;
+        width: auto;
+      }
+      .logoTitle{
+        padding-left: 0.7em;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+
+    //Fav-list trigger
+    .favTrigger{
+      //Parent style
+      justify-content: flex-end;
+      position: relative;
+      animation-name: landingFav;
+      animation-duration: 1.5s;
+
+      .favIcon{
+        height: 1.7em;
+        width: auto;
+        cursor: pointer;
+      }
+
+      @keyframes landingFav{
+        0%{right: -300px}
+        100%{right: 0}
+      }
+    }
+  }
+  
+
+  //Main search-form style
+  main{
+    //Parent style
+    background: $secondBackground;
+    height: 79%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    //Child container style
+    .mainCnt{
+      animation-name: landing3;
+      animation-duration: 2.2s;
+      position: relative;
+
+      @keyframes landing3{
+        0%{left: -2000px}
+        100%{left: 0}
+      }
+
+      //Title form
+      .formTitle{
+        color: $mainColor;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    
+      //Input style
+      .townSearch{
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 1.4em;
+        padding: 0.2em 0.4em;
+        color: $mainColor;
+        font-family: $mainFont;
+        outline: none; 
+        display: block;
+        margin: 0 auto;
+      }
+    
+      .townSearch:focus{
+        border-color: $bodyBg;
+      }
+    
+      //Invalid input style
+      .invalid{
+        position: relative;
+        border: 2px solid $invalid;
+        animation: shake 0.1s linear;
+        animation-iteration-count: 3;
+      }
+      .invalid:focus{
+        border-color: $invalid;
+      }
+      @keyframes shake{
+        0% {left: -5px}
+        100% {right: -5px};
+      }
+    
+      //Submit button
+      .townFind{
+        border: 2px solid $buttonBg;
+        padding: 0.3em 0.9em;
+        font-size: 1.4em;
+        font-family: $mainFont;
+        font-weight: bold;
+        color: $mainColor;
+        cursor: pointer;
+        outline: none;
+        display: block;
+        margin: 0.5em auto 0 auto;
+        background: linear-gradient(to right, $bodyBg 50%, $mainBackground 50%);
+        background-size: 200% 100%;
+        background-position: bottom right;
+        transition: all .5s ease-out;
+      }
+      .townFind:hover{
+        background-position: bottom left;
+      }
+
+    }
+
+    //Bottom image
+    .imgDec{ 
+      height: 3.5em;
+      width: auto;
+      position: absolute;
+      right: 1em;
+      bottom: 1em;
+    }
+
+  } 
+
+  //Navigation restaurants style
+  nav{
+    //Parent
+    background: $bodyBg;
+    display: none;
+    width: 100%;
+    min-height: calc(100vh - 6%);
+
+    //Title for filter
+    .filterTitle{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: $mainColor;
+      text-align: center;
+      background: rgba(0,0,0,0.1);
+    }
+
+    //Styles for containers
+    .paginationContainer, .filterRestaurants{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    //Filter checkboxes container
+    .filterRestaurants{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      width: 100%;
+      padding: 0.5em 1em;
+      background: rgba(0,0,0,0.1);
+
+      //Filter checkbox styles
+      .container {
+          display: block;
+          position: relative;
+          padding-left: 2.1875em;
+          margin-bottom: 0.75em;
+          cursor: pointer;
+          font-size: 0.8em;
+          font-weight: bold;
+          color: $mainColor;
+          font-family: $mainFont;
+          input {
+            display: none;
+            &:checked~.checkmark {
+              background-color: $checkboxChecked;
+              &:after {
+                display: block;
+              }
+            }
+          }
+          &:hover input~.checkmark {
+            background-color: $checkboxChecked;
+          }
+          .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0.7em;
+            height: 1.1em;
+            width: 1.1em;
+            background-color: $secondBackground;
+            box-shadow: -1px 1px 4px black;
+            transition: 0.1s;
+            &:after{
+              content: "";
+              margin-left: 0.4em;
+              margin-top: 0.1em;
+              display: none;
+              left: 0.4em;
+              bottom: 0.27em;
+              width: 0.18em;
+              height: 0.45em;
+              border: solid $secondBackground;
+              border-width: 0 3px 3px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+          }
+        }
+      }
+  
+    
+    //Container of all restaurant found
+    .restaurantsNavCon{
+      display: grid;
+      padding: 1em 2em;
+      
+      //Main single nav restaurant container
+      .resDiv{
+        box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+        background:$secondBackground;
+        width: 100%;
+        display: grid;
+        cursor: pointer;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: repeat(3, 1fr);
+        position: relative;
+        color: $mainColor;
+        max-width: 650px;
+        height: 5.625em;
+        margin: 1em auto;
+        transition: 0.3s ease-in;
+
+        //Hover style
+        &:hover{
+          transform: translateY(-10px);
+        }
+
+        //Display block to position
+        span{
+          display: flex;
+          align-items: center;
+        }
+
+        //Arrow image container and image itself
+        .imgArrow{
+          height: 100%;
+          grid-row: 1 / 4;
+          grid-column: 2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .resImg{
+            height: 0.9em;
+            width: auto;
+          }
+        }
+        
+        //Restaurant title, address and raiting style
+        .resTitle{
+          pointer-events: none;
+        }
+        .resCs{
+          font-size: 0.7em;
+          pointer-events: none;
+        }
+        .resAdr{
+          font-size: 0.6em;
+          pointer-events: none;
+        }
+
+      }
+
+    }
+    
+    //Container with pagination buttons
+    .paginationContainer{
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between;
+      max-width: 650px;
+      width: 100%;
+      padding: 1em 2em;
+
+      //Pagination button styles
+      #btn2{
+        margin-left: auto;
+        margin-right: 0;
+      }
+      #btn1, #btn2{
+        border: 2px solid $buttonBg;
+        padding: 0.2em 0.8em;
+        font-size: 1em;
+        font-family: $mainFont;
+        font-weight: bold;
+        color: $mainColor;
+        cursor: pointer;
+        outline: none;
+        background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, $favListBg 50%);
+        background-size: 200% 100%;
+        background-position: bottom right;
+        transition: all .5s ease-out;
+        &:hover{
+          background-position: bottom left;
+        }
+      }
+    }
+    
+    //Style when we can't find town
+    .townNotFound{
+      width: 100%;
+      color: $mainColor;
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 2.3em;
+      padding: 1em 0;
+      text-align: center;
+      letter-spacing: 0.2em;
+    }
+    
+  }
+  
+
+  //Single restaurant section
+  article{
+    //Parent styles
+    background: $secondBackground;
+    color: $mainColor;
+    padding: 1.5em;
+    display: none;
+
+    //Main container for restaurant
+    .restaurantContainer {
+      padding: 1.4em;
+      margin: 0 auto;
+      background: $bodyBg;
+      position: relative;
+      max-width: 1200px;
+      display: grid;
+      grid-gap: 0.8em;
+      box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+      //Add span styles to position
+      span{
+        display: block;
+      }
+
+      //Container for first section
+      #restaurantFirst{
+        display: grid;
+        grid-gap: 0.8em;
+
+        //Header of the restaurant
+        .restaurantIntro{
+        position: relative;
+        display: grid;
+        grid-gap: 0.3em;
+        background: $favListBg;
+        padding: 1em 0 1em 1em;
+        box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+          //Restaurant adress and name style
+          .restaurantName{
+            font-weight: bold;
+            font-size: 1em;
+          }
+          .restaurantAdress{
+            font-size: 0.9em;
+          }
+          .restaurantAdress, .restaurantName{
+            display: block;
+            width: 70%;
+          }
+        }
+
+        //Restaurant image
+        .restaurantImg{
+          height: 5em;
+          width: auto;
+          box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+        }
+
+        //Style when there's not aviable reviews
+        .noRevFound{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          color: $mainColor;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.3em;
+          text-align: center;
+          letter-spacing: 0.1em;
+        }
+
+        //Information about restaurant - average
+        .restaurantAvg{
+          display: grid;
+          background: $favListBg;
+          box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+          padding: 0.5em;
+          .restaurantAvgRating, .restaurantAvgCost{
+            span{
+              font-weight: bold;
+            } 
+          }
+        }
+        //Button to display reviews style
+        .displayReviews{
+          border: 2px solid $buttonBg;
+          padding: 0.2em 0.8em;
+          font-size: 1em;
+          font-family: $mainFont;
+          font-weight: bold;
+          color: $mainColor;
+          cursor: pointer;
+          outline: none;
+          background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, $favListBg 50%);
+          background-size: 200% 100%;
+          background-position: bottom right;
+          transition: all .5s ease-out;
+          margin: 0 auto;
+          max-width: 18em;
+          &:hover{
+            background-position: bottom left;
+          }
+        }
+      }
+
+      //Reviews container
+      .restaurantSpecificInfo{
+        display: none;
+        
+        //Reviews container
+        .reviews{
+          display: grid;
+          grid-gap: 0.8em;
+          //Title of the section
+          .reviewsTitle{
+            font-weight: bold;
+            font-size: 1.2em;
+          }
+          //Single review style
+          .singleReview{
+            display: grid;
+            background: $favListBg;
+            box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+            padding: 0.5em;
+          }
+        }
+      }
+    }
+  }
+
+  //Footer style
+  footer{
+    background: rgba(0,0,0,0.1);
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.7em;
+  }
+
+  //Fav add/remove button global styles
+   .starFav{
+    font-size: 1.2em;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    &:hover{
+      cursor: pointer;
+    }
+    &::before{
+      content: '★';
+      font-size: 1.8em;
+      line-height: 1.2em;
+      letter-spacing: 0.2em;
+      color: $starsBg;
+    }
+    &:checked~::before{
+      color: $bodyBg;
+    }
+   }
+
+   .starFavInput{
+     display: none;
+     &:checked~::before{
+      color: $bodyBg; 
+    }
+   }
+
+  /* Media queries */
+  @media only screen and (min-width: 700px){
+    :root{
+      font-size: 20px;
+    }
+    nav{
+      .filterRestaurants{
+        grid-template-columns: repeat(6,1fr);
+      }
+    }
+  }
+  @media only screen and (min-width: 1080px){
+    :root{
+      font-size: 22px;
+    }
+  }
