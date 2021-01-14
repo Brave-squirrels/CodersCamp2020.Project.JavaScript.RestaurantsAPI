@@ -290,64 +290,54 @@ header, main, footer{
 
       //Filter checkbox styles
       .container {
-        display: block;
-        position: relative;
-        padding-left: 2.1875em;
-        margin-bottom: 0.75em;
-        cursor: pointer;
-        font-size: 0.8em;
-        font-weight: bold;
-        color: $mainColor;
-        font-family: $mainFont;
-    }
-    
-    .container input {
-        display: none;
-    }
-    
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0.7em;
-        height: 1.1em;
-        width: 1.1em;
-        background-color: $secondBackground;
-        box-shadow: -1px 1px 4px black;
-        transition: 0.1s;
-    }
-    
-    .container:hover input~.checkmark {
-        background-color: $checkboxChecked;
-    }
-    
-    .container input:checked~.checkmark {
-        background-color: $checkboxChecked;
-    }
-    
-    .checkmark:after {
-        content: "";
-        margin-left: 0.4em;
-        margin-top: 0.1em;
-        display: none;
-    }
-    
-    .container input:checked~.checkmark:after {
-        display: block;
-    }
-    
-    .container .checkmark:after {
-        left: 0.4em;
-        bottom: 0.27em;
-        width: 0.18em;
-        height: 0.45em;
-        border: solid $secondBackground;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-    
-    }
+          display: block;
+          position: relative;
+          padding-left: 2.1875em;
+          margin-bottom: 0.75em;
+          cursor: pointer;
+          font-size: 0.8em;
+          font-weight: bold;
+          color: $mainColor;
+          font-family: $mainFont;
+          input {
+            display: none;
+            &:checked~.checkmark {
+              background-color: $checkboxChecked;
+              &:after {
+                display: block;
+              }
+            }
+          }
+          &:hover input~.checkmark {
+            background-color: $checkboxChecked;
+          }
+          .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0.7em;
+            height: 1.1em;
+            width: 1.1em;
+            background-color: $secondBackground;
+            box-shadow: -1px 1px 4px black;
+            transition: 0.1s;
+            &:after{
+              content: "";
+              margin-left: 0.4em;
+              margin-top: 0.1em;
+              display: none;
+              left: 0.4em;
+              bottom: 0.27em;
+              width: 0.18em;
+              height: 0.45em;
+              border: solid $secondBackground;
+              border-width: 0 3px 3px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+          }
+        }
+      }
   
     
     //Container of all restaurant found
