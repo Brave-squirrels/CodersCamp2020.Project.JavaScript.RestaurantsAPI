@@ -96,6 +96,61 @@ header, main, footer{
       font-size: 2em;
       cursor: pointer;
     }
+
+    .resDiv{
+      box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+      background:$secondBackground;
+      width: 100%;
+      display: grid;
+      cursor: pointer;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: repeat(3, 1fr);
+      position: relative;
+      color: $mainColor;
+      max-width: 650px;
+      height: 5.625em;
+      margin: 1em auto;
+      transition: 0.3s ease-in;
+
+      //Hover style
+      &:hover{
+        transform: translateY(-10px);
+      }
+
+      //Display block to position
+      span{
+        display: flex;
+        align-items: center;
+      }
+
+      //Arrow image container and image itself
+      .imgArrow{
+        height: 100%;
+        grid-row: 1 / 4;
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .resImg{
+          height: 0.9em;
+          width: auto;
+        }
+      }
+      
+      //Restaurant title, address and raiting style
+      .resTitle{
+        pointer-events: none;
+      }
+      .resCs{
+        font-size: 0.7em;
+        pointer-events: none;
+      }
+      .resAdr{
+        font-size: 0.6em;
+        pointer-events: none;
+      }
+    }
+
     .favTitle{
       height: 8%;
       display: flex;
@@ -104,6 +159,15 @@ header, main, footer{
       align-items: center;
       justify-content: space-between;
       margin: 0.5em 0;
+      .logo{
+        height: 2.2em;
+        width: auto;
+      }
+      .logoTitle{
+        padding-left: 0.7em;
+        font-weight: bold;
+        text-align: center;
+      }
     }
     
     .favourites {
@@ -122,6 +186,30 @@ header, main, footer{
         font-size: 1.6em;
         text-transform: uppercase;
         text-align: center;
+      }
+    }
+
+    //Export button
+    .exportFavData {
+      height: 50%;
+      font-size: 1em;
+      margin: 0 0.5em 0 auto;
+      border: 2px solid $buttonBg;
+      padding: 0.3em 0.9em;
+      font-size: 1.4em;
+      font-family: $mainFont;
+      font-weight: bold;
+      color: $mainColor;
+      cursor: pointer;
+      outline: none;
+      display: block;
+      margin: 0.5em auto 0 auto;
+      background: linear-gradient(to right, $bodyBg 50%, $mainBackground 50%);
+      background-size: 200% 100%;
+      background-position: bottom right;
+      transition: all .5s ease-out;
+      &:hover{
+        background-position: bottom left;
       }
     }
   }
