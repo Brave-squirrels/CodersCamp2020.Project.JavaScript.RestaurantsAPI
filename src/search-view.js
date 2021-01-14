@@ -47,7 +47,7 @@ function display(e) {
         mainSection.style.height = '85%';
         const buttons = document.querySelector('#paginationContainer');
         const divData = document.querySelector('#restaurantsNavCon');
-        const filter = document.querySelector('.filtred');
+        const filter = document.querySelector('#filterRestaurants');
         let navData = [];
         //Validation
         if (result[0] === 'incorrect syntax') {
@@ -100,19 +100,11 @@ function display(e) {
 
             //Display filters
             cuisinesAll.forEach((element) => {
-                // filter.innerHTML += `
-                //     <label for="${element}" id="filterLabel" class='container'>${element}
-                //     <input type="checkbox" id="${element}" name="cuisineFilter" value="${element}" class="chkId">
-                //     <span class='checkmark'></span>
-                //     </label>
-                // `;
                 filter.innerHTML += `
-                        <li>
-                            <label for="${element}" id="filterLabel" class='container'>${element}
-                            <input type="checkbox" id="${element}" name="cuisineFilter" value="${element}" class="chkId">
-                            <span class='checkmark'></span>
-                            </label>
-                        </li>
+                        <label for="${element}" id="filterLabel" class='container'>${element}
+                        <input type="checkbox" id="${element}" name="cuisineFilter" value="${element}" class="chkId">
+                        <span class='checkmark'></span>
+                        </label>
                     `;
             })
 
