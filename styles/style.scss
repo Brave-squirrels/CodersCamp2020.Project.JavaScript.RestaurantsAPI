@@ -75,28 +75,58 @@ header, main, footer{
 //Main styles
   
   //Fav-list style
+   aside{
+    //Parent style
+    box-sizing: border-box;
+    background: $favListBg;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 0;
+    top: 0;
+    right: -4em;
+    transition: 0.5s;
+    font-size: 1em;
+    padding: 1em 2em;
+    //Close trigger style
+    .closeFav{
+      position: absolute;
+      top: 0; 
+      right: 0.3em;
+      font-size: 2em;
+      cursor: pointer;
+    }
+    .favTitle{
+      height: 8%;
+      display: flex;
+      font-size: 1.2em;
+      font-family: $logoFont;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.5em 0;
+    }
+    
+    .favourites {
+      display: grid;
+      grid-gap: 1em;
+      padding: 1em 1em;
+    }
+    
+    .noFav{
+      div{ 
+      font-weight: bold;
+      text-align: center;
+      }
+      h1 {
+        color: $mainColor;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+  }
 
-    aside{
-     box-sizing: border-box;
-     background: $favListBg;
-     position: fixed;
-     z-index: 1;
-     height: 100%;
-     width: 0;
-     top: 0;
-     right: -4em;
-     transition: 0.5s;
-     font-size: 1em;
-     padding: 1em 2em;
-   }
-
-   .closeFav{
-     position: absolute;
-     top: 0; 
-     right: 0.3em;
-     font-size: 2em;
-     cursor: pointer;
-   }
+  
 
 
   //Header styles

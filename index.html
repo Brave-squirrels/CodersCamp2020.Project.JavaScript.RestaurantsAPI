@@ -15,12 +15,27 @@
     </div>
     <!--List of fav restaurants-->
     <aside>
-        <span id='closeFav' class='closeFav'>&times;</span>
+        <div>
+            <span id='closeFav' class='closeFav'>&times;</span>
+            <div class="favTitle">
+                <img src="assets/logo.png" alt="logo" class='logo'>
+                <span class="logoTitle">Favourites</span>
+                <input type="submit" value='Export' id='exportFavData' class='exportFavData'>
+            </div>
+        </div>
         <!--Display if anything in localStorage-->
         <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
-        List of fav restaurants
-        <!--Display when localStorage is empty-->
-        No fav restaurants :c
+        <div>
+            <div id="favourites" class="favourites">
+                <!-- test environment-->
+
+            </div>
+            <!--Display when localStorage is empty-->
+            <div id="noFav" class="noFav">
+       
+
+            </div>
+        </div>
     </aside>
 
     <!--Header--> 
