@@ -5,7 +5,6 @@
     --mainBackground: rgba(0, 0, 0, 0.01);
     --favListBg: #fff;
     --secondBackground: #FCF7FC;
-    --checkboxChecked: rgba(184, 182, 182, 0.774);
     --mainFont: 'Roboto', sans-serif;
     --logoFont: 'Montserrat', sans-serif;
     --buttonBg: #383738;
@@ -306,27 +305,11 @@ nav {
 }
 
 .filterRestaurants {
-    list-style: none;
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
     padding: 0.5em 1em;
     background: rgba(0, 0, 0, 0.1);
-}
-
-.filterRestaurants a,
-.filterRestaurants a:visited {
-    text-decoration: none;
-    color: var(--mainFont);
-}
-
-#listFilter {
-    list-style: none;
-}
-
-.filtred {
-    text-align: left;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .filterTitle {
@@ -691,22 +674,19 @@ input::placeholder {
     height: 1.1em;
     width: 1.1em;
     background-color: var(--secondBackground);
-    box-shadow: -1px 1px 4px black;
-    transition: 0.1s;
 }
 
 .container:hover input~.checkmark {
-    background-color: var(--checkboxChecked);
+    background-color: #ccc;
 }
 
 .container input:checked~.checkmark {
-    background-color: var(--checkboxChecked);
+    background-color: #949494;
 }
 
 .checkmark:after {
     content: "";
-    margin-left: 0.4em;
-    margin-top: 0.1em;
+    position: absolute;
     display: none;
 }
 
