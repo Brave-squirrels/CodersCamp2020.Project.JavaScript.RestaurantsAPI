@@ -191,19 +191,17 @@ header, main, footer{
 
     //Export button
     .exportFavData {
-      height: 50%;
-      font-size: 1em;
+      height: 2em;
+      font-size: 0.8em;
       margin: 0 0.5em 0 auto;
       border: 2px solid $buttonBg;
       padding: 0.3em 0.9em;
-      font-size: 1.4em;
       font-family: $mainFont;
       font-weight: bold;
       color: $mainColor;
       cursor: pointer;
       outline: none;
       display: block;
-      margin: 0.5em auto 0 auto;
       background: linear-gradient(to right, $bodyBg 50%, $mainBackground 50%);
       background-size: 200% 100%;
       background-position: bottom right;
