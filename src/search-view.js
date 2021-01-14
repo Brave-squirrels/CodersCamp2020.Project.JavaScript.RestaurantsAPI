@@ -132,7 +132,6 @@ function display(e){
                             result.forEach((element)=>{
                                 const splitArr = element.cuisines.split(',');
                                 const formatedArr = splitArr.map(el=>el.trim());
-                                console.log(formatedArr);
                                 const rez = filterArray.some(r => formatedArr.includes(r));
                                 if(rez){
                                     pushTemplate(element,tmpNavData);
