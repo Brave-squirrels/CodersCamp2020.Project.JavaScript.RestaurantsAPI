@@ -21,7 +21,10 @@
             <div class="favTitle">
                 <img src="assets/logo.png" alt="logo" class='logo'>
                 <span class="logoTitle">Favourites</span>
-                <input type="submit" value='Export' id='exportFavData' class='exportFavData'>
+                <div class="favButtons">
+                    <input type="submit" value='Send' id='modalOpenButton' class='modalOpenButton'>
+                    <input type="submit" value='Export' id='exportFavData' class='exportFavData'>
+                </div>
             </div>
         </div>
         <!--Display if anything in localStorage-->
@@ -38,7 +41,25 @@
             </div>
         </div>
     </aside>
+    
+    <!-- Overlay Section -->
+    <div id="overlay"></div>
 
+    <!-- Modal Section -->
+        <div id="modal" class="modal">
+            <div class="modalHeader">
+                <div class="modalTitle">Send your favourite restaurant list via e-mail</div>
+                <button id="modalCloseButton" class="modalCloseButton">&times;</button>
+            </div>
+            <div class="modalBody">
+                Write an e-mail address below and send your favourite restaurant list!
+                <form class="sendEmailForm">
+                    <input type="text" id="sendEmailInput" class="sendEmailInput" placeholder="Your email">
+                    <input type="submit" value="Send" class="sendEmailButton">
+                </form>
+            </div>
+        </div>
+    
     <!--Header--> 
     <header>
         <div class="siteTitle">
@@ -100,7 +121,7 @@
     <footer>
         &#169; Copyrights by Brave Squirrels
     </footer>
-      
+    
     <script src="src/index.js"></script>
 </body>
 </html>
