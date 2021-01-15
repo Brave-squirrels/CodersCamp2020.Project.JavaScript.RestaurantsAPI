@@ -26,8 +26,32 @@ const resBasicInfoTemplate = (resObj) => {
         checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}'  value='${resObj.id}'>
         <label  class="starFav" for='${resObj.id}' ></label>`;
     }
+
+
+    let RestaurantPriceRating
+    switch(resObj.priceRaiting) {
+        case 1:
+            RestaurantPriceRating = '$'
+            break
+        case 2:
+            RestaurantPriceRating = '$$'
+            break
+        case 3:
+            RestaurantPriceRating = '$$$'
+            break
+        case 4:
+            RestaurantPriceRating = '$$$$'
+            break
+        default:
+            RestaurantPriceRating = ''
+            break
+    }
+
     return `
-    <div class="restaurantIntro">
+    <div class="restaurantInfo">
+
+        <img src="https://www.eldynamic.com/en/img/restaurant.jpeg" alt="restauration" class='restaurantImg'>
+        <div class="restaurantIntro">
 
         <span class='restaurantName'>
             ${resObj.name}
@@ -36,12 +60,15 @@ const resBasicInfoTemplate = (resObj) => {
         <span class='restaurantAdress'>
             ${resObj.address}
         </span>
-    ${checkbox}
+        
 
+        </div>
+        
+        ${checkbox}
+        
+    
+        
     </div>
-
-    <img src="https://www.eldynamic.com/en/img/restaurant.jpeg" alt="restauration" class='restaurantImg'>
-
     <div class="restaurantAvg">
 
         <span class='restaurantAvgRating'>
@@ -49,7 +76,7 @@ const resBasicInfoTemplate = (resObj) => {
         </span>
 
         <span class='restaurantAvgCost'>
-            <span>Price rating:</span> ${resObj.priceRaiting}zł
+            <span>Price rating:</span> ${RestaurantPriceRating}
         </span>
     </div>
 
