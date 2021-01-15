@@ -764,6 +764,88 @@ header, main, footer{
     }
    }
 
+  //Send e-mail button opening modal box
+  .modalOpenButton {
+    position: absolute;
+    top: 0.5em;
+    right: 2em;
+    font-size: 1.8em;
+    line-height: 1.2em;
+    letter-spacing: 0.2em;
+    color: $starsBg;
+    border: none;
+    outline: none;
+    background: none;
+    &:hover{
+      cursor: pointer;
+      color: $bodyBg; 
+    }
+  }
+
+  //Modal box for e-mail send after mark restaurant as favourite
+   .modal {
+     position: fixed;
+     display: grid;
+     grid-gap: 0.3em;
+     background: $favListBg;
+     padding: 1em 0 1em 1em;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%) scale(0);
+     transition: 200ms ease-in-out;
+     box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+     z-index: 10;
+     width: 60%;
+     max-width: 80%;
+   }
+
+   #modal.active {
+     transform: translate(-50%, -50%) scale(1);
+   }
+
+   .modalHeader {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   }
+
+   .modalHeader .modalTitle {
+     font-size: 1em;
+     font-weight: bold;
+   }
+
+   .modalHeader .modalCloseButton {
+      position: absolute;
+      right: 14px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 2em;
+   }
+
+   .modalBody {
+    font-size: 0.9em;
+   }
+
+  //Overlay for modal box
+  #overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+  }
+
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
   /* Media queries */
   @media only screen and (min-width: 700px){
     :root{

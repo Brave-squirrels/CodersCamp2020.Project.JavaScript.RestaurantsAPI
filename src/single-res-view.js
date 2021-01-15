@@ -13,8 +13,28 @@ const createTemplateFirst = (resObj) => {
             ${resObj.address}
         </span>
 
+    <!-- Button for e-mail send -->
+    <button id="modalOpenButton" class="modalOpenButton">Send</button>
+
     <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
-    <label  class="starFav" for='${resObj.id}' ></label>
+    <label class="starFav" for='${resObj.id}'></label>
+
+    <!-- Modal Section -->
+    <div id="modal" class="modal">
+        <div class="modalHeader">
+            <div class="modalTitle">Send e-mail notification about that restaurant</div>
+            <button id="modalCloseButton" class="modalCloseButton">&times;</button>
+        </div>
+        <div class="modalBody">
+            Write an e-mail address below and send notification about that restaurant directly!
+            <form>
+                <input type="text" placeholder="e-Mail">
+                <button>Submit</button>
+            </form>
+        </div>
+    </div>
+    <div id="overlay"></div>
+
 
     </div>
 
@@ -106,6 +126,40 @@ const displayRestaurant = (result, resId)=>{
                     revCnt.classList.add('revDisplayed');
                 }
             });
+            
+
+            //Display and hide modal box via envelope button
+            const openModalButton = document.querySelector('#modalOpenButton');
+            const closeModalButton = document.querySelector('#modalCloseButton');
+            const overlay = document.getElementById('overlay');
+            
+            openModalButton.addEventListener('click', () => {
+                const modal = document.querySelector('.modal');
+                openModal(modal);
+            })
+            
+            function openModal(modal) {
+                if (modal == null) return;
+                overlay.classList.add('active');
+                modal.classList.add('active');
+            }
+
+            closeModalButton.addEventListener('click', () => {
+                const modal = document.querySelector('.modal');
+                closeModal(modal);
+            })
+
+            function closeModal(modal) {
+                if (modal == null) return;
+                modal.classList.remove('active');
+                overlay.classList.remove('active');            
+            }
+
+            //Close modal clicking outside the modal
+            overlay.addEventListener('click', () => {
+                const modal = document.querySelector('.modal.active');
+                closeModal(modal);
+            })
 }
 
 module.exports = displayRestaurant;
