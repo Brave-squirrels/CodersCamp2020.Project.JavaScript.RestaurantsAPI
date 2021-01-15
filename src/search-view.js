@@ -3,24 +3,7 @@ const {mainFunc, fetchUserReviews} = require('./restaurants-api');
 const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 const displayRestaurant = require('./single-res-view');
-
-//Creating template string for restaurant nav
-const pushTemplate = (obj, arr)=>{
-    arr.push(`<div id='resDiv' class='resDiv' data-name="${obj.id}">
-                <span class='resTitle'>
-                    ${obj.name}
-                </span>
-                <span class='resCs'>
-                    ${obj.address}
-                </span>
-                <span class='resAdr'>
-                    ${obj.rating}
-                </span>
-                <div class='imgArrow'>
-                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                </div>
-            </div>`);
-}
+const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
 
 //Display data when click on search button
 function display(e){
@@ -28,15 +11,18 @@ function display(e){
     let rez;
     //Prevent from reloading page on submit 
     e.preventDefault();
-    document.querySelector('main').style.height = '79%';
     //Get DOM elements
     const val = document.querySelector('#townSearch');
     const container = document.querySelector('nav');
     const mainSection = document.querySelector('main');
 
+    mainSection.style.height = '79%';
+    
+
     //Resets container by default
     container.style.display = 'none';
-    document.querySelector('article').style.display = 'none';
+    const resCnt = document.querySelector('article');
+    resCnt.style.display = 'none';
     //Format the input
     const inputValue = val.value.trim();
 
@@ -80,7 +66,7 @@ function display(e){
                 container.style.display = 'grid';
                 result.forEach((element)=>{
                     //data-name - get this on click and base on that display restaurant
-                    pushTemplate(element,navData);
+                    navTemplate(element,navData);
                 });
 
                 //Default append data on the first site
@@ -109,8 +95,8 @@ function display(e){
                 })
 
                 
-                 //Saving the array of data
-                 let savedNavData = navData;
+                //Saving the array of data
+                let savedNavData = navData;
 
                 const filterRestaurants = (e)=>{
                     //Checking target of the event
@@ -134,7 +120,7 @@ function display(e){
                                 const formatedArr = splitArr.map(el=>el.trim());
                                 const rez = filterArray.some(r => formatedArr.includes(r));
                                 if(rez){
-                                    pushTemplate(element,tmpNavData);
+                                    navTemplate(element,tmpNavData);
                                 }
 
                             })
@@ -178,16 +164,19 @@ function display(e){
                     if(e.target.id === 'resDiv'){
                         //Fetching reviews and passing into display function
                         fetchUserReviews(resId, result).then(function(res){
-                            const resCnt = document.querySelector('article');
                             resCnt.style.display = 'none';
                             displayRestaurant(res, resId);
-                            resCnt.scrollIntoView();
+                            resCnt.scrollIntoView({
+                                behavior: 'smooth'
+                            });
                         });
                     }
                 });
 
                 //Scroll to the nav after submit
-                container.scrollIntoView();
+                container.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
             loading.style.display='none';
         })
