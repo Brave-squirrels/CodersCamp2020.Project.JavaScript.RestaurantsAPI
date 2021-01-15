@@ -1,6 +1,6 @@
 const {mainFunc, fetchUserReviews} = require('./restaurants-api');
 const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
-const manageLS = require('./add-removeLS');
+const {manageLSSingle,manageLSFav} = require('./add-removeLS');
 
 //display restaurant function
 const displayRestaurant = (result, resId)=>{
@@ -41,13 +41,12 @@ const displayRestaurant = (result, resId)=>{
                 }
             });
 
-
             //Add trigger to star to save or remove from localStorage
-            const starTrigger = document.getElementById(`${objOfReviews.id}`);
+            const starTrigger = document.querySelector(`#${CSS.escape(objOfReviews.id)}`);
+            starTrigger.addEventListener('click',()=>{
+                manageLSSingle(objOfReviews, starTrigger);
+            });
 
-            starTrigger.addEventListener('click', ()=>{
-                manageLS(objOfReviews, starTrigger);
-            })
 
 }
 

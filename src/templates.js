@@ -20,10 +20,10 @@ const navTemplate = (obj, arr)=>{
 const resBasicInfoTemplate = (resObj) => {
     let checkbox = ``;
     if(localStorage.getItem(resObj.id) !== null){
-        checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}' checked>
+        checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
         <label  class="starFav" for='${resObj.id}' ></label>`;
     }else{
-        checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
+        checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}'  value='${resObj.id}'>
         <label  class="starFav" for='${resObj.id}' ></label>`;
     }
     return `
