@@ -4,6 +4,8 @@ const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 const displayRestaurant = require('./single-res-view');
 const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
+const filterNav = require('./filter-nav');
+
 
 //Display data when click on search button
 function display(e){
@@ -83,17 +85,19 @@ function display(e){
                     })
                 })
 
-                
+                const arrayOfHTML = [];
                 //Display filters
                 cuisinesAll.forEach((element)=>{
-                    filter.innerHTML += `
+                    arrayOfHTML.push(`
                         <label for="${element}" id="filterLabel" class='container'>${element}
                         <input type="checkbox" id="${element}" name="cuisineFilter" value="${element}" class="chkId">
                         <span class='checkmark'></span>
                         </label>
-                    `;
+                    `);
                 })
 
+                //Hide and show more filters
+                filterNav(arrayOfHTML, filter);
                 
                 //Saving the array of data
                 let savedNavData = navData;
@@ -146,6 +150,7 @@ function display(e){
                         generateBtn(e);
                         append(navData, buttons, divData);
                     }
+                    
                 }
 
                 //Run filter

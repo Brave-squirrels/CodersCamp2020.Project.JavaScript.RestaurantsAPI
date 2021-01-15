@@ -569,6 +569,29 @@ header, main, footer{
       letter-spacing: 0.2em;
     }
     
+    .filterBtnCnt{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .filterBtn{
+        border: 2px solid $buttonBg;
+        padding: 0.2em 0.8em;
+        font-size: 1em;
+        font-family: $mainFont;
+        font-weight: bold;
+        color: $mainColor;
+        cursor: pointer;
+        outline: none;
+        background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, $favListBg 50%);
+        background-size: 200% 100%;
+        background-position: bottom right;
+        transition: all .5s ease-out;
+        &:hover{
+          background-position: bottom left;
+        }
+      }
+    }
   }
   
 
