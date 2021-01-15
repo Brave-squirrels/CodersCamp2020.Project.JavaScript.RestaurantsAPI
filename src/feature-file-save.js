@@ -1,22 +1,27 @@
 const { create } = require('domain');
 const fs = require('fs');
 
-const createFolder = async() => {
-    /*
-        @ creates new folder if one does not simply exist... my precious...
-    */
 
+
+/**
+ *  @create folder if one does not simply exist 
+ */
+
+const createFolder = async() => {
     fs.mkdir('FavouriteRestaurants', { recursive: true }, err => {
         if (err) throw new Error(err);
     })
 }
 
-const createTxtFile = async(restaurants) => {
-    /*
-        - parameters (object array)
-        @ creates txt file with favourite restaurants name
-    */
 
+
+/**
+ * @param {array} restaurants 
+ * 
+ * @save basic info about favourite restaurants to txt file
+ */
+
+const createTxtFile = async(restaurants) => {
     await createFolder();
 
     await restaurants.forEach(restaurant => {
@@ -25,5 +30,7 @@ const createTxtFile = async(restaurants) => {
         })
     })
 }
+
+
 
 module.exports = createTxtFile;
