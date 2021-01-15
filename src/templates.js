@@ -18,6 +18,14 @@ const navTemplate = (obj, arr)=>{
 
 //Template for restaurant main info
 const resBasicInfoTemplate = (resObj) => {
+    let checkbox = ``;
+    if(localStorage.getItem(resObj.id) !== null){
+        checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
+        <label  class="starFav" for='${resObj.id}' ></label>`;
+    }else{
+        checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}'  value='${resObj.id}'>
+        <label  class="starFav" for='${resObj.id}' ></label>`;
+    }
     return `
     <div class="restaurantIntro">
 
@@ -28,9 +36,7 @@ const resBasicInfoTemplate = (resObj) => {
         <span class='restaurantAdress'>
             ${resObj.address}
         </span>
-
-    <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
-    <label  class="starFav" for='${resObj.id}' ></label>
+    ${checkbox}
 
     </div>
 
