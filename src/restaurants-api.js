@@ -2,6 +2,27 @@ const fetch = require('node-fetch');
 const saveInfo = require('./cookies');
 
 /**
+ * @declare class Restaurant with basic informations about it inside
+ */
+
+class Restaurant {
+    constructor(id, name, logo, cuisines, priceRaiting, address, phone, rating, reviews, city) {
+        this.id = id,
+            this.name = name,
+            this.logo = logo,
+            this.cuisines = cuisines,
+            this.priceRaiting = priceRaiting,
+            this.address = address,
+            this.phone = phone,
+            this.rating = rating,
+            this.reviews = reviews,
+            this.city = city
+    }
+}
+
+
+
+/**
  * 
  * @param {string} cityName - name of the city from users input
  * 
@@ -36,6 +57,7 @@ const getCookies = (cityName, restaurants = []) => {
         cookie = JSON.parse(cookie);
         if (cookie.city === cityName) {
             restaurants.push(cookie);
+            return;
         }
     })
     return restaurants;
@@ -99,18 +121,18 @@ const fetchCity = async(url) => {
 
 const fetchRestaurants = async(url) => {
     const addRestaurant = (item) => {
-        restaurantsFromCity.push({
-            id: item.restaurant.id,
-            name: item.restaurant.name,
-            logo: item.restaurant.featured_image,
-            cuisines: item.restaurant.cuisines,
-            priceRaiting: item.restaurant.price_range,
-            address: item.restaurant.location.address,
-            phone: item.restaurant.phone_numbers,
-            rating: item.restaurant.user_rating.aggregate_rating,
-            reviews: [],
-            city: replacePolishChar(item.restaurant.location.city)
-        })
+        const restaurant = new Restaurant(
+            item.restaurant.id,
+            item.restaurant.name,
+            item.restaurant.featured_image,
+            item.restaurant.cuisines,
+            item.restaurant.price_range,
+            item.restaurant.location.address,
+            item.restaurant.phone_numbers,
+            item.restaurant.user_rating.aggregate_rating, [],
+            replacePolishChar(item.restaurant.location.city)
+        );
+        restaurantsFromCity.push(restaurant);
     }
 
     let result = await fetchData(url);
@@ -230,9 +252,8 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
 
     restaurants.forEach(restaurant => {
         if (restaurant.id == restaurantId) {
-            listOfReviews.forEach(review => {
-                restaurant.reviews.push(review);
-            })
+            restaurant.reviews = [...listOfReviews];
+            return;
         }
     })
 
