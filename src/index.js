@@ -8,3 +8,4 @@ document.addEventListener('click', displayFav);
 
 //Handle search form
 document.querySelector('#searchForm').addEventListener('submit', display);
+

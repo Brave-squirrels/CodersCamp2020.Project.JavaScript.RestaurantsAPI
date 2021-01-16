@@ -1,6 +1,6 @@
 const {mainFunc, fetchUserReviews} = require('./restaurants-api');
 const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
-
+const {manageLSSingle,manageLSFav} = require('./add-removeLS');
 
 //display restaurant function
 const displayRestaurant = (result, resId)=>{
@@ -40,6 +40,14 @@ const displayRestaurant = (result, resId)=>{
                     })
                 }
             });
+
+            //Add trigger to star to save or remove from localStorage
+            const starTrigger = document.querySelector(`#${CSS.escape(objOfReviews.id)}`);
+            starTrigger.addEventListener('click',()=>{
+                manageLSSingle(objOfReviews, starTrigger);
+            });
+
+
 }
 
 module.exports = displayRestaurant;
