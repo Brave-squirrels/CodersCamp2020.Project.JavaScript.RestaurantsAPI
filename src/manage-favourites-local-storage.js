@@ -1,11 +1,11 @@
 //Add restaurant to fav and change the style of stars and Fav view star
 import {isFavourite} from './favourites-feature';
+import displayRestaurant from "./single-res-view";
 
 const favouritesKey = 'FAVOURITE_RESTAURANTS'
 
 const manageFavouriteRestaurantNavigation = (e) => {
-    console.log(e)
-    if (e.target.className !== 'resTitle'){
+    if (e.target.className !== 'resDivFav'){
         return
     }
     console.log(e)
@@ -27,7 +27,7 @@ const manageFavouriteRestaurantNavigation = (e) => {
         }
     })
     console.log('ADD DISPLAYRESTAURANT F-CTION')
-    // displayRestaurant([favouriteInArray], favouriteInArray.id)
+    displayRestaurant([favouriteInArray], favouriteInArray.id)
 
 }
 const manageSingleFavourite = (objToStore, trigger)=>{

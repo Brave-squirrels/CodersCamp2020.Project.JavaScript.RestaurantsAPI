@@ -57,9 +57,9 @@ const generateFavourites = () => {
     restaurants.forEach((restaurant) => {
         if (isFavourite(restaurant.id)) {
             favouritesCount++;
-            const divId = `id="${restaurant.id}"`;
-            favText += '<div class=\'resDivFav\' >' +
-            '<span class=\'resTitle\' id="${restaurant.id}">' + restaurant.name + '</span>' +
+            const divId = `id="${restaurant.id}">`;
+            favText += '<div class=\'resDivFav\' ' + divId +
+            '<span class=\'resTitle\' >' + restaurant.name + '</span>' +
             '<span class=\'resCs\'>' + restaurant.rating + '</span>' +
             '<span class=\'resAdr\'>' + restaurant.address + '</span>' +
             '<div class=\'addFav\'>' +
