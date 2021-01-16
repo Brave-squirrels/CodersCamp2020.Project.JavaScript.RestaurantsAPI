@@ -4,20 +4,18 @@ const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 const displayRestaurant = require('./single-res-view');
 const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
-const filterNav = require('./filter-nav');
+const {filterNav, addFilterContent} = require('./filter-nav');
 
 
 //Display data when click on search button
 function display(e){
     resetState()
-    let rez;
     //Prevent from reloading page on submit 
     e.preventDefault();
     //Get DOM elements
     const val = document.querySelector('#townSearch');
     const container = document.querySelector('nav');
     const mainSection = document.querySelector('main');
-
     mainSection.style.height = '84%';
     
 
@@ -32,10 +30,19 @@ function display(e){
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
     mainFunc(inputValue).then(function(result){
-            mainSection.style.height = '90%';
+
+            //Reset DOM
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');
+            const filterViewCnt = document.querySelector('#restOfTheFilters');
+            const filterBtn = document.querySelector('#filterBtn');
+            filterViewCnt.style.visibility = 'hidden';
+            filterViewCnt.style.maxHeight = '0';
+            filterBtn.classList.add('notFiltered');
+            filterBtn.innerHTML = 'Show more filters';
+            mainSection.style.height = '90%';
+            
             let navData = [];
             //Validation
             if(result[0]==='incorrect syntax'){
@@ -96,6 +103,8 @@ function display(e){
                     `);
                 })
 
+                //AppendFilters
+                addFilterContent(arrayOfHTML, filter);
                 //Hide and show more filters
                 filterNav(arrayOfHTML, filter);
                 
@@ -154,7 +163,7 @@ function display(e){
                 }
 
                 //Run filter
-                filter.addEventListener('click', filterRestaurants);
+                document.addEventListener('click', filterRestaurants);
 
                 //To append pass array with data, element that will contain the buttons, element that will contain data
                 //Add event to generate buttons
