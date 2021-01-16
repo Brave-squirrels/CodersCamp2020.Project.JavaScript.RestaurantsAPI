@@ -1,4 +1,7 @@
 import 'regenerator-runtime/runtime'
+import displayRestaurant from "./single-res-view";
+import {manageFavouriteRestaurant} from "./favourites-feature";
+import {manageFavouriteRestaurantNavigation} from "./manage-favourites-local-storage";
 
 const display = require('../src/search-view');
 const displayFav = require('../src/nav-bar');
@@ -7,6 +10,7 @@ const favourites = require('../src/favourites-feature');
 //Handle the favList
 document.addEventListener('click', displayFav);
 document.addEventListener('click', favourites.manageFavouriteRestaurant);
+document.addEventListener('click', manageFavouriteRestaurantNavigation)
 
 var addFavRestaurant = document.getElementById("favIcon");
 addFavRestaurant.addEventListener('click', favourites.generateFavourites);
