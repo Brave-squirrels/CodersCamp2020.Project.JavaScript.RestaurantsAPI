@@ -29,7 +29,7 @@ const displayRestaurant = (result, resId)=>{
                 if(revCnt.classList.contains('revDisplayed')){
                     revCnt.style.display = 'none';
                     revCnt.classList.remove('revDisplayed');
-                    document.querySelector('article').scrollIntoView({
+                    resCnt.scrollIntoView({
                         behavior: 'smooth'
                     })
                 }else{
