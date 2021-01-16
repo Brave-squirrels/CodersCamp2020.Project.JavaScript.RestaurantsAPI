@@ -176,13 +176,15 @@ function display(e){
                 document.addEventListener('click', function(e){
                     const resId = e.target.dataset.name;
                     if(e.target.id === 'resDiv'){
+                        const singleRest = document.querySelector('#restaurantsNavCon')
+                        const pageButt = document.getElementById('paginationContainer')
                         //Fetching reviews and passing into display function
                         fetchUserReviews(resId, result).then(function(res){
-                            resCnt.style.display = 'none';
+                            // resCnt.style.display = 'none';
                             displayRestaurant(res, resId);
-                            resCnt.scrollIntoView({
-                                behavior: 'smooth'
-                            });
+                                                        
+                            singleRest.style.display = 'none';
+                            pageButt.style.display = 'none';
                         });
                     }
                 });

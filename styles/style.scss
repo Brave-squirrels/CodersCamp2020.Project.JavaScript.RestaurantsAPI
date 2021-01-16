@@ -113,6 +113,12 @@ aside {
         height: 5.625em;
         margin: 1em auto;
         transition: 0.3s ease-in;
+
+        &:active {
+            animation-name: hi;
+            animation-duration: 2s;
+        }
+
         //Hover style
         &:hover {
             transform: translateY(-10px);
@@ -644,12 +650,25 @@ nav {
     }
 }
 
+@keyframes hi {
+    0% {
+        left: -50vw;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
 //Single restaurant section
 article {
     //Parent styles
+    animation-name: hi;
+    animation-duration: 2s;
     color: $mainColor;
     padding: 2em;
     display: none;
+
     //Main container for restaurant
     .restaurantContainer {
         padding: 1.4em;
