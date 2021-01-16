@@ -32,7 +32,7 @@ function display(e){
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
     mainFunc(inputValue).then(function(result){
-            mainSection.style.height = '85%';
+            mainSection.style.height = '90%';
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');

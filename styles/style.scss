@@ -26,7 +26,8 @@ body{
   padding: 0;
   margin: 0;
   height: 100vh;
-  background: $bodyBg;
+  background-image: url('../assets/table.jpg');
+  background-attachment: fixed;
   font-family: $mainFont;
   overflow-x: hidden;
 }
@@ -218,7 +219,8 @@ header, main, footer{
   //Header styles
   header{
     //Main header styles
-    height: 15%;
+    background-color: $bodyBg;
+    height: 10%;
     display: grid;
     grid-template-columns: 1fr 15%;
     font-size: 1.2em;
@@ -276,8 +278,8 @@ header, main, footer{
   //Main search-form style
   main{
     //Parent style
-    background: $secondBackground;
-    height: 79%;
+    background: rgba(0,0,0, 0.3);
+    height: 84%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -296,7 +298,7 @@ header, main, footer{
 
       //Title form
       .formTitle{
-        color: $mainColor;
+        color: $favListBg;
         font-size: 1.6em;
         text-transform: uppercase;
         text-align: center;
@@ -306,10 +308,10 @@ header, main, footer{
       .townSearch{
         background: transparent;
         border: none;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $starsBg;
         font-size: 1.4em;
         padding: 0.2em 0.4em;
-        color: $mainColor;
+        color: $favListBg;
         font-family: $mainFont;
         outline: none; 
         display: block;
@@ -347,7 +349,8 @@ header, main, footer{
         outline: none;
         display: block;
         margin: 0.5em auto 0 auto;
-        background: linear-gradient(to right, $bodyBg 50%, $mainBackground 50%);
+        background-color: $favListBg;
+        background: linear-gradient(to right, $bodyBg 50%, $favListBg 50%);
         background-size: 200% 100%;
         background-position: bottom right;
         transition: all .5s ease-out;
@@ -372,7 +375,6 @@ header, main, footer{
   //Navigation restaurants style
   nav{
     //Parent
-    background: $bodyBg;
     display: none;
     width: 100%;
     min-height: calc(100vh - 6%);
@@ -386,7 +388,7 @@ header, main, footer{
       font-weight: bold;
       color: $mainColor;
       text-align: center;
-      background: rgba(0,0,0,0.1);
+      background: $bodyBg;
     }
 
     //Styles for containers
@@ -402,7 +404,7 @@ header, main, footer{
       grid-template-columns: repeat(2,1fr);
       width: 100%;
       padding: 0.5em 1em;
-      background: rgba(0,0,0,0.1);
+      background: $bodyBg;
 
       //Filter checkbox styles
       .container {
@@ -533,6 +535,7 @@ header, main, footer{
       #btn2{
         margin-left: auto;
         margin-right: 0;
+        
       }
       #btn1, #btn2{
         border: 2px solid $buttonBg;
@@ -543,11 +546,13 @@ header, main, footer{
         color: $mainColor;
         cursor: pointer;
         outline: none;
+        background-color: $favListBg;
         background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, $favListBg 50%);
         background-size: 200% 100%;
         background-position: bottom right;
         transition: all .5s ease-out;
         &:hover{
+          background-color: $bodyBg;
           background-position: bottom left;
         }
       }
@@ -588,6 +593,7 @@ header, main, footer{
         background-position: bottom right;
         transition: all .5s ease-out;
         &:hover{
+          background-color: $bodyBg;
           background-position: bottom left;
         }
       }
@@ -598,21 +604,20 @@ header, main, footer{
   //Single restaurant section
   article{
     //Parent styles
-    background: $secondBackground;
     color: $mainColor;
-    padding: 1.5em;
+    padding: 2em;
     display: none;
 
     //Main container for restaurant
     .restaurantContainer {
       padding: 1.4em;
       margin: 0 auto;
-      background: $bodyBg;
+      background: rgba(0, 0, 0, 0.3);
       position: relative;
       max-width: 1200px;
       display: grid;
       grid-gap: 0.8em;
-      box-shadow: -1px 2px 3px 3px rgba(0,0,0,0.35);
+      
       //Add span styles to position
       span{
         display: block;
@@ -637,7 +642,7 @@ header, main, footer{
           //Restaurant adress and name style
           .restaurantName{
             font-weight: bold;
-            color: $mainColor;
+            color: $favListBg;
             font-size: 1.2em;
             margin-bottom: 1em;
             
@@ -645,6 +650,7 @@ header, main, footer{
           .restaurantAdress{
             font-size: 0.9em;
             width: 70%;
+            color: $favListBg;
           }
           
         }
@@ -692,7 +698,7 @@ header, main, footer{
           color: $mainColor;
           cursor: pointer;
           outline: none;
-          background: linear-gradient(to right,  rgba(0,0,0,0.1) 50%, $favListBg 50%);
+          background: linear-gradient(to right,  $bodyBg 50%, $favListBg 50%);
           background-size: 200% 100%;
           background-position: bottom right;
           transition: all .5s ease-out;
@@ -731,7 +737,8 @@ header, main, footer{
 
   //Footer style
   footer{
-    background: rgba(0,0,0,0.1);
+    color: $favListBg;
+    background: rgba(0,0,0,0.3);
     height: 6%;
     display: flex;
     justify-content: center;
@@ -757,14 +764,14 @@ header, main, footer{
       color: $starsBg;
     }
     &:checked~::before{
-      color: $favListBg;
+      color: $bodyBg;
     }
    }
 
    .starFavInput{
      display: none;
      &:checked~::before{
-      color: $favListBg; 
+      color: $bodyBg; 
     }
    }
 
