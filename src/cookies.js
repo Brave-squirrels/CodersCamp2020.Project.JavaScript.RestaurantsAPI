@@ -21,15 +21,11 @@ const saveInfo = (restaurants) => {
  * @return array of cookies as single objects
  */
 
-const arrayOfCookies = () => {
-    let cookiesArray = [];
-    let cookies = document.cookie;
-    let index = cookies.indexOf('=');
-    cookies = cookies.split('; ');
+const arrayOfCookies = (cookiesArray = []) => {
+    let cookies = document.cookie.split('; ');
     cookies.forEach(cookie => {
-        cookie = cookie.slice(index + 1);
+        cookie = cookie.slice(cookie.indexOf('=') + 1)
         cookiesArray.push(JSON.parse(cookie));
-        cookie = JSON.parse(cookie);
     })
     return cookiesArray;
 }
@@ -40,11 +36,13 @@ const arrayOfCookies = () => {
  * @delete all of the cookies from cookies
  */
 
-const deleteAllCookies = () => {
+const deleteFirstCity = (cityName) => {
     let cookies = arrayOfCookies();
     cookies.forEach(cookie => {
-        let name = cookie.id;
-        document.cookie = name + "=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        if (cookie.city === cityName) {
+            let name = cookie.id;
+            document.cookie = name + "=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
     })
 }
 
@@ -67,7 +65,7 @@ const checkCookies = (cityName) => {
                 cityNames.push(cookie.city)
             }
             if (cityNames.length === 2) {
-                deleteAllCookies();
+                deleteFirstCity(cityNames[0]);
                 return;
             }
         })
