@@ -40,12 +40,20 @@ const displayRestaurant = (result, resId)=>{
                     })
                 }
             });
-
+            /*
             //Add trigger to star to save or remove from localStorage
             const starTrigger = document.querySelector(`#${CSS.escape(objOfReviews.id)}`);
-            starTrigger.addEventListener('click',()=>{
+            starTrigger.addEventListener('click',(e)=>{
                 manageLSSingle(objOfReviews, starTrigger);
-            });
+                console.log(e.target);
+            });*/
+            
+            document.addEventListener('click',(e)=>{
+                const trigger = document.querySelector(`#${CSS.escape(objOfReviews.id)}`);
+                if(e.target.id == objOfReviews.id){
+                    manageLSSingle(objOfReviews, trigger);
+                }
+            })
 
 
 }

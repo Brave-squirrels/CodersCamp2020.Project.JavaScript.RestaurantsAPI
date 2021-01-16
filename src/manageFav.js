@@ -21,18 +21,18 @@ const manageFav = ()=>{
         dataArr.push('No restaurants');
     }else{
         //Getting all data from LS
-       values.forEach((n)=>{
+       values.forEach((n)=>{ 
         let checkbox = ``;
         if(localStorage.getItem(n.id) !== null){
             checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${n.id}fav' value='${n.id}fav' checked>
-            <label  class="starFav" for='${n.id}fav' id='${n.id}fav' ></label>`;
+            <label  class="starFavLabel" for='${n.id}fav' id='${n.id}fav' ></label>`;
         }else{
             checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${n.id}fav'  value='${n.id}fav'>
-            <label  class="starFav" for='${n.id}fav' id='${n.id}fav' ></label>`;
+            <label  class="starFavLabel" for='${n.id}fav' id='${n.id}fav' ></label>`;
         }
         dataArr.push(`
         <div id='resDivFav' class='resDiv' data-name="${n.id}" >
-        <span class='resTitle' id='${n.id}'>
+        <span class='resTitle' id='${n.id}fav'>
             ${n.name}
         </span>
         <span class='resCs'>
@@ -44,16 +44,17 @@ const manageFav = ()=>{
         <div class='imgArrow'>
             ${checkbox}
         </div>
-    </div>`
+        </div>`
         );
        })
-
+       
        document.addEventListener('click', (e)=>{
-            if(e.target.className === 'starFav'){
+            if(e.target.className === 'starFavLabel'){
                 manageLSFav(e.target.id,e.target);
                 manageFav();
             }else if(e.target.className === 'resTitle'){
-                displayRestaurant(values,e.target.id);
+                const string = e.target.id.replace('fav', '');
+                displayRestaurant(values,string);
                 document.querySelector('article').scrollIntoView({
                     behavior: 'smooth'
                 })
@@ -61,7 +62,7 @@ const manageFav = ()=>{
                 favList.style.width = '0';
                 favList.style.right = '-4em';  
             }
-        });
+        })
 
 
     }

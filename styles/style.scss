@@ -785,7 +785,7 @@ footer {
 }
 
 //Fav add/remove button global styles
-.starFav {
+.starFav, .starFavLabel {
     font-size: 1.2em;
     margin-left: auto;
     height: 2em;
@@ -805,10 +805,14 @@ footer {
 }
 
 .starFavInput {
-    display: none;
+    visibility: hidden;
     &:checked~::before {
         color: $bodyBg;
     }
+}
+
+.starFav, .starFavInput{
+    z-index: 1;
 }
 
 
