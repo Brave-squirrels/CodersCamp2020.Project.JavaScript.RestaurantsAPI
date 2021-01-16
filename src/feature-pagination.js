@@ -45,8 +45,6 @@ appendData(paginate(arr, state.pageSize, state.pageNumber), arr, btnContainer, d
 }
 
 //Switch pages events
-
-
 const generateBtn = (e)=>{
     if(e.target && e.target.id== 'btn2'){
         state.pageNumber += 1;

@@ -28,3 +28,4 @@ window.addEventListener('load', (event) => {
 
 //Handle search form
 document.querySelector('#searchForm').addEventListener('submit', display);
+

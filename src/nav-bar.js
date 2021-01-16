@@ -16,8 +16,9 @@ const displayFav = (e)=>{
     }
     //Close favList
     else if(e.target.id === 'closeFav'){
-        favList.style.width = '0';
-        favList.style.right = '-4em';
+            favList.style.width = '0';
+            favList.style.right = '-4em';  
+         
     }
 }
 

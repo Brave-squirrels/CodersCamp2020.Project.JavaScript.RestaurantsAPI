@@ -1,87 +1,15 @@
 const {mainFunc, fetchUserReviews} = require('./restaurants-api');
-
-//template for basic info
-const createTemplateFirst = (resObj) => {
-    return `
-    <div class="restaurantIntro">
-
-        <span class='restaurantName'>
-            ${resObj.name}
-        </span>
-
-        <span class='restaurantAdress'>
-            ${resObj.address}
-        </span>
-
-    <input type="checkbox" name="starFav" class="starFavInput" id='${resObj.id}' value='${resObj.id}'>
-    <label  class="starFav" for='${resObj.id}' ></label>
-
-    </div>
-
-    <img src="https://www.eldynamic.com/en/img/restaurant.jpeg" alt="restauration" class='restaurantImg'>
-
-    <div class="restaurantAvg">
-
-        <span class='restaurantAvgRating'>
-            <span>Average rating:</span> ${resObj.rating}
-        </span>
-
-        <span class='restaurantAvgCost'>
-            <span>Price rating:</span> ${resObj.priceRaiting}zł
-        </span>
-    </div>
-
-    <button id='displayReviews' class='displayReviews'>Reviews</button>
-    `
-}
-
-//template for reviews - add loop for display reviews
-const createTemplateSecond = (obj)=>{
-    let templateString = ``;
-    if(obj.length === 0){
-        templateString =  `
-        <div class='noRevFound'>
-            There's no reviews for this restaurant
-        </div>
-        `;
-    }else{
-        let tempString = ``;
-        obj.reviews.forEach((n)=>{
-
-            tempString += `
-                <div class="singleReview">
-                    <span class="dish">
-                        ${n.textReview}
-                    </span>
-                    <span class="cost">
-                        Rate: ${n.ratingReview}/5
-                    </span>
-                </div>
-            `
-
-        });
-        templateString = `
-        <div id="reviews">
-        <div class='reviews'>
-            <span class="reviewsTitle">
-                Reviews
-            </span>
-            ${tempString}
-        </div>
-        </div>
-        `;
-    }
-    return templateString;
-}
-
-
+const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
+const {manageLSSingle,manageLSFav} = require('./add-removeLS');
 
 //display restaurant function
 const displayRestaurant = (result, resId)=>{
         const resCnt = document.querySelector('article');
         const firstSectionCnt = document.querySelector('#restaurantFirst');  
-        resCnt.style.display = 'block';
+        const revCnt = document.querySelector('#restaurantSpecificInfo');
         
+        resCnt.style.display = 'block';
+        revCnt.innerHTML = '';
         //Take the restaurant with this ID from result
         let objOfReviews = [];
         result.map((n)=>{
@@ -91,21 +19,35 @@ const displayRestaurant = (result, resId)=>{
         })
 
             //Append the base data
-            firstSectionCnt.innerHTML = createTemplateFirst(objOfReviews);
+            firstSectionCnt.innerHTML = resBasicInfoTemplate(objOfReviews);
         
             //Handle review show button
             const revButton = document.querySelector('#displayReviews');
+            revCnt.classList.remove('revDisplayed');
             revButton.addEventListener('click', ()=>{
-                const revCnt = document.querySelector('#restaurantSpecificInfo');
                 revCnt.style.display = 'grid';
                 if(revCnt.classList.contains('revDisplayed')){
                     revCnt.style.display = 'none';
                     revCnt.classList.remove('revDisplayed');
+                    document.querySelector('article').scrollIntoView({
+                        behavior: 'smooth'
+                    })
                 }else{
-                    revCnt.innerHTML = createTemplateSecond(objOfReviews); 
+                    revCnt.innerHTML = resReviewInfoTemplate(objOfReviews); 
                     revCnt.classList.add('revDisplayed');
+                    revCnt.scrollIntoView({
+                        behavior: 'smooth'
+                    })
                 }
             });
+
+            //Add trigger to star to save or remove from localStorage
+            const starTrigger = document.querySelector(`#${CSS.escape(objOfReviews.id)}`);
+            starTrigger.addEventListener('click',()=>{
+                manageLSSingle(objOfReviews, starTrigger);
+            });
+
+
 }
 
 module.exports = displayRestaurant;
