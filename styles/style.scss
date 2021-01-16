@@ -21,6 +21,9 @@ $checkboxChecked: rgba(184, 182, 182, 0.774);
     box-sizing: border-box;
     letter-spacing: 0.04em;
 }
+html{
+    box-sizing: border-box;
+}
 
 body {
     padding: 0;
@@ -56,6 +59,7 @@ header,
 main,
 footer {
     padding: 0.6em 1em;
+    box-sizing: border-box;
 }
 
 nav div {
@@ -210,7 +214,7 @@ aside {
 header {
     //Main header styles
     background-color: $bodyBg;
-    height: 10%;
+    height: 14%;
     display: grid;
     grid-template-columns: 1fr 15%;
     font-size: 1.2em;
@@ -271,7 +275,7 @@ header {
 //Main search-form style
 main {
     //Parent style
-    height: 84%;
+    height: 80%;
     position: relative;
     display: flex;
     justify-content: center;
