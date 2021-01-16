@@ -18,7 +18,7 @@ function display(e){
     const container = document.querySelector('nav');
     const mainSection = document.querySelector('main');
 
-    mainSection.style.height = '79%';
+    mainSection.style.height = '84%';
     
 
     //Resets container by default
@@ -32,7 +32,7 @@ function display(e){
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
     mainFunc(inputValue).then(function(result){
-            mainSection.style.height = '85%';
+            mainSection.style.height = '90%';
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');
@@ -40,7 +40,7 @@ function display(e){
             //Validation
             if(result[0]==='incorrect syntax'){
                 notValid(val);
-                mainSection.style.height = '79%';
+                mainSection.style.height = '84%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
