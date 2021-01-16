@@ -4,7 +4,7 @@ const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 const displayRestaurant = require('./single-res-view');
 const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
-const filterNav = require('./filter-nav');
+const {filterNav, addFilterContent} = require('./filter-nav');
 
 
 //Display data when click on search button
@@ -96,6 +96,8 @@ function display(e){
                     `);
                 })
 
+                //AppendFilters
+                addFilterContent(arrayOfHTML, filter);
                 //Hide and show more filters
                 filterNav(arrayOfHTML, filter);
                 
@@ -154,7 +156,7 @@ function display(e){
                 }
 
                 //Run filter
-                filter.addEventListener('click', filterRestaurants);
+                document.addEventListener('click', filterRestaurants);
 
                 //To append pass array with data, element that will contain the buttons, element that will contain data
                 //Add event to generate buttons
