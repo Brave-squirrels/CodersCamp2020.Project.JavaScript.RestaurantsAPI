@@ -26,7 +26,7 @@ body{
   padding: 0;
   margin: 0;
   height: 100vh;
-  background-image: url('../assets/table.jpg');
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/table.jpg');
   background-attachment: fixed;
   font-family: $mainFont;
   overflow-x: hidden;
@@ -278,7 +278,6 @@ header, main, footer{
   //Main search-form style
   main{
     //Parent style
-    background: rgba(0,0,0, 0.3);
     height: 84%;
     position: relative;
     display: flex;
@@ -720,6 +719,7 @@ header, main, footer{
           grid-gap: 0.8em;
           //Title of the section
           .reviewsTitle{
+            color: $favListBg;
             font-weight: bold;
             font-size: 1.2em;
           }
