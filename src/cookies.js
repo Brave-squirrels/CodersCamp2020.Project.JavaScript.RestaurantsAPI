@@ -41,10 +41,9 @@ const arrayOfCookies = () => {
  */
 
 const deleteAllCookies = () => {
-    let cookies = document.cookie.split("; ");
+    let cookies = arrayOfCookies();
     cookies.forEach(cookie => {
-        let eqPos = cookie.indexOf("=");
-        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        let name = cookie.id;
         document.cookie = name + "=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     })
 }
