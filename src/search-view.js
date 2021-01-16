@@ -18,7 +18,7 @@ function display(e){
     const container = document.querySelector('nav');
     const mainSection = document.querySelector('main');
 
-    mainSection.style.height = '79%';
+    mainSection.style.height = '84%';
     
 
     //Resets container by default
@@ -40,7 +40,7 @@ function display(e){
             //Validation
             if(result[0]==='incorrect syntax'){
                 notValid(val);
-                mainSection.style.height = '79%';
+                mainSection.style.height = '84%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
