@@ -1,31 +1,37 @@
 const fetch = require('node-fetch');
-const saveInfo = require('./cookies');
+const { saveInfo, checkCookies, getCookies } = require('./cookies');
 
-const checkCookies = (cityName) => {
-    if (document.cookie.includes(cityName)) {
-        return true;
+/**
+ * @declare class Restaurant with basic informations about it inside
+ */
+
+class Restaurant {
+    constructor(id, name, logo, cuisines, priceRaiting, address, phone, rating, reviews, city) {
+        this.id = id,
+            this.name = name,
+            this.logo = logo,
+            this.cuisines = cuisines,
+            this.priceRaiting = priceRaiting,
+            this.address = address,
+            this.phone = phone,
+            this.rating = rating,
+            this.reviews = reviews,
+            this.city = city
     }
 }
 
-const getCookies = (value, restaurants = []) => {
-    let cookies = document.cookie;
-    let index = cookies.indexOf('=');
-    cookies = cookies.split('; ');
-    cookies.forEach(cookie => {
-        cookie = cookie.slice(index + 1);
-        cookie = JSON.parse(cookie);
-        restaurants.push(cookie);
-    })
-    return restaurants;
-}
+
+
+/**
+ * 
+ * @param {string} url - a url addres to api 
+ * 
+ * @fetch JSON from api url
+ * 
+ * @return JSON of fetched data 
+ */
 
 const fetchData = async(url) => {
-    /*
-        -parameter url
-        @ return JSON object
-        -Fetches data
-    */
-
     let response = await fetch(url, {
             headers: {
                 'Content-type': 'application/json',
@@ -36,17 +42,22 @@ const fetchData = async(url) => {
     return response;
 }
 
-const fetchCity = async(url) => {
-    /*
-        -parameters (url)
-        @ return number (city id)
-        - searches for city id based on city name
-    */
 
+
+/**
+ * 
+ * @param {string} url - addres url to api
+ * 
+ * @fetch cityname based on user input (might also find weird cities from all over the world)
+ * @check if city was found, or sadly the api do not include it
+ * 
+ * @return cityname found in api
+ */
+
+const fetchCity = async(url) => {
     let res = await fetchData(url);
     if (res.location_suggestions[0] == undefined) {
         let cityId = undefined
-
         return cityId
     } else {
         let cityId = res.location_suggestions[0].city_id;
@@ -54,38 +65,31 @@ const fetchCity = async(url) => {
     }
 }
 
+
+
+/**
+ * 
+ * @param {string} url
+ * 
+ * @fetch info about restaurants in current city
+ * 
+ * @return array of restaurants with basic info
+ */
+
 const fetchRestaurants = async(url) => {
-    /*
-        -parameters url
-        @ returns JSON objec
-        - filtres restaurants in the city by user cusines / if userCuisines is empty, returns all restaurants:
-            - cuisines type
-        - creates a JSON array with objects(for each restaurant new object) with main informations about filtred restaurants:
-            -name of restaurant
-            -photo url
-            -cuisines
-            -price bracket of the restaurant(1-4)
-            -address
-            -phone number
-            -reviews
-            -average rating
-            
-    */
-
-
     const addRestaurant = (item) => {
-        restaurantsFromCity.push({
-            id: item.restaurant.id,
-            name: item.restaurant.name,
-            logo: item.restaurant.featured_image,
-            cuisines: item.restaurant.cuisines,
-            priceRaiting: item.restaurant.price_range,
-            address: item.restaurant.location.address,
-            phone: item.restaurant.phone_numbers,
-            rating: item.restaurant.user_rating.aggregate_rating,
-            reviews: [],
-            city: replacePolishChar(item.restaurant.location.city)
-        })
+        const restaurant = new Restaurant(
+            item.restaurant.id,
+            item.restaurant.name,
+            item.restaurant.featured_image,
+            item.restaurant.cuisines,
+            item.restaurant.price_range,
+            item.restaurant.location.address,
+            item.restaurant.phone_numbers,
+            item.restaurant.user_rating.aggregate_rating, [],
+            replacePolishChar(item.restaurant.location.city)
+        );
+        restaurantsFromCity.push(restaurant);
     }
 
     let result = await fetchData(url);
@@ -99,13 +103,17 @@ const fetchRestaurants = async(url) => {
 }
 
 
-const replacePolishChar = (getCityName) => {
-    /*
-        -parametr (name of city)
-        @return string
-        -replace all Polish characters on chracter without diacritic
-    */
 
+/**
+ * 
+ * @param {string} getCityName - current input from user (perhaps a city name)
+ * 
+ * @replace polish and uppercase letters to 'normal' lowercase
+ * 
+ * @retun replaced string
+ */
+
+const replacePolishChar = (getCityName) => {
     let cityName = getCityName.replace(/ą/gi, 'a')
         .replace(/ć/gi, 'c')
         .replace(/ę/gi, 'e')
@@ -122,33 +130,48 @@ const replacePolishChar = (getCityName) => {
 
 
 
+/**
+ * 
+ * @param {string} getCityNames - input from user (perhaps a city name)
+ * 
+ * @check check if input actually might be a cityname, not a number, or some different weird stuff
+ * 
+ * @retun true if it is propably correct city name, false otherwise 
+ */
+
 const validateTown = (getCityNames) => {
     const format = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/;
     return isNaN(getCityNames) && getCityNames.length !== 0 && !format.test(getCityNames);
 }
 
-const mainFunc = async(getCityName) => {
-    /*
-        main function
-        -parameters (string eg.'wroclaw')
-    */
 
+
+/**
+ * 
+ * @param {string} getCityName - input from user (perhaps a cityname)
+ * 
+ * @check if string from input is actually a valid cityname
+ * @check if its valid, check if restaurants from this city are saved in cookies
+ * @check if yes return data from cookies
+ * @check if no, make sure, the city we are looking for, exists in api
+ * @fetch If it exists, fetch info about restaurants from api, if no, return error message
+ * 
+ * @retun return array with restaurats
+ */
+
+const mainFunc = async(getCityName) => {
     let cityName = await replacePolishChar(getCityName);
-    // Returns empty array if no CityName was provided
     let ValidateCity = await validateTown(cityName);
 
-    if (!ValidateCity) return ['incorrect syntax']; /* @return ['incorrect syntax'] if incorrect city name*/
+    if (!ValidateCity) return ['incorrect syntax'];
 
-    // Check if maybe there are cookies saved with this city restaurants
     let checkCookie = await checkCookies(cityName);
     if (checkCookie) {
-        // if yes, get data from cookies :)
         let restaurants = await getCookies(cityName);
         return restaurants;
     } else {
         let cityId = await fetchCity(`https://developers.zomato.com/api/v2.1/locations?query=${cityName}`);
-
-        if (cityId === undefined) return ['city does not exist']; /* @return ['city does not exist'] if incorrect id*/
+        if (cityId === undefined) return ['city does not exist'];
 
         let restaurants = await fetchRestaurants(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city`);
 
@@ -158,17 +181,20 @@ const mainFunc = async(getCityName) => {
     }
 }
 
-const fetchUserReviews = async(restaurantId, restaurants) => {
-    /*
-        - parameters (Id of restaurant)
-        @ return array of objects users reviews about restaurant and grade to each comment
-    */
 
-    // Check if maybe there are already cookies with reviews from this restaurant
-    // if (await checkReviewsCookies(restaurantId)) {
-    //     // If yes, return data from cookies :)
-    //     getCookies(Number(restaurantId));
-    // } else {
+
+/**
+ * 
+ * @param {string} restaurantId - id from api about current restaurant
+ * @param {array} restaurants - array of restaurants
+ * 
+ * @fetch data about reviews for current restaurant, from api
+ * @add reviews to current restaurant (based on id)
+ * 
+ * @return restaurants array with current restaurant updated by reviews
+ */
+
+const fetchUserReviews = async(restaurantId, restaurants) => {
     let listOfReviews = [];
     let result = await fetchData(`https://developers.zomato.com/api/v2.1/reviews?res_id=${restaurantId}`);
 
@@ -183,21 +209,21 @@ const fetchUserReviews = async(restaurantId, restaurants) => {
 
     restaurants.forEach(restaurant => {
         if (restaurant.id == restaurantId) {
-            listOfReviews.forEach(review => {
-                restaurant.reviews.push(review);
-            })
+            restaurant.reviews = [...listOfReviews];
+            return;
         }
     })
 
-    // await saveInfo(restaurants);
-
     return restaurants;
-    // }
 }
 
-// Exports function for testing (later to frontend also)
+
+
+/**
+ * @export functions - exports functions for frontend purposes
+ */
+
 module.exports = {
-        mainFunc,
-        fetchUserReviews
-    }
-    // module.exports = fetchUserReviews;
+    mainFunc,
+    fetchUserReviews
+}
