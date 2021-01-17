@@ -27,9 +27,9 @@ const generatePage = (arr,btnContainer) => {
         btnContainer.innerHTML = '';
         state.pageNumber = 1;
     }else{
-        btnContainer.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Page ${state.pageNumber+1}</button>` :
-                            (state.pageNumber === maxPage ) ? `<button id='btn1'>Page ${state.pageNumber-1}</button>` :
-                            `<button id='btn1'>Page ${state.pageNumber-1}</button> <button id='btn2'>Page ${state.pageNumber+1}</button>`;
+        btnContainer.innerHTML = (state.pageNumber === 1 ) ? `<button id='btn2'>Next page</button>` :
+                            (state.pageNumber === maxPage ) ? `<button id='btn1'>Previous page</button>` :
+                            `<button id='btn1'>Previous page</button> <button id='btn2'>Next page</button>`;
     }
 }
 
