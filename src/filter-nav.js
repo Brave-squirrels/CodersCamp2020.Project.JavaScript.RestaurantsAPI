@@ -27,14 +27,16 @@ const filterNav = (dom)=>{
         filterButton.addEventListener('click',()=>{
             if(clicked === 0){
                 restFiltersCnt.style.transform = 'translateY(0)';
+                filterButton.style.transform = 'translateY(0)';
+                filterButton.style.transition = 'all 0.3s ease-out;';
                 restFiltersCnt.style.transition = 'all 0.3s ease-out;';
                 restFiltersCnt.style.zIndex = '999';
-                filterButton.style.transform = 'translateY(0)';
                 filterButton.innerHTML = 'Hide';
                 clicked++;
             }else if(clicked === 1){
                 restFiltersCnt.style.transform = 'translateY(-100%)';
                 filterButton.style.transform = 'translateY(-100%)';
+                filterButton.style.transition = 'all 0.3s ease-out;';
                 restFiltersCnt.style.transition = 'all 0.3s ease-out;';
                 restFiltersCnt.style.zIndex = '-9999';
                 filterButton.innerHTML = 'Show more filters';

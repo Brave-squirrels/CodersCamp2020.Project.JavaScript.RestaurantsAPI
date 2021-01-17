@@ -368,13 +368,10 @@ nav {
     //Parent
     display: none;
     width: 100%;
-    // min-height: calc(100vh - 6%);
 
     #restOfTheFilters{
       overflow: hidden;
       display: grid;
-      visibility: visible;
-      max-height: 5em;
       z-index: -9999;
       grid-template-columns: repeat(2,1fr);
       padding: 0.5em 1em;
@@ -666,11 +663,11 @@ nav {
             color: white;
             cursor: pointer;
             transform: translateY(-100%);
+            transition: all 0.3s ease-out;
             outline: none;
             background: rgba(255, 255, 255, 0.2);
             background-size: 200% 100%;
             background-position: bottom right;
-            transition: height .3s ease-out;
             &:hover {
                 color: $mainColor;
                 background-color: $bodyBg;
@@ -824,7 +821,7 @@ article {
 footer {
     color: $mainFont;
     background: rgb(204, 211, 13);
-    height: 6vh;
+    height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
