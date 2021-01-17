@@ -55,22 +55,22 @@ const deleteFirstCity = (cityName) => {
  */
 
 const checkCookies = (cityName) => {
-    if (document.cookie.includes(cityName)) {
-        return true;
-    } else if (document.cookie.includes('=')) {
-        let cityNames = [];
-        let cookies = arrayOfCookies();
-        cookies.forEach(cookie => {
-            if (cityNames[0] !== cookie.city) {
-                cityNames.push(cookie.city)
-            }
-            if (cityNames.length === 2) {
-                deleteFirstCity(cityNames[0]);
-                return;
-            }
-        })
-    }
+    let cookies = arrayOfCookies();
+    cookies.forEach(cookie => {
+        if (cookie.city === cityName) return true;
+    })
+    let cityNames = [];
+    cookies.forEach(cookie => {
+        if (cityNames[0] !== cookie.city) {
+            cityNames.push(cookie.city)
+        }
+        if (cityNames.length === 2) {
+            deleteFirstCity(cityNames[0]);
+            return;
+        }
+    })
 }
+
 
 
 
