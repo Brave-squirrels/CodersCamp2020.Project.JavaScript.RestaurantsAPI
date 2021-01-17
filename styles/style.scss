@@ -373,13 +373,15 @@ nav {
 
     #restOfTheFilters{
       overflow: hidden;
-      visibility: hidden;
       display: grid;
-      max-height: 0;
+      visibility: visible;
+      max-height: 5em;
+      z-index: -9999;
       grid-template-columns: repeat(2,1fr);
       padding: 0.5em 1em;
       background: $bodyBg;
       margin-top: -1em;
+      transform: translateY(-100%);
       transition: all 0.3s ease-out;
       //Filter checkbox styles
       .container {
@@ -443,6 +445,8 @@ nav {
         color: $mainColor;
         text-align: center;
         background: $bodyBg;
+        z-index: 2;
+        border-bottom: 0.5px solid $buttonBg;
     }
     //Styles for containers
     .paginationContainer,
@@ -457,6 +461,7 @@ nav {
         grid-template-columns: repeat(2, 1fr);
         width: 100%;
         padding: 0.5em 1em;
+        z-index: 2;
         background: $bodyBg;
         //Filter checkbox styles
         .container {
@@ -642,6 +647,7 @@ nav {
             font-weight: bold;
             color: white;
             cursor: pointer;
+            transform: translateY(-100%);
             outline: none;
             background: rgba(255, 255, 255, 0.2);
             background-size: 200% 100%;
