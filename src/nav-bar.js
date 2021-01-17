@@ -15,7 +15,7 @@ const displayFav = (e)=>{
         favList.style.right = '0';
     }
     //Close favList
-    else if(e.target.id === 'closeFav'){
+    else if(e.target.id === 'closeFav' || (favList !== e.target && !favList.contains(e.target))){
             favList.style.width = '0';
             favList.style.right = '-4em';  
          
