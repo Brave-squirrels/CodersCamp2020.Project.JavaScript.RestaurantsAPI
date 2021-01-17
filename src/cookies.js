@@ -60,8 +60,7 @@ const checkCookies = (cityName) => {
         cookies.forEach(cookie => {
             if (cookie.city === cityName) return true;
         })
-    }
-    if (document.cookie.includes('=')) {
+    } else if (document.cookie.includes('=')) {
         let cookies = arrayOfCookies();
         let cityNames = [];
         cookies.forEach(cookie => {
@@ -70,7 +69,7 @@ const checkCookies = (cityName) => {
             }
             if (cityNames.length === 2) {
                 deleteFirstCity(cityNames[0]);
-                return;
+                return false;
             }
         })
     }
