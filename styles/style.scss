@@ -830,6 +830,9 @@ footer {
 }
 
 .cross{
+    position: absolute;
+    top: 0;
+    right: 0;
     font-size: 1.3em;
     color: $favListBg;
     margin-left: auto;
