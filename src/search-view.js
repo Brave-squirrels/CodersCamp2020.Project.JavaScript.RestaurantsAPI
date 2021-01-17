@@ -16,7 +16,7 @@ function display(e){
     const val = document.querySelector('#townSearch');
     const container = document.querySelector('nav');
     const mainSection = document.querySelector('main');
-    mainSection.style.height = '84%';
+    mainSection.style.height = '80%';
     
 
     //Resets container by default
@@ -41,7 +41,7 @@ function display(e){
             filterViewCnt.style.maxHeight = '0';
             filterBtn.classList.add('notFiltered');
             filterBtn.innerHTML = 'Show more filters';
-            mainSection.style.height = '90%';
+            mainSection.style.height = '86%';
             
             let navData = [];
             //Validation
