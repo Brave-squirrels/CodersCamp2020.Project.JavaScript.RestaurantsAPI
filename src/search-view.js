@@ -188,7 +188,7 @@ function display(e){
                             // singleRest.style.animationName = 'slideOff';
                             const singleRest = document.querySelector('article')
                             singleRest.style.display = 'block'
-                            singleRest.style.animationName = 'slideLeft'
+                            
                             allRest.style.display = 'none';
                             pageButt.style.display = 'none';
                             loading.style.display='none';
@@ -206,8 +206,6 @@ function display(e){
                         singleRest.style.display = 'none'
                         allRest.style.display = 'grid';
                         pageButt.style.display = 'flex';
-                        allRest.style.animationName = 'slideLeft'
-
                     }
 
                 });

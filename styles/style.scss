@@ -434,6 +434,7 @@ nav {
 
     //Title for filter
     .filterTitle {
+        height: 7vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -511,18 +512,13 @@ nav {
         }
     }
 
-    @keyframes slideRight {
-        from { transform: translate(100vw,0)}
-        to {transform: translate(0,0);
-            // visibility: hidden;
-        }     
-       }
-
+   
     //Container of all restaurant found
     .restaurantsNavCon {
-        min-height: 61.4vh;
+        min-height: 60vh;
         display: grid;
         padding: 1em 2em;
+        animation-name: slideLeft;
         animation-duration: 2s;
         //Main single nav restaurant container
         .resDiv {
@@ -687,7 +683,7 @@ nav {
 //Single restaurant section
 article {
     //Parent styles
-    min-height: 70vh;
+    min-height: 69vh;
     animation-name: slideLeft;
     animation-duration: 1.5s;
     color: $mainColor;
