@@ -46,6 +46,8 @@ const deleteFirstCity = (cityName) => {
     })
 }
 
+
+
 /**
  * 
  * @param {string} cityName - name of the city from users input
@@ -58,7 +60,9 @@ const checkCookies = (cityName) => {
     if (document.cookie.includes(cityName)) {
         let cookies = arrayOfCookies();
         cookies.forEach(cookie => {
-            if (cookie.city === cityName) return true;
+            if (cookie.city === cityName) {
+                return true
+            };
         })
     } else if (document.cookie.includes('=')) {
         let cookies = arrayOfCookies();
@@ -75,23 +79,6 @@ const checkCookies = (cityName) => {
     }
 }
 
-// const checkCookies = (cityName) => {
-//     if (document.cookie.includes(cityName)) {
-//         return true;
-//     } else if (document.cookie.includes('=')) {
-//         let cityNames = [];
-//         let cookies = arrayOfCookies();
-//         cookies.forEach(cookie => {
-//             if (cityNames[0] !== cookie.city) {
-//                 cityNames.push(cookie.city)
-//             }
-//             if (cityNames.length === 2) {
-//                 deleteFirstCity(cityNames[0]);
-//                 return;
-//             }
-//         })
-//     }
-// }
 
 
 /**
