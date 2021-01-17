@@ -66,7 +66,7 @@ const resBasicInfoTemplate = (resObj) => {
         
         ${checkbox}
         
-    
+        <div id='cross' class='cross'>✕</div>
         
     </div>
     <div class="restaurantAvg">
