@@ -36,15 +36,15 @@ body {
 }
 
 //Scroll style
-body::-webkit-scrollbar, aside::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 4px;
 }
 
-body::-webkit-scrollbar-track, aside::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
     background: #ddd;
 }
 
-body::-webkit-scrollbar-thumb, aside::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background: #444;
     border-radius: 4px;
 }
@@ -95,7 +95,6 @@ aside {
     transition: 0.5s;
     font-size: 1em;
     padding: 1em 2em;
-    overflow: auto;
     //Close trigger style
     .closeFav {
         position: absolute;
@@ -116,7 +115,7 @@ aside {
             position: relative;
             color: $mainColor;
             max-width: 650px;
-            height: 5.625em;
+            height: 5.6em;
             margin: 1em auto;
             padding: 0.5em;
             transition: 0.3s ease-in;
@@ -369,7 +368,7 @@ nav {
     //Parent
     display: none;
     width: 100%;
-    min-height: calc(100vh - 6%);
+    // min-height: calc(100vh - 6%);
 
     #restOfTheFilters{
       overflow: hidden;
@@ -523,6 +522,7 @@ nav {
 
     //Container of all restaurant found
     .restaurantsNavCon {
+        min-height: 68vh;
         display: grid;
         padding: 1em 2em;
         animation-duration: 2s;
@@ -599,7 +599,6 @@ nav {
             margin-left: auto;
             margin-right: 0;
         }
-        #btn1,
         #btn2 {
             border: 2px solid $buttonBg;
             padding: 0.2em 0.8em;
@@ -617,6 +616,25 @@ nav {
             &:hover {
                 background-color: $bodyBg;
                 background-position: bottom left;
+            }
+        }
+        #btn1{
+            border: 2px solid $buttonBg;
+            padding: 0.2em 0.8em;
+            font-size: 1em;
+            font-family: $mainFont;
+            font-weight: bold;
+            color: $mainColor;
+            cursor: pointer;
+            outline: none;
+            background-color: $favListBg;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.1) 50%, $favListBg 50%);
+            background-size: 200% 100%;
+            background-position: bottom left;
+            transition: all .5s ease-out;
+            &:hover {
+                background-color: $bodyBg;
+                background-position: bottom right;
             }
         }
     }
@@ -652,7 +670,7 @@ nav {
             background: rgba(255, 255, 255, 0.2);
             background-size: 200% 100%;
             background-position: bottom right;
-            transition: all .3s ease-out;
+            transition: height .3s ease-out;
             &:hover {
                 color: $mainColor;
                 background-color: $bodyBg;
@@ -663,7 +681,7 @@ nav {
 }
 
 @keyframes slideLeft {
-    from { transform: translate(-200vw,0)}
+    from { transform: translate(-100vw,0)}
     to { transform: translate(0,0)}   
    }
 
@@ -671,6 +689,7 @@ nav {
 //Single restaurant section
 article {
     //Parent styles
+    min-height: 76.72vh;
     animation-name: slideLeft;
     animation-duration: 1.5s;
     color: $mainColor;
@@ -679,7 +698,7 @@ article {
 
     //Main container for restaurant
     .restaurantContainer {
-        padding: 1.62em;
+        padding: 1.7em;
         margin: auto;
         background: rgba(0, 0, 0, 0.3);
         position: relative;
@@ -696,7 +715,6 @@ article {
             grid-gap: 1.5em;
             .restaurantInfo {
                 display: flex;
-                position: relative;
             }
             //Header of the restaurant
             .restaurantIntro {
@@ -754,6 +772,7 @@ article {
             }
             //Button to display reviews style
             .displayReviews {
+                height: 4vh;
                 border: 2px solid $buttonBg;
                 padding: 0.2em 0.8em;
                 font-size: 1em;
@@ -805,7 +824,7 @@ article {
 footer {
     color: $mainFont;
     background: rgb(204, 211, 13);
-    height: 6%;
+    height: 6vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -836,12 +855,14 @@ footer {
 
 .cross{
     position: absolute;
-    top: -1.5em;
-    right: -2em;
+    top: 0;
+    right: 0;
     font-size: 1.3em;
     color: $favListBg;
     margin-left: auto;
     height: 1.4em;
+    display: flex;
+    align-self: start;
     cursor: pointer;
     font-weight: bold;
     

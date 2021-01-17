@@ -45,7 +45,7 @@ function display(e){
             //Validation
             if(result[0]==='incorrect syntax'){
                 notValid(val);
-                mainSection.style.height = '84%';
+                mainSection.style.height = '80%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
@@ -174,12 +174,16 @@ function display(e){
                 
                 //Event for display single restaurant
                 document.addEventListener('click', function(e){
-                    const resId = e.target.dataset.name;
-                    if(e.target.id === 'resDiv'){
+                    const resDiv = document.querySelector('#resDiv');
+                    const resId = resDiv.dataset.name;
+                    if(e.target.id === 'resDiv' || resDiv.contains(e.target) || e.target.className === 'imgArrow' || e.target.className === 'resImg' ){
                         const allRest = document.querySelector('#restaurantsNavCon')
                         const pageButt = document.getElementById('paginationContainer')
+                        const loading = document.querySelector("#loading");
+                        loading.style.display='flex';
                         //Fetching reviews and passing into display function
                         fetchUserReviews(resId, result).then(function(res){
+                            
                             // resCnt.style.display = 'none';
                             displayRestaurant(res, resId);                        
                             // singleRest.style.animationName = 'slideOff';
@@ -188,7 +192,9 @@ function display(e){
                             singleRest.style.animationName = 'slideLeft'
                             allRest.style.display = 'none';
                             pageButt.style.display = 'none';
+                            loading.style.display='none';
                         });
+                        
                     }
                 });
                 //Close single restaurant view and show all restaurants
@@ -201,7 +207,7 @@ function display(e){
                         singleRest.style.display = 'none'
                         allRest.style.display = 'grid';
                         pageButt.style.display = 'flex';
-                        allRest.style.animationName = 'slideRight'
+                        allRest.style.animationName = 'slideLeft'
 
                     }
 
