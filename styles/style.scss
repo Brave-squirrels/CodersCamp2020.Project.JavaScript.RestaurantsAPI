@@ -519,7 +519,7 @@ nav {
 
     //Container of all restaurant found
     .restaurantsNavCon {
-        min-height: 60vh;
+        min-height: 61vh;
         display: grid;
         padding: 1em 2em;
         animation-duration: 2s;
@@ -686,7 +686,7 @@ nav {
 //Single restaurant section
 article {
     //Parent styles
-    min-height: 69vh;
+    height: 70vh;
     animation-name: slideLeft;
     animation-duration: 1.5s;
     color: $mainColor;
@@ -695,13 +695,14 @@ article {
 
     //Main container for restaurant
     .restaurantContainer {
-        padding: 1.7em;
+        padding: 1.3em;
         margin: auto;
         background: rgba(0, 0, 0, 0.3);
         position: relative;
         max-width: 1200px;
+        height: 55vh;
         display: grid;
-        // grid-gap: 0.8em;
+        
         //Add span styles to position
         span {
             display: block;
@@ -736,7 +737,7 @@ article {
             }
             //Restaurant image
             .restaurantImg {
-                height: 15vw;
+                height: 18vh;
                 width: auto;
                 box-shadow: -1px 2px 3px 3px rgba(0, 0, 0, 0.35);
             }
@@ -770,6 +771,7 @@ article {
             //Button to display reviews style
             .displayReviews {
                 height: 4vh;
+                min-height: 1.6em;
                 border: 2px solid $buttonBg;
                 padding: 0.2em 0.8em;
                 font-size: 1em;
