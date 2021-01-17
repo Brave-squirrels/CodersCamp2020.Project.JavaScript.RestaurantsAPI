@@ -23,21 +23,21 @@ const filterNav = (object, dom)=>{
 
         const filterButton = document.querySelector('#filterBtn');
         const restFiltersCnt = document.querySelector('#restOfTheFilters');
-        filterButton.classList.add('notFiltered');
-
+        let clicked = 0;
         filterButton.addEventListener('click',()=>{
-            if(filterButton.classList.contains('notFiltered')){
+            if(clicked === 0){
                 restFiltersCnt.style.maxHeight = '5em';
                 restFiltersCnt.style.transition = 'all 0.3s ease-in';
                 restFiltersCnt.style.visibility = 'visible';
-                filterButton.classList.remove('notFiltered');
                 filterButton.innerHTML = 'Hide';
-            }else{
+                clicked++;
+            }else if(clicked === 1){
                 restFiltersCnt.style.maxHeight = '0';
                 restFiltersCnt.style.transition = 'all 0.3s ease-in';
                 restFiltersCnt.style.visibility = 'hidden';
                 filterButton.classList.add('notFiltered');
                 filterButton.innerHTML = 'Show more filters';
+                clicked--;
             }
         })
 
