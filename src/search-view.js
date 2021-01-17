@@ -103,10 +103,7 @@ function display(e){
                     `);
                 })
 
-                //AppendFilters
-                addFilterContent(arrayOfHTML, filter);
-                //Hide and show more filters
-                filterNav(arrayOfHTML, filter);
+                
                 
                 //Saving the array of data
                 let savedNavData = navData;
@@ -161,6 +158,11 @@ function display(e){
                     }
                     
                 }
+
+                //AppendFilters
+                addFilterContent(arrayOfHTML, filter);
+                //Hide and show more filters
+                filterNav(filter);
 
                 //Run filter
                 document.addEventListener('click', filterRestaurants);
