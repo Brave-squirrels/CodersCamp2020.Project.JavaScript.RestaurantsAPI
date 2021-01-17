@@ -19,7 +19,7 @@ const addFilterContent = (object, dom)=>{
 
 
 //Display or hide rest of the filters
-const filterNav = (object, dom)=>{
+const filterNav = (dom)=>{
 
         const filterButton = document.querySelector('#filterBtn');
         const restFiltersCnt = document.querySelector('#restOfTheFilters');

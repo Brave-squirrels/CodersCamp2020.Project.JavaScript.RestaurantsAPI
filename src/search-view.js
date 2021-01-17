@@ -162,7 +162,7 @@ function display(e){
                 //AppendFilters
                 addFilterContent(arrayOfHTML, filter);
                 //Hide and show more filters
-                filterNav(arrayOfHTML, filter);
+                filterNav(filter);
 
                 //Run filter
                 document.addEventListener('click', filterRestaurants);
