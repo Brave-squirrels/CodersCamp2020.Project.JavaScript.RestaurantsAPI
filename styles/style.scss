@@ -689,6 +689,7 @@ article {
             grid-gap: 1.5em;
             .restaurantInfo {
                 display: flex;
+                position: relative;
             }
             //Header of the restaurant
             .restaurantIntro {
@@ -806,7 +807,7 @@ footer {
 }
 
 //Fav add/remove button global styles
-.starFav {
+.starFav, .starFavLabel {
     font-size: 1.2rem;
     transform: translateY(-0.5rem);
     height: 2.2rem;
@@ -827,12 +828,13 @@ footer {
 }
 
 .cross{
+    position: absolute;
+    top: -1.5em;
+    right: -2em;
     font-size: 1.3em;
     color: $favListBg;
     margin-left: auto;
     height: 1.4em;
-    display: flex;
-    align-self: start;
     cursor: pointer;
     font-weight: bold;
     

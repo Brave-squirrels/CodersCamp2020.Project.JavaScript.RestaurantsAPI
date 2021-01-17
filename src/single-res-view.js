@@ -7,7 +7,6 @@ const displayRestaurant = (result, resId)=>{
         const resCnt = document.querySelector('article');
         const firstSectionCnt = document.querySelector('#restaurantFirst');  
         const revCnt = document.querySelector('#restaurantSpecificInfo');
-       
         resCnt.style.display = 'block';
         revCnt.innerHTML = '';
         //Take the restaurant with this ID from result
