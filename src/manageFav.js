@@ -82,9 +82,6 @@ const manageFav = () => {
                     const filter = document.querySelector('#filterRestaurants');
                     const filterViewCnt = document.querySelector('#restOfTheFilters');
                     const filterBtn = document.querySelector('#filterBtn');
-                    filterViewCnt.style.visibility = 'hidden';
-                    filterViewCnt.style.maxHeight = '0';
-                    filterBtn.classList.add('notFiltered');
                     filterBtn.innerHTML = 'Show more filters';
                     mainSection.style.height = '86%';
                     
@@ -92,7 +89,7 @@ const manageFav = () => {
                     //Validation
                     if(result[0]==='incorrect syntax'){
                         notValid(val);
-                        mainSection.style.height = '84%';
+                        mainSection.style.height = '80%';
                     }else if(result[0]==='city does not exist'){
                         container.style.display = 'grid';
                         divData.style.display = 'none';

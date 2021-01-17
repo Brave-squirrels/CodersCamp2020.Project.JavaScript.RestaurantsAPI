@@ -368,17 +368,16 @@ nav {
     //Parent
     display: none;
     width: 100%;
-    // min-height: calc(100vh - 6%);
 
     #restOfTheFilters{
       overflow: hidden;
-      visibility: hidden;
       display: grid;
-      max-height: 0;
+      z-index: -9999;
       grid-template-columns: repeat(2,1fr);
       padding: 0.5em 1em;
       background: $bodyBg;
       margin-top: -1em;
+      transform: translateY(-100%);
       transition: all 0.3s ease-out;
       //Filter checkbox styles
       .container {
@@ -442,6 +441,8 @@ nav {
         color: $mainColor;
         text-align: center;
         background: $bodyBg;
+        z-index: 2;
+        border-bottom: 0.5px solid $buttonBg;
     }
     //Styles for containers
     .paginationContainer,
@@ -456,6 +457,7 @@ nav {
         grid-template-columns: repeat(2, 1fr);
         width: 100%;
         padding: 0.5em 1em;
+        z-index: 2;
         background: $bodyBg;
         //Filter checkbox styles
         .container {
@@ -660,11 +662,12 @@ nav {
             font-weight: bold;
             color: white;
             cursor: pointer;
+            transform: translateY(-100%);
+            transition: all 0.3s ease-out;
             outline: none;
             background: rgba(255, 255, 255, 0.2);
             background-size: 200% 100%;
             background-position: bottom right;
-            transition: height .3s ease-out;
             &:hover {
                 color: $mainColor;
                 background-color: $bodyBg;
@@ -818,7 +821,7 @@ article {
 footer {
     color: $mainFont;
     background: rgb(204, 211, 13);
-    height: 6vh;
+    height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
