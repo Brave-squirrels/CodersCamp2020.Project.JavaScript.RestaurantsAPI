@@ -18,6 +18,9 @@ const createTxtFile = async(restaurants) => {
         document.body.removeChild(element);
     }
 
+    if (restaurants[0] === undefined) {
+        return;
+    }
     let text = "";
 
     restaurants.forEach(restaurant => {
@@ -26,6 +29,7 @@ const createTxtFile = async(restaurants) => {
 
     // Start file download.
     download('MyFavouriteRestaurants.txt', text);
+
 }
 
 
