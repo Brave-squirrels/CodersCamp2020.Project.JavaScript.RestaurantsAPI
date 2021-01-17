@@ -1,33 +1,31 @@
-const fs = require('fs');
-
-
-
-/**
- *  @create folder if one does not simply exist 
- */
-
-const createFolder = async() => {
-    fs.mkdir('FavouriteRestaurants', { recursive: true }, err => {
-        if (err) throw new Error(err);
-    })
-}
-
-
-
 /**
  * @param {array} restaurants 
  * 
- * @save basic info about favourite restaurants to txt file
+ * @download basic info about favourite restaurants as txt file
  */
 
 const createTxtFile = async(restaurants) => {
-    await createFolder();
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
 
-    await restaurants.forEach(restaurant => {
-        fs.writeFile('FavouriteRestaurants/MyFavRestaurants.txt', `Restaurant name: ${restaurant.name} Address: ${restaurant.address} Rating: ${restaurant.rating} Phone: ${restaurant.phone} Cuisines: ${restaurant.cuisines.join(' ')}\n`, (err) => {
-            if (err) throw new Error(err);
-        })
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+
+    let text = "";
+
+    restaurants.forEach(restaurant => {
+        text += `Restaurant name: ${restaurant.name}\nRestaurant Rating: ${restaurant.rating}\nRestaurant Address: ${restaurant.address}\nRestaurant Phone: ${restaurant.phone}\nRestaurant Cuisines: ${restaurant.cuisines}\n\n\n`;
     })
+
+    // Start file download.
+    download('MyFavouriteRestaurants.txt', text);
 }
 
 
