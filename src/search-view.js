@@ -203,7 +203,7 @@ function display(e){
                         singleRest.style.display = 'none'
                         allRest.style.display = 'grid';
                         pageButt.style.display = 'flex';
-                        allRest.style.animationName = 'slideRight'
+                        allRest.style.animationName = 'slideLeft'
 
                     }
 
