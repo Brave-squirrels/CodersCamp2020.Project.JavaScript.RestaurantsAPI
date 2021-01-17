@@ -1,17 +1,51 @@
 # CodersCamp2020.Project.JavaScript.RestaurantsAPI
 CodersCamp second project - JavaScript
 
-Dostaliście na maila zaproszenie do tej organizacji, więc musicie konieczcnie je przyjąć i dostaniecie dostęp do repo. NIE robicie forka tego repozytorium, tylko działacie bezpośrednio na nim. Dodawajcie po prostu branche ze swoim kodem, oczywiście odpowiednio ponazywane. Na trello sa przykładowe nazwy branchy dla danych zadań. Po zakończeniu pracy na danym branchu, gdy jest on już gotowy, to można dodać pull requesta by zmergować do maina. Gdy to się zrobi, to będą wymagane 2 Code Review zanim branch się przyłączy do maina. Robimy je oczywiście my w zespole. Najlepiej gdyby robiła jedna osoba z zespołu (nie odpowiedizalna za dane zadanie) oraz ja, ale w przypadku, gdy na przykład nie będę dostępny, a czas będzie naglił, to możecie sami wykonać oba Code Review w drodze wyjątku, żeby przyspieszyć pracę.
-Także ściągacie repozytorium, nanosicie zmiany na lokalnym branchu, a potem wysyłacie tego całego brancha na to repo `git push origin nazwa_brancha`. 
-Pamiętajcie o aktualności repozytorium przed rozpoczęciem i w trakcie wykonywania swoich zadań! `git pull origin nazwa_brancha`!
-Zadania, do których przypisanych jest więcej niż jedna osoba, wykonujcie proszę na jednym, wspólnym branchu najlepiej. 
-Apka jest wstępnie skonfigurowana poprzez `parcel-bundler`.
-Poniżej krótka instrukcja co należy zrobić po ściągnięciu repo:
 
-Po wykonaniu git clone wpisz w konsoli w folderze z repo: `npm install` żeby zainstalować wszystkie moduły.
-Żeby odpalić serwer deweloperski wpisz: `npm run dev`.
-Żeby wykonać produkcyjnego builda wpisz: `npm run prod`.
+### Table of Contents
+* [General info](#generalinfo)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Walkthrough](#walkthrough)
+* [Status](#status)
+* [Resources](#resources)
 
-**Testy**
-W celu wykonania testów w folderze z repo uruchom w konsoli komende: `npm install` żeby zainstalować wszystkie moduły.
-Następnie testy możesz uruchomić komendą: `npm test`.
+
+### General Info
+Here and today, my dear, you are a witness of something new being created... A **Brave Squirrels Team** first ever project.
+We create a Restaurants-API Single-page web app, all you have to do, is type in the name of city you are intrested in, for that You will be rewarded with a list of best restaurants in that city!
+
+*_WARNING_* We can not assure you that your city is going to be avaiable. We are limited by zomato.api, our JSON dealer :)
+
+### Technologies
+Project is created with:
+* HTML5
+* SCSS
+* JavaScript
+* Node.js
+* Node-Fetch
+
+### Setup
+
+### Walkthrough
+#### Starting page
+![](images_for_github/starting_page.png)
+#### Restaurants View
+![](images_for_github/restaurants_view.png)
+#### Single restaurant with reviews View
+![](images_for_github/single-restaurant.png)
+#### Favourites View
+![](images_for_github/favourites_view.png)
+#### Exporting Favourite Restaurants
+![](images_for_github/export.png)
+
+### Status
+The project is finished in 99%... stay tuned! :wink:
+
+### Resources
+Resources:
+* https://pixabay.com
+* https://pexels.com
+* https://www.zomato.com/pl
+
+
