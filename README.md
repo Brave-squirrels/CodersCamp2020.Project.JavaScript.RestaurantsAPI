@@ -43,7 +43,6 @@ Project is created with:
 The project is finished in 99%... stay tuned! :wink:
 
 ### Resources
-Resources:
 * https://pixabay.com
 * https://pexels.com
 * https://www.zomato.com/pl
