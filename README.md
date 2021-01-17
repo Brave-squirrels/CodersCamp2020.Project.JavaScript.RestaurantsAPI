@@ -1,5 +1,5 @@
 # RestaurantsAPI by BraveSquirrels
-CodersCamp second project - JavaScript
+
 
 
 ### Table of Contents
