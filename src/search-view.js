@@ -190,6 +190,7 @@ function display(e){
                             singleRest.style.animationName = 'slideLeft'
                             allRest.style.display = 'none';
                             pageButt.style.display = 'none';
+    
                             
                         });
                     }
@@ -204,8 +205,7 @@ function display(e){
                         singleRest.style.display = 'none'
                         allRest.style.display = 'grid';
                         pageButt.style.display = 'flex';
-                        pageButt.style.animationName = 'slideLeftPagination'
-                        allRest.style.animationName = 'slideLeft'
+                        allRest.style.animationName = 'slideRight'
 
                     }
 
