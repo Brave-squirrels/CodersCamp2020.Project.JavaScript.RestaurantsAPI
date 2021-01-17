@@ -37,9 +37,6 @@ function display(e){
             const filter = document.querySelector('#filterRestaurants');
             const filterViewCnt = document.querySelector('#restOfTheFilters');
             const filterBtn = document.querySelector('#filterBtn');
-            filterViewCnt.style.visibility = 'hidden';
-            filterViewCnt.style.maxHeight = '0';
-            filterBtn.classList.add('notFiltered');
             filterBtn.innerHTML = 'Show more filters';
             mainSection.style.height = '86%';
             

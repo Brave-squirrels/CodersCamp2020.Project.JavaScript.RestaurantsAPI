@@ -26,16 +26,19 @@ const filterNav = (dom)=>{
         let clicked = 0;
         filterButton.addEventListener('click',()=>{
             if(clicked === 0){
-                restFiltersCnt.style.maxHeight = '5em';
-                restFiltersCnt.style.transition = 'all 0.3s ease-in';
-                restFiltersCnt.style.visibility = 'visible';
+                restFiltersCnt.style.transform = 'translateY(0)';
+                filterButton.style.transform = 'translateY(0)';
+                filterButton.style.transition = 'all 0.3s ease-out;';
+                restFiltersCnt.style.transition = 'all 0.3s ease-out;';
+                restFiltersCnt.style.zIndex = '999';
                 filterButton.innerHTML = 'Hide';
                 clicked++;
             }else if(clicked === 1){
-                restFiltersCnt.style.visibility = 'hidden';
-                restFiltersCnt.style.maxHeight = '0';
-                restFiltersCnt.style.transition = 'all 0.3s ease-in';
-                filterButton.classList.add('notFiltered');
+                restFiltersCnt.style.transform = 'translateY(-100%)';
+                filterButton.style.transform = 'translateY(-100%)';
+                filterButton.style.transition = 'all 0.3s ease-out;';
+                restFiltersCnt.style.transition = 'all 0.3s ease-out;';
+                restFiltersCnt.style.zIndex = '-9999';
                 filterButton.innerHTML = 'Show more filters';
                 clicked--;
             }
