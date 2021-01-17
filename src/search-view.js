@@ -176,8 +176,9 @@ function display(e){
                 
                 //Event for display single restaurant
                 document.addEventListener('click', function(e){
-                    const resId = e.target.dataset.name;
-                    if(e.target.id === 'resDiv'){
+                    const resDiv = document.querySelector('#resDiv');
+                    const resId = resDiv.dataset.name;
+                    if(e.target.id === 'resDiv' || resDiv.contains(e.target) || e.target.className === 'imgArrow' || e.target.className === 'resImg' ){
                         const allRest = document.querySelector('#restaurantsNavCon')
                         const pageButt = document.getElementById('paginationContainer')
                         const loading = document.querySelector("#loading");
