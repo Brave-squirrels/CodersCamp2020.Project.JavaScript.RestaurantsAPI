@@ -1,4 +1,4 @@
-# CodersCamp2020.Project.JavaScript.RestaurantsAPI
+# RestaurantsAPI by BraveSquirrels
 CodersCamp second project - JavaScript
 
 
