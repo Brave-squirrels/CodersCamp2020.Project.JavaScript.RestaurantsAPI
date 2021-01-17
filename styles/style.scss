@@ -657,7 +657,7 @@ nav {
 }
 
 @keyframes slideLeft {
-    from { transform: translate(-200vw,0)}
+    from { transform: translate(-100vw,0)}
     to { transform: translate(0,0)}   
    }
 
@@ -678,7 +678,7 @@ article {
         margin: auto;
         background: rgba(0, 0, 0, 0.3);
         position: relative;
-        // max-width: 1200px;
+        max-width: 65vw;
         display: grid;
         // grid-gap: 0.8em;
         //Add span styles to position
