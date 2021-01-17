@@ -519,7 +519,7 @@ nav {
 
     //Container of all restaurant found
     .restaurantsNavCon {
-        min-height: 68vh;
+        min-height: 60vh;
         display: grid;
         padding: 1em 2em;
         animation-duration: 2s;
@@ -686,7 +686,7 @@ nav {
 //Single restaurant section
 article {
     //Parent styles
-    min-height: 76.72vh;
+    min-height: 69vh;
     animation-name: slideLeft;
     animation-duration: 1.5s;
     color: $mainColor;
