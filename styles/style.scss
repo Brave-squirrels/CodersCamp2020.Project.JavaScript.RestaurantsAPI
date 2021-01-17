@@ -36,15 +36,15 @@ body {
 }
 
 //Scroll style
-body::-webkit-scrollbar {
+body::-webkit-scrollbar, aside::-webkit-scrollbar {
     width: 4px;
 }
 
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track, aside::-webkit-scrollbar-track {
     background: #ddd;
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb, aside::-webkit-scrollbar-thumb {
     background: #444;
     border-radius: 4px;
 }
@@ -95,6 +95,7 @@ aside {
     transition: 0.5s;
     font-size: 1em;
     padding: 1em 2em;
+    overflow: auto;
     //Close trigger style
     .closeFav {
         position: absolute;
