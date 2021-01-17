@@ -103,6 +103,7 @@ aside {
         font-size: 2em;
         cursor: pointer;
     }
+    
     .favourites{
         .resDivFav {
             box-shadow: -1px 2px 3px 3px rgba(0, 0, 0, 0.35);
@@ -363,6 +364,7 @@ main {
 
 //Navigation restaurants style
 nav {
+    
     //Parent
     display: none;
     width: 100%;
@@ -505,15 +507,24 @@ nav {
             }
         }
     }
+
+    @keyframes slideRight {
+        from { transform: translate(100vw,0)}
+        to {transform: translate(0,0);
+            // visibility: hidden;
+        }     
+       }
+
     //Container of all restaurant found
     .restaurantsNavCon {
         display: grid;
         padding: 1em 2em;
+        animation-duration: 2s;
         //Main single nav restaurant container
         .resDiv {
             box-shadow: -1px 2px 3px 3px rgba(0, 0, 0, 0.35);
             background: rgba(255, 255, 255, 0.911);
-            width: 100%;
+            width: 80vw;
             display: grid;
             cursor: pointer;
             grid-template-columns: 1fr auto;
@@ -566,6 +577,7 @@ nav {
             }
         }
     }
+
     //Container with pagination buttons
     .paginationContainer {
         display: flex;
@@ -575,6 +587,7 @@ nav {
         max-width: 650px;
         width: 100%;
         padding: 1em 2em;
+        animation-duration: 2s;
         //Pagination button styles
         #btn2 {
             margin-left: auto;
@@ -642,21 +655,30 @@ nav {
     }
 }
 
+@keyframes slideLeft {
+    from { transform: translate(-200vw,0)}
+    to { transform: translate(0,0)}   
+   }
+
+
 //Single restaurant section
 article {
     //Parent styles
+    animation-name: slideLeft;
+    animation-duration: 1.5s;
     color: $mainColor;
     padding: 2em;
     display: none;
+
     //Main container for restaurant
     .restaurantContainer {
-        padding: 1.4em;
-        margin: 0 auto;
+        padding: 1.62em;
+        margin: auto;
         background: rgba(0, 0, 0, 0.3);
         position: relative;
         max-width: 1200px;
         display: grid;
-        grid-gap: 0.8em;
+        // grid-gap: 0.8em;
         //Add span styles to position
         span {
             display: block;
@@ -671,13 +693,14 @@ article {
             //Header of the restaurant
             .restaurantIntro {
                 display: flex;
+                width: auto;
                 flex-direction: column;
                 padding: 0em 0 1em 1em;
                 //Restaurant adress and name style
                 .restaurantName {
                     font-weight: bold;
                     color: $favListBg;
-                    font-size: 2em;
+                    font-size: 1.4rem;
                     margin-bottom: 1em;
                     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
                 }
@@ -783,10 +806,11 @@ footer {
 }
 
 //Fav add/remove button global styles
-.starFav, .starFavLabel {
-    font-size: 1.2em;
-    margin-left: auto;
-    height: 2em;
+.starFav {
+    font-size: 1.2rem;
+    transform: translateY(-0.5rem);
+    height: 2.2rem;
+    // border: 1px red solid;
     &:hover {
         cursor: pointer;
     }
@@ -800,6 +824,18 @@ footer {
     &:checked~::before {
         color: $bodyBg;
     }
+}
+
+.cross{
+    font-size: 1.3em;
+    color: $favListBg;
+    margin-left: auto;
+    height: 1.4em;
+    display: flex;
+    align-self: start;
+    cursor: pointer;
+    font-weight: bold;
+    
 }
 
 .starFavInput {
