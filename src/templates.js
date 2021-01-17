@@ -1,17 +1,17 @@
 //Template for navigation
 const navTemplate = (obj, arr)=>{
     arr.push(`<div id='resDiv' class='resDiv' data-name="${obj.id}">
-                <span class='resTitle'>
+                <span class='resTitle' data-name="${obj.id}">
                     ${obj.name}
                 </span>
-                <span class='resCs'>
+                <span class='resCs' data-name="${obj.id}">
                     ${obj.address}
                 </span>
-                <span class='resAdr'>
+                <span class='resAdr' data-name="${obj.id}">
                     ${obj.rating}
                 </span>
-                <div class='imgArrow'>
-                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
+                <div class='imgArrow' data-name="${obj.id}">
+                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg' data-name="${obj.id}">
                 </div>
             </div>`);
 }
