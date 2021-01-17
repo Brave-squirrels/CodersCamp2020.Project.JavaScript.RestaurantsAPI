@@ -263,6 +263,8 @@ const manageFav = () => {
                     loading.style.display='none';
                     document.querySelector('nav').style.display = 'grid';
                     document.querySelector('#restaurantsNavCon').style.display = 'none';
+                    document.querySelector('#paginationContainer').style.display = 'none';
+                    
                 });
                 const string = e.target.id.replace('fav', '');
                 document.querySelector('nav').style.display = 'grid';
