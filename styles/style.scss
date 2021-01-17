@@ -103,53 +103,47 @@ aside {
         font-size: 2em;
         cursor: pointer;
     }
-    .resDivFav {
-        box-shadow: -1px 2px 3px 3px rgba(0, 0, 0, 0.35);
-        background: $secondBackground;
-        width: 100%;
-        display: grid;
-        cursor: pointer;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: repeat(3, 1fr);
-        position: relative;
-        color: $mainColor;
-        max-width: 650px;
-        height: 5.625em;
-        margin: 1em auto;
-        transition: 0.3s ease-in;
-        //Hover style
-        &:hover {
-            transform: translateY(-10px);
-        }
-        //Display block to position
-        span {
-            display: flex;
-            align-items: center;
-        }
-        //Arrow image container and image itself
-        .imgArrow {
-            height: 100%;
-            grid-row: 1 / 4;
-            grid-column: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .resImg {
-                height: 0.9em;
-                width: auto;
+    .favourites{
+        .resDivFav {
+            box-shadow: -1px 2px 3px 3px rgba(0, 0, 0, 0.35);
+            background: rgba(255, 255, 255, 0.911);
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: repeat(3, 1fr);
+            position: relative;
+            color: $mainColor;
+            max-width: 650px;
+            height: 5.625em;
+            margin: 1em auto;
+            padding: 0.5em;
+            transition: 0.3s ease-in;
+            //Hover style
+            &:hover {
+                transform: translateY(-10px);
             }
-        }
-        //Restaurant title, address and raiting style
-        .resTitle {
-            pointer-events: none;
-        }
-        .resCs {
-            font-size: 0.7em;
-            pointer-events: none;
-        }
-        .resAdr {
-            font-size: 0.6em;
-            pointer-events: none;
+            //Display block to position
+            span {
+                display: flex;
+                align-items: center;
+            }
+            //Restaurant title, address and raiting style
+            .resTitle {
+                font-size: 1.2em;
+                font-weight: bolder;
+                border-bottom: solid 1px rgba(87, 87, 87, 0.274);
+                cursor: pointer;
+            }
+            .resCs {
+                font-weight: bold;
+                font-size: 0.85em;
+                pointer-events: none;
+            }
+            .resAdr {
+                font-weight: bold;
+                font-size: 0.8em;
+                pointer-events: none;
+            }
         }
     }
     .favTitle {
@@ -214,7 +208,7 @@ aside {
 header {
     //Main header styles
     background-color: $bodyBg;
-    height: 14%;
+    min-height: 14%;
     display: grid;
     grid-template-columns: 1fr 15%;
     font-size: 1.2em;
@@ -815,9 +809,15 @@ footer {
     }
 }
 
-.starFav, .starFavInput{
-    z-index: 1;
-}
+
+.addFav{
+    height: 100%;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 
 /* Media queries */

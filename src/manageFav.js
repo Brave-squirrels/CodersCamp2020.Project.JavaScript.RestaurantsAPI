@@ -1,53 +1,52 @@
 const {manageLSSingle,manageLSFav} = require('./add-removeLS');
 const displayRestaurant = require('./single-res-view');
 
+//Main function
 const manageFav = ()=>{
 
-    //Getting everything from localStorage
-    const arr = [];
+    //Getting all the keys from LS
     const dataArr = [];
 
     let values = [];
     let keys = Object.keys(localStorage);
 
-
+    //Getting all of the objects
     for(let i=0; i<keys.length; i++){
         values.push(JSON.parse(localStorage.getItem(keys[i])));
     }
 
+    //Pushing HTML template of every object in LS
     const favCnt = document.querySelector('#favourites');
+    const noFav = document.querySelector('#noFav');
     favCnt.innerHTML = '';
+    noFav.innerHTML = '';
     if(values.length === 0){
-        dataArr.push('No restaurants');
+       noFav.innerHTML = `
+            <h1>No favourites yet</h1>
+            <div>Search for restaurants to find what you like!</div>
+        `;
+        return;
     }else{
-        //Getting all data from LS
        values.forEach((n)=>{ 
-        let checkbox = ``;
-        if(localStorage.getItem(n.id) !== null){
-            checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${n.id}fav' value='${n.id}fav' checked>
-            <label  class="starFavLabel" for='${n.id}fav' id='${n.id}fav' ></label>`;
-        }else{
-            checkbox = ` <input type="checkbox" name="starFav" class="starFavInput" id='${n.id}fav'  value='${n.id}fav'>
-            <label  class="starFavLabel" for='${n.id}fav' id='${n.id}fav' ></label>`;
-        }
         dataArr.push(`
-        <div id='resDivFav' class='resDiv' data-name="${n.id}" >
-        <span class='resTitle' id='${n.id}fav'>
-            ${n.name}
-        </span>
-        <span class='resCs'>
-            ${n.address}
-        </span>
-        <span class='resAdr'>
-            ${n.rating}
-        </span>
-        <div class='imgArrow'>
-            ${checkbox}
-        </div>
+        <div id='resDivFav' class='resDivFav' data-name="${n.id}" >
+            <span class='resTitle' id='${n.id}fav'>
+                ${n.name}
+            </span>
+            <span class='resCs'>
+                ${n.address}
+            </span>
+            <span class='resAdr'>
+                ${n.rating}
+            </span>
+            <div class='addFav'>
+                <input type="checkbox" name="starFav" class="starFavInput" id='${n.id}fav' value='${n.id}fav' checked>
+                <label  class="starFavLabel" for='${n.id}fav' id='${n.id}fav' ></label>
+            </div>
         </div>`
         );
        })
-       
+       //Adding event listener to remove fav and link to restaurant onclick
        document.addEventListener('click', (e)=>{
             if(e.target.className === 'starFavLabel'){
                 manageLSFav(e.target.id,e.target);
@@ -63,17 +62,11 @@ const manageFav = ()=>{
                 favList.style.right = '-4em';  
             }
         })
-
-
     }
+    //Appending all the data
     dataArr.forEach((n)=>{
         favCnt.innerHTML += n;
     })
-
-    
-    
-    
-
 }
 
 module.exports = manageFav;

@@ -1,7 +1,5 @@
 //Add restaurant to fav and change the style of stars and Fav view star
 const manageLSSingle = (objToStore, trigger)=>{
-    console.log(trigger);
-    console.log(trigger.checked);
         if(trigger.checked === false){
             localStorage.setItem(objToStore.id, JSON.stringify(objToStore));
             trigger.checked = true;
@@ -15,11 +13,12 @@ const manageLSSingle = (objToStore, trigger)=>{
 //By trigger param pass e.target
 const manageLSFav = (objId, trigger)=>{
     const secondStar = trigger.id.replace('fav', '');
-    console.log(secondStar);
     const secondChk = document.querySelector(`#${CSS.escape(secondStar)}`)
         if(!trigger.checked){
             localStorage.removeItem(secondStar);
-            secondChk.checked = false;
+            if(secondChk){
+                secondChk.checked = false;
+            }
         }
 }
 
