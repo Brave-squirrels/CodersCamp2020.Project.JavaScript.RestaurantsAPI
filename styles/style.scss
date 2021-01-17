@@ -371,6 +371,7 @@ nav {
 
     #restOfTheFilters{
       overflow: hidden;
+      visibility: hidden;
       display: grid;
       z-index: -9999;
       grid-template-columns: repeat(2,1fr);
