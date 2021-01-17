@@ -178,17 +178,40 @@ function display(e){
                 document.addEventListener('click', function(e){
                     const resId = e.target.dataset.name;
                     if(e.target.id === 'resDiv'){
+                        const allRest = document.querySelector('#restaurantsNavCon')
+                        const pageButt = document.getElementById('paginationContainer')
                         //Fetching reviews and passing into display function
                         fetchUserReviews(resId, result).then(function(res){
-                            resCnt.style.display = 'none';
-                            displayRestaurant(res, resId);
-                            resCnt.scrollIntoView({
-                                behavior: 'smooth'
-                            });
+                            // resCnt.style.display = 'none';
+                            displayRestaurant(res, resId);                        
+                            // singleRest.style.animationName = 'slideOff';
+                            const singleRest = document.querySelector('article')
+                            singleRest.style.display = 'block'
+                            singleRest.style.animationName = 'slideLeft'
+                            allRest.style.display = 'none';
+                            pageButt.style.display = 'none';
+    
+                            
                         });
                     }
                 });
+                //Close single restaurant view and show all restaurants
+                document.addEventListener('click', function(e){
+                    
+                    if(e.target.id === 'cross'){
+                        const allRest = document.getElementById('restaurantsNavCon')
+                        const pageButt = document.getElementById('paginationContainer')
+                        const singleRest = document.querySelector('article')
+                        singleRest.style.display = 'none'
+                        allRest.style.display = 'grid';
+                        pageButt.style.display = 'flex';
+                        allRest.style.animationName = 'slideRight'
 
+                    }
+
+                });
+                
+                
                 //Scroll to the nav after submit
                 container.scrollIntoView({
                     behavior: 'smooth'
