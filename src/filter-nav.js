@@ -32,9 +32,9 @@ const filterNav = (dom)=>{
                 filterButton.innerHTML = 'Hide';
                 clicked++;
             }else if(clicked === 1){
+                restFiltersCnt.style.visibility = 'hidden';
                 restFiltersCnt.style.maxHeight = '0';
                 restFiltersCnt.style.transition = 'all 0.3s ease-in';
-                restFiltersCnt.style.visibility = 'hidden';
                 filterButton.classList.add('notFiltered');
                 filterButton.innerHTML = 'Show more filters';
                 clicked--;
