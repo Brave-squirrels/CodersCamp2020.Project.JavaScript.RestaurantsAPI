@@ -58,12 +58,14 @@ const deleteFirstCity = (cityName) => {
 
 const checkCookies = (cityName) => {
     if (document.cookie.includes(cityName)) {
+        let check = 0;
         let cookies = arrayOfCookies();
         cookies.forEach(cookie => {
             if (cookie.city === cityName) {
-                return true
+                ++check
             };
         })
+        if (check > 0) return true;
     } else if (document.cookie.includes('=')) {
         let cookies = arrayOfCookies();
         let cityNames = [];
