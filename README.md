@@ -5,6 +5,7 @@
 ### Table of Contents
 * [General info](#generalinfo)
 * [Technologies](#technologies)
+* [Requirements](#requirements)
 * [Setup](#setup)
 * [Walkthrough](#walkthrough)
 * [Status](#status)
@@ -25,7 +26,20 @@ Project is created with:
 * Node.js
 * Node-Fetch
 
+### Requirements
+To be able to run our project, you need to have installed **npm package manager**
+If you do not now if you have it installed on your computer nad you still want to run our project follow these steps:
+
+#### Windows command prompt/Linux bash
+##### Run *npm -v*
+* *If you received a number like 'x.x.x' you already have installed* **npm package manager** *on your computer nad you can follow the [Setup](#setup) guide*
+* *Otherwise, you will have to install it, the best way to do it is installing it globaly by running the command **npm install npm@latest -g***
+* *After that you can run again the command from the first line just to confirm that you have succesfully installed required* **package manager*
+
 ### Setup
+To run the project follow these steps:
+* *Clone this repository
+* *In command prompt run **npm run dev**
 
 ### Walkthrough
 #### Starting page
@@ -40,7 +54,7 @@ Project is created with:
 ![](images_for_github/export.png)
 
 ### Status
-The project is finished in 99%... stay tuned! :wink:
+The project is now completed!
 
 ### Resources
 * https://pixabay.com
