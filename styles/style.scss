@@ -434,7 +434,6 @@ nav {
 
     //Title for filter
     .filterTitle {
-        height: 7vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -515,7 +514,7 @@ nav {
    
     //Container of all restaurant found
     .restaurantsNavCon {
-        min-height: 60vh;
+        min-height: 61.2vh;
         display: grid;
         padding: 1em 2em;
         animation-name: slideLeft;
@@ -683,7 +682,7 @@ nav {
 //Single restaurant section
 article {
     //Parent styles
-    min-height: 69vh;
+    min-height: 70vh;
     animation-name: slideLeft;
     animation-duration: 1.5s;
     color: $mainColor;
