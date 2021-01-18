@@ -28,18 +28,23 @@ Project is created with:
 
 ### Requirements
 To be able to run our project, you need to have installed **npm package manager**
-If you do not now if you have it installed on your computer nad you still want to run our project follow these steps:
+If you do not now if you have it installed on your computer and you still want to run our project follow these steps:
 
 #### Windows command prompt/Linux bash
 ##### Run *npm -v*
-* *If you received a number like 'x.x.x' you already have installed* **npm package manager** *on your computer nad you can follow the [Setup](#setup) guide*
+* *If you received a number like 'x.x.x' you already have installed* **npm package manager** *on your computer and you can follow the next step*
 * *Otherwise, you will have to install it, the best way to do it is installing it globaly by running the command **npm install npm@latest -g***
-* *After that you can run again the command from the first line just to confirm that you have succesfully installed required* **package manager*
+* *After that you can run again the command from the first line just to confirm that you have succesfully installed required* **package manager**
+##### Install parcel
+* *To install parcel* **appllication bundler** *run the commnad **npm install -g parcel-bundler***
 
 ### Setup
 To run the project follow these steps:
-* *Clone this repository
-* *In command prompt run **npm run dev**
+* *Clone this repository*
+* *Open repository in your code editor*
+* *Run command **npm run prod***
+* *Run command **npm run dev***
+* *Enter the local host that was created which by default is **http://localhost:1234/***
 
 ### Walkthrough
 #### Starting page
