@@ -2,7 +2,6 @@ const displayFav = (e)=>{
     const favList = document.querySelector('aside');
     const openList = document.querySelector('#favIcon');
     const closeList = document.querySelector('#closeFav');
-
     //Open favList
     if(e.target.id === 'favIcon'){
 
@@ -16,9 +15,10 @@ const displayFav = (e)=>{
         favList.style.right = '0';
     }
     //Close favList
-    else if(e.target.id === 'closeFav'){
-        favList.style.width = '0';
-        favList.style.right = '-4em';
+    else if(e.target.id === 'closeFav' || (favList !== e.target && !favList.contains(e.target))){
+            favList.style.width = '0';
+            favList.style.right = '-4em';  
+         
     }
 
     //Display and hide modal box via envelope button

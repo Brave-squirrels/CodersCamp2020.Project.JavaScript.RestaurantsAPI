@@ -3,41 +3,26 @@ const {mainFunc, fetchUserReviews} = require('./restaurants-api');
 const {generateBtn, append, resetState} = require('./feature-pagination');
 const notValid = require('./validate');
 const displayRestaurant = require('./single-res-view');
-const filterNav = require('./filter-nav');
+const {navTemplate, resBasicInfoTemplate, resReviewInfoTemplate} = require('./templates');
+const {filterNav, addFilterContent} = require('./filter-nav');
 
-//Creating template string for restaurant nav
-const pushTemplate = (obj, arr)=>{
-    arr.push(`<div id='resDiv' class='resDiv' data-name="${obj.id}">
-                <span class='resTitle'>
-                    ${obj.name}
-                </span>
-                <span class='resCs'>
-                    ${obj.address}
-                </span>
-                <span class='resAdr'>
-                    ${obj.rating}
-                </span>
-                <div class='imgArrow'>
-                    <img src="//cdn.clipartsfree.net/vector/small/50542-right-grey-arrow-icon.png" alt="" class='resImg'>
-                </div>
-            </div>`);
-}
 
 //Display data when click on search button
 function display(e){
     resetState()
-    let rez;
     //Prevent from reloading page on submit 
     e.preventDefault();
-    document.querySelector('main').style.height = '79%';
     //Get DOM elements
     const val = document.querySelector('#townSearch');
     const container = document.querySelector('nav');
     const mainSection = document.querySelector('main');
+    mainSection.style.height = '80%';
+    
 
     //Resets container by default
     container.style.display = 'none';
-    document.querySelector('article').style.display = 'none';
+    const resCnt = document.querySelector('article');
+    resCnt.style.display = 'none';
     //Format the input
     const inputValue = val.value.trim();
 
@@ -45,15 +30,21 @@ function display(e){
     loading.style.display='flex';
         //Add value of checkbox here where is empty array
     mainFunc(inputValue).then(function(result){
-            mainSection.style.height = '85%';
+
+            //Reset DOM
             const buttons = document.querySelector('#paginationContainer');
             const divData = document.querySelector('#restaurantsNavCon');
             const filter = document.querySelector('#filterRestaurants');
+            const filterViewCnt = document.querySelector('#restOfTheFilters');
+            const filterBtn = document.querySelector('#filterBtn');
+            filterBtn.innerHTML = 'Show more filters';
+            mainSection.style.height = '86%';
+            
             let navData = [];
             //Validation
             if(result[0]==='incorrect syntax'){
                 notValid(val);
-                mainSection.style.height = '79%';
+                mainSection.style.height = '80%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
                 divData.style.display = 'none';
@@ -81,7 +72,7 @@ function display(e){
                 container.style.display = 'grid';
                 result.forEach((element)=>{
                     //data-name - get this on click and base on that display restaurant
-                    pushTemplate(element,navData);
+                    navTemplate(element,navData);
                 });
 
                 //Default append data on the first site
@@ -109,11 +100,10 @@ function display(e){
                     `);
                 })
 
-                //Hide and show more filters
-                filterNav(arrayOfHTML, filter);
                 
-                 //Saving the array of data
-                 let savedNavData = navData;
+                
+                //Saving the array of data
+                let savedNavData = navData;
 
                 const filterRestaurants = (e)=>{
                     //Checking target of the event
@@ -137,7 +127,7 @@ function display(e){
                                 const formatedArr = splitArr.map(el=>el.trim());
                                 const rez = filterArray.some(r => formatedArr.includes(r));
                                 if(rez){
-                                    pushTemplate(element,tmpNavData);
+                                    navTemplate(element,tmpNavData);
                                 }
 
                             })
@@ -166,8 +156,13 @@ function display(e){
                     
                 }
 
+                //AppendFilters
+                addFilterContent(arrayOfHTML, filter);
+                //Hide and show more filters
+                filterNav(filter);
+
                 //Run filter
-                filter.addEventListener('click', filterRestaurants);
+                document.addEventListener('click', filterRestaurants);
 
                 //To append pass array with data, element that will contain the buttons, element that will contain data
                 //Add event to generate buttons
@@ -178,20 +173,50 @@ function display(e){
                 
                 //Event for display single restaurant
                 document.addEventListener('click', function(e){
-                    const resId = e.target.dataset.name;
-                    if(e.target.id === 'resDiv'){
+                    const resDiv = document.querySelector('#resDiv');
+                    if(e.target.id === 'resDiv' || resDiv.contains(e.target) || e.target.className === 'imgArrow' || e.target.className === 'resImg' ){
+                        const resId = e.target.dataset.name;
+                        const allRest = document.querySelector('#restaurantsNavCon')
+                        const pageButt = document.getElementById('paginationContainer')
+                        const loading = document.querySelector("#loading");
+                        loading.style.display='flex';
                         //Fetching reviews and passing into display function
                         fetchUserReviews(resId, result).then(function(res){
-                            const resCnt = document.querySelector('article');
-                            resCnt.style.display = 'none';
-                            displayRestaurant(res, resId);
-                            resCnt.scrollIntoView();
+                            
+                            // resCnt.style.display = 'none';
+                            displayRestaurant(res, resId);                        
+                            // singleRest.style.animationName = 'slideOff';
+                            const singleRest = document.querySelector('article')
+                            singleRest.style.display = 'block'
+                            singleRest.style.animationName = 'slideLeft'
+                            allRest.style.display = 'none';
+                            pageButt.style.display = 'none';
+                            loading.style.display='none';
                         });
+                        
                     }
                 });
+                //Close single restaurant view and show all restaurants
+                document.addEventListener('click', function(e){
+                    
+                    if(e.target.id === 'cross'){
+                        const allRest = document.getElementById('restaurantsNavCon')
+                        const pageButt = document.getElementById('paginationContainer')
+                        const singleRest = document.querySelector('article')
+                        singleRest.style.display = 'none'
+                        allRest.style.display = 'grid';
+                        pageButt.style.display = 'flex';
+                        allRest.style.animationName = 'slideLeft'
 
+                    }
+
+                });
+                
+                
                 //Scroll to the nav after submit
-                container.scrollIntoView();
+                container.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
             loading.style.display='none';
         })

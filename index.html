@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant API</title>
-    <link rel="stylesheet" href="styles/style.scss"/>
+    <link rel="stylesheet" href="styles/style.scss" />
     <link rel="icon" type="image/png" href="assets/logo.png" sizes="16x16" />
     <meta name="theme-color" content="rgba(0,0,0,0.3)" />
 </head>
+
 <body>
     <!--Loading animation-->
     <div id="loading" class='loading'>
         <img src='assets/loading.svg'>
     </div>
-    
+
     <!--List of fav restaurants-->
     <aside>
         <div>
@@ -29,17 +31,16 @@
         </div>
         <!--Display if anything in localStorage-->
         <!--Podobnie jak, gdy jest restauracja w NAV + też możne odznaczyć i usunać z localstorage-->
-        <div>
+        
             <div id="favourites" class="favourites">
                 <!-- test environment-->
 
             </div>
             <!--Display when localStorage is empty-->
             <div id="noFav" class="noFav">
-       
+
 
             </div>
-        </div>
     </aside>
     
     <!-- Overlay Section -->
@@ -63,16 +64,16 @@
     <!--Header--> 
     <header>
         <div class="siteTitle">
-           <img src="assets/logo.png" alt="logo" class='logo'>
-           <span class='logoTitle'>
-            We'll help you find the best restaurant!
-           </span>
+            <img src="assets/logo.png" alt="logo" class='logo'>
+            <span class='logoTitle'>
+                We'll help you find the best restaurant!
+            </span>
         </div>
 
         <div class="favTrigger">
             <img src="assets/fav.png" alt="favIcon" class='favIcon' id='favIcon'>
         </div>
-        
+
     </header>
 
     <!--Main - search engine-->
@@ -84,7 +85,7 @@
             <form id='searchForm'>
                 <input type="text" id='townSearch' class='townSearch' placeholder='Type the town'>
                 <input type="submit" value='Search' id='townFind' class='townFind'>
-            </form> 
+            </form>
         </div>
         <img src="assets/imgMain.png" alt="imgMain" class='imgDec'>
     </main>
@@ -95,33 +96,34 @@
             Filters
         </div>
         <div id="filterRestaurants" class='filterRestaurants'>
-            
         </div>
+        <div id='restOfTheFilters' style='visibility: visible'></div>
         <div class='filterBtnCnt'>
             <button id='filterBtn' class='filterBtn'>Show more filters</button>
         </div>
         <div id="restaurantsNavCon" class='restaurantsNavCon'>
-            
-        </div>
-       <div id="paginationContainer" class='paginationContainer'>
-       </div>
-    </nav>
-    
-    <!-- Single restaurant section -->
-    <article>
-        <div class="restaurantContainer">
-            <div id="restaurantFirst"> 
-            </div>
-            <div class='restaurantSpecificInfo' id='restaurantSpecificInfo'>
-            </div>
-        </div>
-    </article>
 
+        </div>
+
+        <div id="paginationContainer" class='paginationContainer'>
+        </div>
+
+        <!-- Single restaurant section -->
+        <article>
+            <div class="restaurantContainer">
+                <div id="restaurantFirst">
+
+                </div>
+                <div class='restaurantSpecificInfo' id='restaurantSpecificInfo'>
+                </div>
+            </div>
+        </article>
+    </nav>
     <!--Copyrights footer-->
     <footer>
         &#169; Copyrights by Brave Squirrels
     </footer>
-    
     <script src="src/index.js"></script>
 </body>
+
 </html>
