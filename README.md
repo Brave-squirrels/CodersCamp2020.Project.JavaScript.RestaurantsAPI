@@ -52,7 +52,11 @@ To run the project follow these steps:
 
 ### Walkthrough
 -----------------
-![Alt Text](https://media.giphy.com/media/giH8xC6xawwCcZcdOk/giphy.gif)
+![](images_for_github/starting-page.png)
+![](images_for_github/all-restaurants.png)
+![](images_for_github/single-restaurant.png)
+![](images_for_github/favourites-view.png)
+![](images_for_github/export.png)
 
 
 ### Resources
