@@ -52,7 +52,7 @@ To run the project follow these steps:
 
 ### Walkthrough
 -----------------
-![](images_for_github/starting-page.png)
+![](images_for_github/starting_page.png)
 ![](images_for_github/all-restaurants.png)
 ![](images_for_github/single-restaurant.png)
 ![](images_for_github/favourites-view.png)
