@@ -30,7 +30,7 @@ Project is created with:
 ### Requirements
 -----------------
 To be able to run our project, you need to have installed **npm package manager**
-If you do not now if you have it installed on your computer and you still want to run our project follow these steps:
+If you do not know if you have it installed on your computer and you still want to run our project follow these steps:
 
 #### Windows command prompt/Linux bash
 
