@@ -3,7 +3,7 @@
 
 
 ### Table of Contents
-* [General info](#generalinfo)
+* [General Info](#generalinfo)
 * [Technologies](#technologies)
 * [Requirements](#requirements)
 * [Setup](#setup)
@@ -29,7 +29,9 @@ Project is created with:
 
 ### Requirements
 -----------------
-To be able to run our project, you need to have installed **npm package manager**
+If you would like to simply visit our webpage, just move on to [Setup](#setup) and look for a URL :)
+<br/><br/>
+To be able to run our project locally, you need to have installed **npm package manager**
 If you do not know if you have it installed on your computer and you still want to run our project follow these steps:
 
 #### Windows command prompt/Linux bash
@@ -43,7 +45,9 @@ If you do not know if you have it installed on your computer and you still want 
 
 ### Setup
 -----------------
-To run the project follow these steps:
+If you want to visit our webpage, just click <a href="https://brave-squirrels.github.io/CodersCamp2020.Project.JavaScript.RestaurantsAPI/">here!</a> **WARNING** Github will not open this link in a new tab, you have to do it manually.
+<br/><br/>
+To run the project locally follow these steps:
 * *Clone this repository*
 * *Open repository in your code editor*
 * *Run command **npm run prod***
