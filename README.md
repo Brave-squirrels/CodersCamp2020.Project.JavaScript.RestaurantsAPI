@@ -52,7 +52,7 @@ To run the project follow these steps:
 
 ### Walkthrough
 -----------------
-<image source="https://media.giphy.com/media/giH8xC6xawwCcZcdOk/giphy.gif"/>
+![Alt Text](https://media.giphy.com/media/giH8xC6xawwCcZcdOk/giphy.gif)
 
 
 ### Resources
