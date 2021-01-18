@@ -14,7 +14,7 @@
 ### General Info
 -----------------
 Here and today, my dear, you are a witness of something new being created... A **Brave Squirrels Team** first ever project.
-We create a Restaurants-API Single-page web app, all you have to do, is type in the name of city you are intrested in, for that You will be rewarded with a list of best restaurants in that city!
+We created a Restaurants-API Single-page web app, all you have to do, is type in the name of city you are intrested in, for that You will be rewarded with a list of best restaurants in that city!
 
 *_WARNING_* We can not assure you that your city is going to be avaiable. We are limited by zomato.api, our JSON dealer :)
 
