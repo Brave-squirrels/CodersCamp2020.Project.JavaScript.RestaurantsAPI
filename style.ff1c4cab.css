@@ -165,7 +165,7 @@ aside .exportFavData {
   cursor: pointer;
   outline: none;
   display: block;
-  background: linear-gradient(to right, #E6ED3B 50%, rgba(0, 0, 0, 0.01) 50%);
+  background: linear-gradient(to right, #ccd30d 50%, rgba(0, 0, 0, 0.01) 50%);
   background-size: 200% 100%;
   background-position: bottom right;
   transition: all 0.5s ease-out;
@@ -175,7 +175,7 @@ aside .exportFavData:hover {
 }
 
 header {
-  background-color: #E6ED3B;
+  background-color: #ccd30d;
   min-height: 14%;
   display: grid;
   grid-template-columns: 1fr 15%;
@@ -268,7 +268,7 @@ main .mainCnt .townSearch {
   margin: 0 auto;
 }
 main .mainCnt .townSearch:focus {
-  border-color: #E6ED3B;
+  border-color: #ccd30d;
 }
 main .mainCnt .invalid {
   position: relative;
@@ -299,7 +299,7 @@ main .mainCnt .townFind {
   display: block;
   margin: 0.5em auto 0 auto;
   background-color: #fff;
-  background: linear-gradient(to right, #E6ED3B 50%, #fff 50%);
+  background: linear-gradient(to right, #ccd30d 50%, #fff 50%);
   background-size: 200% 100%;
   background-position: bottom right;
   transition: all 0.5s ease-out;
@@ -326,7 +326,7 @@ nav #restOfTheFilters {
   z-index: -9999;
   grid-template-columns: repeat(2, 1fr);
   padding: 0.5em 1em;
-  background: #E6ED3B;
+  background: #ccd30d;
   margin-top: -1em;
   transform: translateY(-100%);
   transition: all 0.3s ease-out;
@@ -387,7 +387,7 @@ nav .filterTitle {
   font-weight: bold;
   color: #383738;
   text-align: center;
-  background: #E6ED3B;
+  background: #ccd30d;
   z-index: 2;
   border-bottom: 0.5px solid #383738;
 }
@@ -403,7 +403,7 @@ nav .filterRestaurants {
   width: 100%;
   padding: 0.5em 1em;
   z-index: 2;
-  background: #E6ED3B;
+  background: #ccd30d;
 }
 nav .filterRestaurants .container {
   display: block;
@@ -541,7 +541,7 @@ nav .paginationContainer #btn2 {
   transition: all 0.5s ease-out;
 }
 nav .paginationContainer #btn2:hover {
-  background-color: #E6ED3B;
+  background-color: #ccd30d;
   background-position: bottom left;
 }
 nav .paginationContainer #btn1 {
@@ -560,7 +560,7 @@ nav .paginationContainer #btn1 {
   transition: all 0.5s ease-out;
 }
 nav .paginationContainer #btn1:hover {
-  background-color: #E6ED3B;
+  background-color: #ccd30d;
   background-position: bottom right;
 }
 nav .townNotFound {
@@ -599,7 +599,7 @@ nav .filterBtnCnt .filterBtn {
 }
 nav .filterBtnCnt .filterBtn:hover {
   color: #383738;
-  background-color: #E6ED3B;
+  background-color: #ccd30d;
   background-position: bottom left;
 }
 
@@ -703,7 +703,7 @@ article .restaurantContainer #restaurantFirst .displayReviews {
 }
 article .restaurantContainer #restaurantFirst .displayReviews:hover {
   color: #383738;
-  background-color: #E6ED3B;
+  background-color: #ccd30d;
   background-position: bottom left;
 }
 article .restaurantContainer .restaurantSpecificInfo {
@@ -752,7 +752,7 @@ footer {
   color: #a8a8a8;
 }
 .starFav:checked ~ ::before, .starFavLabel:checked ~ ::before {
-  color: #E6ED3B;
+  color: #ccd30d;
 }
 
 .cross {
@@ -773,7 +773,7 @@ footer {
   visibility: hidden;
 }
 .starFavInput:checked ~ ::before {
-  color: #E6ED3B;
+  color: #ccd30d;
 }
 
 .addFav {
