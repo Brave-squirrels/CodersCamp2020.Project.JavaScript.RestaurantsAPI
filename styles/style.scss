@@ -1,6 +1,6 @@
 //Setup
 //Variables
-$bodyBg:#E6ED3B;
+$bodyBg:rgb(204, 211, 13);
 $mainBackground:rgba(0, 0, 0, 0.01);
 $favListBg: #fff;
 $secondBackground: #FCF7FC;
@@ -371,6 +371,7 @@ nav {
 
     #restOfTheFilters{
       overflow: hidden;
+      visibility: hidden;
       display: grid;
       z-index: -9999;
       grid-template-columns: repeat(2,1fr);
@@ -510,18 +511,13 @@ nav {
         }
     }
 
-    @keyframes slideRight {
-        from { transform: translate(100vw,0)}
-        to {transform: translate(0,0);
-            // visibility: hidden;
-        }     
-       }
-
+   
     //Container of all restaurant found
     .restaurantsNavCon {
-        min-height: 61vh;
+        min-height: 61.2vh;
         display: grid;
         padding: 1em 2em;
+        animation-name: slideLeft;
         animation-duration: 2s;
         //Main single nav restaurant container
         .resDiv {
@@ -686,7 +682,7 @@ nav {
 //Single restaurant section
 article {
     //Parent styles
-    height: 70vh;
+    min-height: 70vh;
     animation-name: slideLeft;
     animation-duration: 1.5s;
     color: $mainColor;
@@ -700,7 +696,6 @@ article {
         background: rgba(0, 0, 0, 0.3);
         position: relative;
         max-width: 1200px;
-        height: 55vh;
         display: grid;
         
         //Add span styles to position
@@ -823,7 +818,7 @@ article {
 footer {
     color: $mainFont;
     background: rgb(204, 211, 13);
-    height: 6%;
+    height: 6vh;
     display: flex;
     justify-content: center;
     align-items: center;
