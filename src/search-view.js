@@ -47,9 +47,15 @@ function display(e){
                 mainSection.style.height = '80%';
             }else if(result[0]==='city does not exist'){
                 container.style.display = 'grid';
+                filterViewCnt.style.display = 'none';
+                filterBtn.style.display = 'none';
                 divData.style.display = 'none';
                 buttons.style.display = 'none';
+                document.querySelector('#filterTitle').style.display = 'none';
                 filter.style.display = 'none';
+                if(container.contains(document.querySelector('.townNotFound'))){
+                    container.removeChild(document.querySelector('.townNotFound'));
+                }
                 container.innerHTML += 
                     `
                         <div class='townNotFound'>
@@ -57,7 +63,9 @@ function display(e){
                         </div>
                     `;
                 //Scroll to the nav after submit
-                container.scrollIntoView();
+                container.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }else{
                 if(container.contains(document.querySelector('.townNotFound'))){
                     container.removeChild(document.querySelector('.townNotFound'));
@@ -68,6 +76,9 @@ function display(e){
                 divData.style.display = 'grid';
                 buttons.style.display = 'flex';
                 filter.style.display = 'grid';
+                filterBtn.style.display = 'block';
+                filterViewCnt.style.display = 'grid';
+                document.querySelector('#filterTitle').style.display = 'block';
                 //Creating templates with data and pushing into array
                 container.style.display = 'grid';
                 result.forEach((element)=>{
