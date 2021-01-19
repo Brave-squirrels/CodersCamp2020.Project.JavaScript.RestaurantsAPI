@@ -113,6 +113,9 @@ const manageFav = () => {
                         divData.style.display = 'grid';
                         buttons.style.display = 'flex';
                         filter.style.display = 'grid';
+                        filterBtn.style.display = 'block';
+                        filterViewCnt.style.display = 'grid';
+                        document.querySelector('#filterTitle').style.display = 'block';
                         //Creating templates with data and pushing into array
                         container.style.display = 'grid';
                         result.forEach((element)=>{
